@@ -7,22 +7,22 @@
       .panel
         %h2= site_hostname
 
+        .information-board
+          .section
+            %span= t 'about.user_count_before'
+            %strong= number_with_delimiter @instance_presenter.user_count
+            %span= t 'about.user_count_after'
+          .section
+            %span= t 'about.status_count_before'
+            %strong= number_with_delimiter @instance_presenter.status_count
+            %span= t 'about.status_count_after'
+          .section
+            %span= t 'about.domain_count_before'
+            %strong= number_with_delimiter @instance_presenter.domain_count
+            %span= t 'about.domain_count_after'
+
         - unless @instance_presenter.site_description.blank?
           %p= @instance_presenter.site_description.html_safe
-
-      .information-board
-        .section
-          %span= t 'about.user_count_before'
-          %strong= number_with_delimiter @instance_presenter.user_count
-          %span= t 'about.user_count_after'
-        .section
-          %span= t 'about.status_count_before'
-          %strong= number_with_delimiter @instance_presenter.status_count
-          %span= t 'about.status_count_after'
-        .section
-          %span= t 'about.domain_count_before'
-          %strong= number_with_delimiter @instance_presenter.domain_count
-          %span= t 'about.domain_count_after'
 
       - unless @instance_presenter.site_extended_description.blank?
         .panel= @instance_presenter.site_extended_description.html_safe
