@@ -54,7 +54,7 @@ gem 'sidekiq'
 gem 'sidekiq-unique-jobs'
 gem 'simple-navigation'
 gem 'simple_form'
-gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'statsd-instrument'
 gem 'twitter-text'
 gem 'tzinfo-data'
@@ -103,3 +103,5 @@ group :production do
   gem 'redis-rails'
   gem 'lograge'
 end
+
+gem 'piwik_analytics', '~> 1.0.2'
