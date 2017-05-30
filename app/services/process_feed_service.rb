@@ -47,6 +47,8 @@ class ProcessFeedService < BaseService
         return
       end
 
+      status, just_created = nil
+
       Rails.logger.debug "Creating remote status #{id}"
 
       ApplicationRecord.transaction do
