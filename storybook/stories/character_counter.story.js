@@ -6,11 +6,11 @@ import CharacterCounter from 'mastodon/features/compose/components/character_cou
 storiesOf('CharacterCounter', module)
   .add('no text', () => {
     const text = '';
-    return <CharacterCounter text={text} max={500} />;
+    return <CharacterCounter text={text} max={1024} />;
   })
   .add('a few strings text', () => {
     const text = '0123456789';
-    return <CharacterCounter text={text} max={500} />;
+    return <CharacterCounter text={text} max={1024} />;
   })
   .add('the same text', () => {
     const text = '01234567890123456789';
