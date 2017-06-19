@@ -13,7 +13,7 @@ io:
     features:
       api: Apertita API por apliki e servadi
       blocks: Kompleta utensili por blokusar e celar
-      characters: Til 500 signi por singla mesajo
+      characters: Til 1024 signi por singla mesajo
       chronology: Tempolinei seguntempa
       ethics: 'Etike kreita: nula anunco, nula trakado'
       gifv: Posibleso diskononigar mikra videi e GIFV

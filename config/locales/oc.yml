@@ -13,7 +13,7 @@ oc:
     features:
       api: API dubèrta per las aplicacions e servicis
       blocks: Aisinas complètas per blocar e rescondre
-      characters: 500 caractèrs per publicacion
+      characters: 1024 caractèrs per publicacion
       chronology: Flux d’actualitat cronologic
       ethics: 'Ethical design: pas cap de reclama o traçador'
       gifv: Partatge de GIFs e vidèos cortas

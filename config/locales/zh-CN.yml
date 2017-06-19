@@ -13,7 +13,7 @@ zh-CN:
     features:
       api: 开放 API，供各式应用程序及服务接入
       blocks: 完善的封锁用户、静音功能
-      characters: 每篇嘟文最多 500 字
+      characters: 每篇嘟文最多 1024 字
       chronology: 纯粹按时间排序，不作多余处理
       ethics: 良心设计︰没有广告，不追踪你的使用行为
       gifv: 支持显示 GIFV 动图小视频

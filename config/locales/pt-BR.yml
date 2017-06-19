@@ -13,7 +13,7 @@ pt-BR:
     features:
       api: Aberto para API de aplicações e serviços
       blocks: Bloqueos e ferramentas para mudar
-      characters: 500 caracteres por post
+      characters: 1024 caracteres por post
       chronology: Timeline são cronologicas
       ethics: 'Design ético: sem propaganda, sem tracking'
       gifv: GIFV e vídeos curtos

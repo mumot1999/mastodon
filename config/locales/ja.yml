@@ -13,7 +13,7 @@ ja:
     features:
       api: アプリやその他サービスにAPIを公開
       blocks: 豊富なブロックやミュート機能
-      characters: 1つの投稿は500文字まで利用可能
+      characters: 1つの投稿は1024文字まで利用可能
       chronology: 時系列順のタイムライン
       ethics: 広告もトラッキングもありません
       gifv: GIFVや短い動画にも対応

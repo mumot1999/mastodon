@@ -13,7 +13,7 @@
     features:
       api: Åpent API for applikasjoner og tjenester
       blocks: Rikholdige blokkeringsverktøy
-      characters: 500 tegn per status
+      characters: 1024 tegn per status
       chronology: Tidslinjer er kronologiske
       ethics: 'Etisk design: Ingen reklame, ingen sporing'
       gifv: Støtte for GIFV og korte videoer

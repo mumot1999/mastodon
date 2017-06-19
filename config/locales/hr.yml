@@ -13,7 +13,7 @@ hr:
     features:
       api: Otvoren API za aplikacije i servise
       blocks: Bogati alati za blokiranje i ušutkivanje
-      characters: 500 znakova po postu
+      characters: 1024 znakova po postu
       chronology: Timelines su kronološke
       ethics: 'Etički dizajn: bez oglasa, bez praćenja'
       gifv: GIFV setovi i kratki videi

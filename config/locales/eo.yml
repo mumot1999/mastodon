@@ -12,7 +12,7 @@ eo:
     features:
       api: Malfermita API por aplikaĵoj kaj servoj
       blocks: Kompletaj iloj por bloki kaj kaŝi
-      characters: Po 500 signoj por ĉiu mesaĝo
+      characters: Po 1024 signoj por ĉiu mesaĝo
       chronology: Tempolinioj laŭtempaj
       ethics: 'Etike kreita: neniu reklamo, neniu ŝpurado'
       gifv: Eblo diskonigi etajn videojn kaj GIFV

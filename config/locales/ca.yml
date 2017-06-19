@@ -13,7 +13,7 @@ ca:
     features:
       api: API pública per a aplicacions i serveis
       blocks: Moderació de contingut
-      characters: 500 caràcters per publicació
+      characters: 1024 caràcters per publicació
       chronology: Les histories son cronològiques
       ethics: 'Disseny ètic: sense anuncis, sense rastrejos'
       gifv: Vídeos curts i GIFV

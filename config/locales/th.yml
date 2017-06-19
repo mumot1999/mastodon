@@ -13,7 +13,7 @@ th:
     features:
       api: API เปิดสำหรับ Apps และ Services
       blocks: มีเครื่องมือสำหรับ Block และ Mute
-      characters: เขียนได้ 500 ตัวอักษรต่อโพสต์
+      characters: เขียนได้ 1024 ตัวอักษรต่อโพสต์
       chronology: Timelines are chronological
       ethics: 'ออกแบบด้วยจรรยาบรรณ: ไม่มีโฆษณา, ไม่มีการแทรค'
       gifv: รองรับภาพ GIFV และ วีดีโอสั้น

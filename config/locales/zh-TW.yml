@@ -13,7 +13,7 @@ zh-TW:
     features:
       api: 開放 API，供各式應用程式及服務串接
       blocks: 完善的封鎖使用者、靜音功能
-      characters: 每篇文章最多 500 字
+      characters: 每篇文章最多 1024 字
       chronology: 時間軸按時序顯示文章，不作多餘處理
       ethics: 良心設計︰沒有廣告，不追蹤您的使用行為
       gifv: 支援顯示 GIFV 短片

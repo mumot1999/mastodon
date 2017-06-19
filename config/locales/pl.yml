@@ -13,7 +13,7 @@ pl:
     features:
       api: Otwarte API dla aplikacji i usług
       blocks: Rozbudowane narzędzia blokowania i ukrywania
-      characters: 500 znaków na wpis
+      characters: 1024 znaków na wpis
       chronology: Chronologiczny porządek wyświetlania
       ethics: 'Etyczne założenia: nie śledzimy, bez reklam'
       gifv: obsługa GIFV i krótkich wideo

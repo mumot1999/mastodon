@@ -12,7 +12,7 @@ fi:
     features:
       api: Avoin API ohjelmille ja palveluille
       blocks: Rikkaat esto- ja hiljennystyökalut
-      characters: 500 kirjainta per viesti
+      characters: 1024 kirjainta per viesti
       chronology: Aikajana on kronologisessa järjestyksessä
       ethics: 'Eettinen suunnittelu: ei mainoksia, ei seurantaa'
       gifv: GIFV settejä ja lyhyitä videoita

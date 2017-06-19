@@ -13,7 +13,7 @@ id:
     features:
       api: API terbuka untuk aplikasi dan layanan lain
       blocks: Aneka ragam fitur blokir dan pembisuan
-      characters: 500 karakter per posting
+      characters: 1024 karakter per posting
       chronology: Linimasa berurutan
       ethics: 'Desain etis: tanpa iklan, tidak ada pelacakan'
       gifv: Fitur GIFV dan video pendek

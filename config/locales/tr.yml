@@ -13,7 +13,7 @@ tr:
     features:
       api: Uygulama ve servisler için açık API
       blocks: Zengin blok ve iletişim araçları
-      characters: 500 karakterlik gönderiler
+      characters: 1024 karakterlik gönderiler
       chronology: Kronolojik zaman tüneli
       ethics: 'Etik tasarım: reklam ve izleme yok'
       gifv: GIFV ve diğer video türleri

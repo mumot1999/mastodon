@@ -13,7 +13,7 @@ it:
     features:
       api: API aperto per applicazioni e servizi
       blocks: Potenti strumenti di blocco e silenziamento
-      characters: 500 caratteri per status
+      characters: 1024 caratteri per status
       chronology: Le timeline sono cronologiche
       ethics: 'Design etico: niente pubblicità, niente tracking'
       gifv: Set di GIFV e brevi video

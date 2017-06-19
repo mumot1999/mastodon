@@ -13,7 +13,7 @@ fr:
     features:
       api: API ouverte aux apps et services
       blocks: Outils complets de bloquage et masquage
-      characters: 500 caractères par post
+      characters: 1024 caractères par post
       chronology: Fil chronologique
       ethics: Pas de pubs, pas de pistage
       gifv: Partage de vidéos et de GIFs

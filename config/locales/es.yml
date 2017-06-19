@@ -13,7 +13,7 @@ es:
     features:
       api: API pública para aplicaciones y servicios
       blocks: Moderación de contenido
-      characters: 500 caracteres por publicación
+      characters: 1024 caracteres por publicación
       chronology: Las historias son cronológicas
       ethics: 'Diseño etico: sin anuncios, sin rastreos'
       gifv: Videos cortos y GIFV

@@ -13,7 +13,7 @@ nl:
     features:
       api: Open API voor apps en diensten
       blocks: Uitgebreide blokkeer- en negeerhulpmiddelen
-      characters: 500 tekens per bericht
+      characters: 1024 tekens per bericht
       chronology: Tijdlijnen zijn chronologisch
       ethics: 'Ethisch design: geen advertenties, geen spionage'
       gifv: GIFV-sets en korte video's

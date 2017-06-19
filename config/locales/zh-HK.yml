@@ -13,7 +13,7 @@ zh-HK:
     features:
       api: 開放 API，供各式應用程式及服務連入
       blocks: 完善的封鎖用戶、靜音功能
-      characters: 每篇文章最多 500 字
+      characters: 每篇文章最多 1024 字
       chronology: 時間軸忠實按時排序，不多餘處理
       ethics: 良心設計︰無廣告，不追蹤用戶
       gifv: 支援顯示 GIFV 短片圖組
