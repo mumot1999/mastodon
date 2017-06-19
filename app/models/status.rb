@@ -126,6 +126,11 @@ class Status < ApplicationRecord
   before_validation :set_conversation
 
   class << self
+    def search_for(term, limit = 20)
+       pattern = sanitize_sql_like(term) + '%'
+       Status.where('text like ?', pattern).order(created_at: :desc).limit(limit)
+    end
+
     def not_in_filtered_languages(account)
       where.not(language: account.filtered_languages)
     end
