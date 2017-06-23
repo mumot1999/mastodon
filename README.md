@@ -1,3 +1,17 @@
+Important Notes Regarding this fork
+===================================
+
+This is a fork of mastodon code as deployed on https://mastodon.host, to cope with the limits and missing functionnality of the original project.
+
+Patches implemented:
+- PIWIK integration ( allows to have some nice anonymous, self hosted and opensource analytics on the visitors ).
+- Text search for statuses ( upstream code only allow searching users and hashtags ).
+- 20 results instead of 5 per type of search.
+- The FAQ link on the homepage points to /about/more instead of the github repo.
+- 1024 character limit instead of 500 ( TODO: implement that as a configuration instead of being hardcoded ).
+
+Original README is below:
+
 Mastodon
 ========
 
