@@ -9,6 +9,7 @@ Patches implemented:
 - 20 results instead of 5 per type of search.
 - The FAQ link on the homepage points to /about/more instead of the github repo.
 - 1024 character limit instead of 500 ( TODO: implement that as a configuration instead of being hardcoded ).
+- replies and reboosts are displayed in the timelines instead of being ignored.
 - Travis CI WIP to check every user facing function is behaving correctly.
 
 [![Fork Build Status](http://img.shields.io/travis/gled-rs/mastodon.svg)][travis]
