@@ -11,15 +11,18 @@ Patches implemented:
 - 1024 character limit instead of 500 ( TODO: implement that as a configuration instead of being hardcoded ).
 - Travis CI WIP to check every user facing function is behaving correctly.
 
+[![Fork Build Status](http://img.shields.io/travis/gled-rs/mastodon.svg)][travis]
+[travis]: https://travis-ci.org/gled-rs/mastodon
+
 Original README is below:
 
 Mastodon
 ========
 
-[![Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][travis]
+[![Upstream Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][travis]
 [![Code Climate](https://img.shields.io/codeclimate/github/tootsuite/mastodon.svg)][code_climate]
 
-[travis]: https://travis-ci.org/tootsuite/mastodon
+[Upstream travis]: https://travis-ci.org/tootsuite/mastodon
 [code_climate]: https://codeclimate.com/github/tootsuite/mastodon
 
 Mastodon is a free, open-source social network server. A decentralized solution to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly.
