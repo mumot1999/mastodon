@@ -12,6 +12,7 @@ Patches implemented:
 - Travis CI WIP to check every user facing function is behaving correctly.
 
 [![Fork Build Status](http://img.shields.io/travis/gled-rs/mastodon.svg)][travis]
+
 [travis]: https://travis-ci.org/gled-rs/mastodon
 
 Original README is below:
@@ -19,7 +20,7 @@ Original README is below:
 Mastodon
 ========
 
-[![Upstream Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][travis]
+[![Upstream Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][Upstream travis]
 [![Code Climate](https://img.shields.io/codeclimate/github/tootsuite/mastodon.svg)][code_climate]
 
 [Upstream travis]: https://travis-ci.org/tootsuite/mastodon
