@@ -1,7 +1,7 @@
 Important Notes Regarding this fork
 ===================================
 
-This is a fork of mastodon code as deployed on https://mastodon.host, to cope with the limits and missing functionnality of the original project.
+This is the fork mastodon as deployed on https://mastodon.host, necessary to cope with the limits and missing functionnality of the original project.
 
 Patches implemented:
 - PIWIK integration ( allows to have some nice anonymous, self hosted and opensource analytics on the visitors ).
@@ -9,6 +9,7 @@ Patches implemented:
 - 20 results instead of 5 per type of search.
 - The FAQ link on the homepage points to /about/more instead of the github repo.
 - 1024 character limit instead of 500 ( TODO: implement that as a configuration instead of being hardcoded ).
+- Travis CI WIP to check every user facing function is behaving correctly.
 
 Original README is below:
 
