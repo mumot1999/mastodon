@@ -1,7 +1,7 @@
 Important Notes Regarding this fork
 ===================================
 
-This is the fork mastodon as deployed on https://mastodon.host, necessary to cope with the limits and missing functionnality of the original project.
+This is the fork mastodon as deployed on https://mastodon.host, necessary to add a few customisations and integrate it in a CI pipe for deployment.
 
 Patches implemented:
 - PIWIK integration ( allows to have some nice anonymous, self hosted and opensource analytics on the visitors ).
@@ -10,7 +10,7 @@ Patches implemented:
 - The FAQ link on the homepage points to /about/more instead of the github repo.
 - 1024 character limit instead of 500 ( TODO: implement that as a configuration instead of being hardcoded ).
 - replies and reboosts are displayed in the timelines instead of being ignored.
-- Travis CI WIP to check every user facing function is behaving correctly.
+- Travis + CI WIP to check every user facing function is behaving correctly.
 
 [![Fork Build Status](http://img.shields.io/travis/gled-rs/mastodon.svg)][travis]
 
