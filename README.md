@@ -8,7 +8,8 @@ Patches implemented:
 - Text search for statuses ( upstream code only allow searching users and hashtags ).
 - 20 results instead of 5 per type of search.
 - The FAQ link on the homepage points to /about/more instead of the github repo.
-- 1024 character limit instead of 500 ( TODO: implement that as a configuration instead of being hardcoded ).
+- 1024 character limit for posts instead of 500 ( TODO: implement that as a configuration instead of being hardcoded ).
+- 512 character limit instead of 160 for profile bio ( TODO: implement that as a configuration instead of being hardcoded ).
 - replies and reboosts are displayed in the timelines instead of being ignored.
 - Travis + CI WIP to check every user facing function is behaving correctly.
 
