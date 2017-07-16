@@ -127,8 +127,19 @@ class Status < ApplicationRecord
 
   class << self
     def search_for(term, limit = 20)
-       pattern = sanitize_sql_like(term) + '%'
-       Status.where('text like ?', pattern).order(created_at: :desc).limit(limit)
+       term   = Arel.sql(connection.quote(term.gsub(/['?\\:]/, ' ')))
+       textsearch = "(setweight(to_tsvector('simple', status.text), 'A') || setweight(to_tsvector('simple', status.url), 'B') || setweight(to_tsvector('simple', coalesce( status.language, '')), 'C'))"
+       query      = "to_tsquery('simple', ''' ' || #{term} || ' ''' || ':*')"
+       sql = <<-SQL.squish
+        SELECT
+          status.*,
+          ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
+        FROM status
+        WHERE #{query} @@ #{textsearch}
+        ORDER BY rank DESC
+        LIMIT ?
+      SQL
+       find_by_sql([sql, limit])
     end
 
     def not_in_filtered_languages(account)
