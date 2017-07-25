@@ -31,6 +31,7 @@ RSpec.describe HomeController, type: :controller do
         expect(initial_state_json[:accounts]).to_not be_nil
         expect(initial_state_json[:settings]).to_not be_nil
         expect(initial_state_json[:media_attachments]).to_not be_nil
+        expect(initial_state_json[:piwik_enabled]).to_not be_nil
       end
     end
   end
