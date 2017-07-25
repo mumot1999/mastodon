@@ -12,12 +12,12 @@
 #  in_reply_to_id         :integer
 #  reblog_of_id           :integer
 #  url                    :string
-#  sensitive              :boolean          default(FALSE)
+#  sensitive              :boolean          default(FALSE), not null
 #  visibility             :integer          default("public"), not null
 #  in_reply_to_account_id :integer
 #  application_id         :integer
 #  spoiler_text           :text             default(""), not null
-#  reply                  :boolean          default(FALSE)
+#  reply                  :boolean          default(FALSE), not null
 #  favourites_count       :integer          default(0), not null
 #  reblogs_count          :integer          default(0), not null
 #  language               :string
@@ -29,6 +29,7 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
   include StatusThreadingConcern
+  include EmojiHelper
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
@@ -119,11 +120,12 @@ class Status < ApplicationRecord
   def non_sensitive_with_media?
     !sensitive? && media_attachments.any?
   end
- 
-  before_validation :prepare_contents
+
+  before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
   before_validation :set_visibility
   before_validation :set_conversation
+  before_validation :set_sensitivity
 
   class << self
     def search_for(term, limit = 20)
@@ -247,6 +249,9 @@ class Status < ApplicationRecord
   def prepare_contents
     text&.strip!
     spoiler_text&.strip!
+
+    self.text         = emojify(text)
+    self.spoiler_text = emojify(spoiler_text)
   end
 
   def set_reblog
@@ -255,6 +260,11 @@ class Status < ApplicationRecord
 
   def set_visibility
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
+    self.sensitive  = false if sensitive.nil?
+  end
+
+  def set_sensitivity
+    self.sensitive = sensitive || spoiler_text.present?
   end
 
   def set_conversation

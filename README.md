@@ -20,7 +20,8 @@ Patches implemented:
 Original README is below:
 
 Mastodon
-========
+=======
+![Mastodon](https://i.imgur.com/NhZc40l.png)
 
 [![Upstream Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][Upstream travis]
 [![Code Climate](https://img.shields.io/codeclimate/github/tootsuite/mastodon.svg)][code_climate]

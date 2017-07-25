@@ -5,13 +5,10 @@ class HomeController < ApplicationController
   skip_before_action :store_current_location, only: :piwik
   # rubocop sees that as a hash ?!
   before_action :authenticate_user!, :except => %i(piwik) # rubocop:disable Style/HashSyntax
+  before_action :set_initial_state_json
 
   def index
-    @body_classes           = 'app-body'
-    @token                  = current_session.token
-    @web_settings           = Web::Setting.find_by(user: current_user)&.data || {}
-    @admin                  = Account.find_local(Setting.site_contact_username)
-    @streaming_api_base_url = Rails.configuration.x.streaming_api_base_url
+    @body_classes = 'app-body'
   end
 
   def piwik
@@ -40,5 +37,21 @@ class HomeController < ApplicationController
 
   def authenticate_user!
     redirect_to(single_user_mode? ? account_path(Account.first) : about_path) unless user_signed_in?
+  end
+
+  def set_initial_state_json
+    serializable_resource = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(initial_state_params), serializer: InitialStateSerializer)
+    @initial_state_json   = serializable_resource.to_json
+  end
+
+  def initial_state_params
+    {
+      settings: Web::Setting.find_by(user: current_user)&.data || {},
+      push_subscription: current_account.user.web_push_subscription(current_session),
+      current_account: current_account,
+      token: current_session.token,
+      admin: Account.find_local(Setting.site_contact_username),
+      piwik_enabled: ENV.has_key?('PIWIK_DOMAIN') ? 'true' : 'false'
+    }
   end
 end
