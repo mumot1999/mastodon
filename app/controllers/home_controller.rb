@@ -51,7 +51,7 @@ class HomeController < ApplicationController
       current_account: current_account,
       token: current_session.token,
       admin: Account.find_local(Setting.site_contact_username),
-      piwik_enabled: ENV.has_key?('PIWIK_DOMAIN') ? 'true' : 'false'
+      piwik_enabled: ENV.has_key?('PIWIK_DOMAIN') ? 'true' : 'false',
     }
   end
 end

@@ -177,14 +177,6 @@ en:
         desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Instance description
       site_description_extended:
-<<<<<<< HEAD
-        desc_html: Displayed on extended information page<br>You can use HTML tags
-        title: Extended site description
-      site_terms:
-        desc_html: Displayed on Terms page<br>You can use HTML tags
-        title: Terms of usage
-      site_title: Site title
-=======
         desc_html: A good place for your code of conduct, rules, guidelines and other things that set your instance apart. You can use HTML tags
         title: Custom extended information
       site_terms:
@@ -194,7 +186,6 @@ en:
       timeline_preview:
         desc_html: Display public timeline on landing page
         title: Timeline preview
->>>>>>> v1.5.0rc1
       title: Site Settings
     statuses:
       back_to_account: Back to account page
