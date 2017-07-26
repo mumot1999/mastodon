@@ -12,6 +12,7 @@ Patches implemented:
 - 512 character limit instead of 160 for profile bio ( TODO: implement that as a configuration instead of being hardcoded ).
 - replies and reboosts are displayed in the timelines instead of being ignored.
 - Travis + CI WIP to check every user facing function is behaving correctly.
+- A few other minor tweaks like full column display to fill bigger screen, and other improvements...
 
 [![Fork Build Status](http://img.shields.io/travis/gled-rs/mastodon.svg)][travis]
 
