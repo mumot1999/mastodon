@@ -16,6 +16,7 @@ Patches implemented:
 
 [![Fork Build Status](http://img.shields.io/travis/gled-rs/mastodon.svg)][travis]
 [![Fork Code Climate](https://img.shields.io/codeclimate/github/gled-rs/mastodon.svg)][code_climate]
+
 [travis]: https://travis-ci.org/gled-rs/mastodon
 [code_climate]: https://codeclimate.com/github/gled-rs/mastodon
 
