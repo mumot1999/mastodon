@@ -15,8 +15,9 @@ Patches implemented:
 - A few other minor tweaks like full column display to fill bigger screen, and other improvements...
 
 [![Fork Build Status](http://img.shields.io/travis/gled-rs/mastodon.svg)][travis]
-
+[![Fork Code Climate](https://img.shields.io/codeclimate/github/gled-rs/mastodon.svg)][code_climate]
 [travis]: https://travis-ci.org/gled-rs/mastodon
+[code_climate]: https://codeclimate.com/github/gled-rs/mastodon
 
 Original README is below:
 
@@ -25,10 +26,10 @@ Mastodon
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 
 [![Upstream Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][Upstream travis]
-[![Code Climate](https://img.shields.io/codeclimate/github/tootsuite/mastodon.svg)][code_climate]
+[![Upstream Code Climate](https://img.shields.io/codeclimate/github/tootsuite/mastodon.svg)][Upstream code_climate]
 
 [Upstream travis]: https://travis-ci.org/tootsuite/mastodon
-[code_climate]: https://codeclimate.com/github/tootsuite/mastodon
+[Upstream code_climate]: https://codeclimate.com/github/tootsuite/mastodon
 
 Mastodon is a free, open-source social network server. A decentralized solution to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly.
 
