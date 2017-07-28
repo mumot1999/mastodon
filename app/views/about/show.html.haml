@@ -66,10 +66,9 @@
       .about-mastodon
         %h3= t 'about.what_is_mastodon'
         %p= t 'about.about_mastodon_html'
-        %a.button.button-secondary{ href: 'https://joinmastodon.org/' }= t 'about.learn_more'
         = render 'features'
   .footer-links
     .container
       %p
-        = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
+        = link_to t('about.source_code'), 'https://github.com/gled-rs/mastodon'
         = " (#{@instance_presenter.version_number})"
