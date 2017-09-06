@@ -53,7 +53,7 @@
               - else
                 = @instance_presenter.closed_registrations_message.html_safe
 
-  .learn-more-cta
+  .about-short
     .container
       %h3= t('about.description_headline', domain: site_hostname)
       %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
