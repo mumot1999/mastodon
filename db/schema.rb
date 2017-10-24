@@ -360,10 +360,12 @@ ActiveRecord::Schema.define(version: 20171010025614) do
     t.bigint "account_id", null: false
     t.bigint "application_id"
     t.bigint "in_reply_to_account_id"
+    t.tsvector "tsv"
     t.index ["account_id", "id"], name: "index_statuses_on_account_id_id"
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id"
+    t.index ["tsv"], name: "tsv_idx", using: :gin
     t.index ["uri"], name: "index_statuses_on_uri", unique: true
   end
 

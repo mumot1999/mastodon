@@ -148,8 +148,8 @@ class Status < ApplicationRecord
   class << self
     def search_for(term, limit = 20)
        pattern = sanitize_sql_like(term)
-       pattern = "%#{pattern}%"
-       Status.where('text like ?', pattern).order(created_at: :desc).limit(limit)
+       pattern = "#{pattern}"
+       Status.where('tsv @@ plainto_tsquery(?)', pattern).order(created_at: :desc).limit(limit)
     end
 
     def not_in_filtered_languages(account)
