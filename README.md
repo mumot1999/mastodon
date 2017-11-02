@@ -5,7 +5,7 @@ This is the fork mastodon as deployed on https://mastodon.host, necessary to add
 
 Patches implemented:
 - PIWIK integration ( allows to have some nice anonymous, self hosted and opensource analytics on the visitors ).
-- Text search for statuses ( upstream code only allow searching users and hashtags ).
+- Full Text search for statuses ( upstream code only allow searching users and hashtags ).
 - 20 results instead of 5 per type of search.
 - The FAQ link on the homepage points to /about/more instead of the github repo.
 - 1024 character limit for posts instead of 500 ( TODO: implement that as a configuration instead of being hardcoded ).
@@ -13,12 +13,16 @@ Patches implemented:
 - replies and reboosts are displayed in the timelines instead of being ignored.
 - Travis + CI WIP to check every user facing function is behaving correctly.
 - A few other minor tweaks like full column display to fill bigger screen, and other improvements...
+- Oauth patch to allow authentication by either the local username or the email ( necessary for the XMPP integration ).
 
 [![Fork Build Status](http://img.shields.io/travis/gled-rs/mastodon.svg)][travis]
 [![Fork Code Climate](https://img.shields.io/codeclimate/github/gled-rs/mastodon.svg)][code_climate]
 
 [travis]: https://travis-ci.org/gled-rs/mastodon
 [code_climate]: https://codeclimate.com/github/gled-rs/mastodon
+
+Regarding FTS on this server, the code itself is not enough, you also need to alter the status table to add a tsvector index tsv, and a trigger to generate that column 
+from the text status ( generate the indexes to speed up FTS ).
 
 Original README is below:
 
