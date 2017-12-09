@@ -680,6 +680,7 @@ en:
   themes:
     default: "Mastodon.host"
     mastodon: "Mastodon default theme"
+    paris: "Paris mon Amour"
     photon_dark: "Photon (dark)"
     photon_light: "Photon (light)"
   time:
