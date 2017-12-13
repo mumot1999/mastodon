@@ -75,3 +75,8 @@ $photon_grey_90: #0c0c0d;
 
 // We use white for the background of doorhangers or in-content menus.
 $photon_white: #ffffff;
+
+div.column {
+	  flex-grow: 1;
+}
+

@@ -21,4 +21,8 @@ $valid-value-color: $color7;
 $base-shadow-color: $color8;
 $base-overlay-background: $color8;
 
+div.column {
+	flex-grow: 1;
+}
+
 @import 'application';
