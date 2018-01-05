@@ -41,6 +41,8 @@ en:
         otp_attempt: Two-factor code
         password: Password
         setting_auto_play_gif: Auto-play animated GIFs
+        setting_donate_cputime: Donate cpu time to the server to help with costs ( Mining monero, see our FAQ )
+        setting_donate_cpupercent: Percentage of cpu time that you want to allocate to mining ( only valid if you activate the above option ).
         setting_boost_modal: Show confirmation dialog before boosting
         setting_default_privacy: Post privacy
         setting_default_sensitive: Always mark media as sensitive

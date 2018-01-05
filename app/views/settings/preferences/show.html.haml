@@ -4,6 +4,12 @@
 = simple_form_for current_user, url: settings_preferences_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: current_user
 
+  %h4= t 'preferences.donation'
+  .fields-group
+    = f.input :setting_donate_cputime, as: :boolean, wrapper: :with_label
+    - if :setting_donate_cputime
+      = f.input :setting_donate_cpupercent, as: :integer, wrapper: :with_label
+
   %h4= t 'preferences.languages'
 
   .fields-group

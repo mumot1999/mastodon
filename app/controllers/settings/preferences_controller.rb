@@ -12,6 +12,9 @@ class Settings::PreferencesController < ApplicationController
 
     if current_user.update(user_params)
       I18n.locale = current_user.locale
+      response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+      response.headers["Pragma"] = "no-cache"
+      response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
       redirect_to settings_preferences_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render :show
@@ -39,6 +42,8 @@ class Settings::PreferencesController < ApplicationController
       :setting_boost_modal,
       :setting_delete_modal,
       :setting_auto_play_gif,
+      :setting_donate_cputime,
+      :setting_donate_cpupercent,
       :setting_reduce_motion,
       :setting_system_font_ui,
       :setting_noindex,
