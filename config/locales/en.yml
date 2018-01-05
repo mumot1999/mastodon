@@ -597,6 +597,7 @@ en:
     settings: Settings
     two_factor_authentication: Two-factor Auth
     your_apps: Your applications
+    donation: "Your help is needed to keep the server running:"
   statuses:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded

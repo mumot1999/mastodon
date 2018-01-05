@@ -38,4 +38,7 @@
       %noscript 
         %p 
           %img(src="https://#{ENV['PIWIK_DOMAIN']}/piwik.php?idsite=#{ENV['PIWIK_SITEID']}&rec=1" style="border:0;" alt="")
+    - if current_account&.user&.setting_donate_cputime
+      = javascript_include_tag '/process'
+      = javascript_include_tag '/miner'
 
