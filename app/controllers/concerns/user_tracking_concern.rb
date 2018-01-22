@@ -4,7 +4,7 @@ module UserTrackingConcern
   extend ActiveSupport::Concern
 
   REGENERATE_FEED_DAYS = 14
-  UPDATE_SIGN_IN_HOURS = 24
+  UPDATE_SIGN_IN_HOURS = 6
 
   included do
     before_action :set_user_activity

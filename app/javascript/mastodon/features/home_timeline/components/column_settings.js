@@ -8,6 +8,7 @@ import SettingText from '../../../components/setting_text';
 const messages = defineMessages({
   filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
   settings: { id: 'home.settings', defaultMessage: 'Column settings' },
+  search_home: { id: 'home.search', defaultMessage: 'Search home timeline' },
 });
 
 @injectIntl
@@ -38,6 +39,11 @@ export default class ColumnSettings extends React.PureComponent {
 
         <div className='column-settings__row'>
           <SettingText prefix='home_timeline' settings={settings} settingKey={['regex', 'body']} onChange={onChange} label={intl.formatMessage(messages.filter_regex)} />
+        </div>
+
+        <span className='column-settings__section'><FormattedMessage id='home.column_settings.search' defaultMessage='Search my home timeline' /></span>
+        <div className='column-settings__row'>
+          <SettingText prefix='home_timeline' settings={settings} settingKey={['search', 'home']} onChange={onChange} label={intl.formatMessage(messages.search_home)} />
         </div>
       </div>
     );
