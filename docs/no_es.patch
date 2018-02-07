@@ -1,0 +1,29 @@
+diff --git a/app/models/status.rb b/app/models/status.rb
+index 24d3db2bf4..57e561b6cc 100644
+--- a/app/models/status.rb
++++ b/app/models/status.rb
+@@ -126,6 +126,11 @@ def non_sensitive_with_media?
+   before_validation :set_conversation
+ 
+   class << self
++    def search_for(term, limit = 20)
++       pattern = sanitize_sql_like(term) + '%'
++       Status.where('text like ?', pattern).order(created_at: :desc).limit(limit)
++    end
++
+     def not_in_filtered_languages(account)
+       where.not(language: account.filtered_languages)
+     end
+
+diff --git a/app/services/search_service.rb b/app/services/search_service.rb
+index 1ed3f0032f..8614ef4877 100644
+--- a/app/services/search_service.rb
++++ b/app/services/search_service.rb
+@@ -12,6 +12,7 @@ def call(query, limit, resolve = false, account = nil)
+       elsif query.present?
+         results[:accounts] = AccountSearchService.new.call(query, limit, resolve, account)
+         results[:hashtags] = Tag.search_for(query.gsub(/\A#/, ''), limit) unless query.start_with?('@')
++        results[:statuses] = Status.search_for(query.gsub(/\A#/, ''), limit) unless query.start_with?('@') or query.start_with?('#')
+       end
+     end
+   end

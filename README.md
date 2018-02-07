@@ -24,6 +24,22 @@ Patches implemented:
 Regarding FTS on this server, the code itself is not enough, you also need to alter the status table to add a tsvector index tsv, and a trigger to generate that column 
 from the text status ( generate the indexes to speed up FTS ).
 
+This is done this way:
+- ALTER TABLE statuses ADD COLUMN tsv tsvector;
+- CREATE INDEX tsv_idx ON documents USING gin(tsv);
+- CREATE FUNCTION tsv_update_trigger() RETURNS trigger
+    AS $$ begin new.tsv := to_tsvector(new.text); return new; end $$ LANGUAGE plpgsql;
+- CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON statuses FOR EACH ROW EXECUTE PROCEDURE tsv_update_trigger();
+
+And of course, you need to populate that index for the statuses already in your DB ( it will take a LONG time if you have a big statuses DB ):
+- UPDATE statuses SET tsv =to_tsvector(coalesce(text,''));
+
+I am investigating at the moment to use the gem "pg_search", to ease coding there. Currently you are limited to see the latest 20 search results seen by your instance for the statuses.
+I will release soon the version allowing searching your home timeline.
+
+Notes for admins that want to just integrate the patch for FTS ( to allow not using ES and save a bit of resources ), there's a patch available in docs/ directory to apply to your instance code.
+You also need to deal with the above SQL commands though.
+
 Original README is below:
 
 Mastodon
