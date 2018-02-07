@@ -26,7 +26,7 @@ from the text status ( generate the indexes to speed up FTS ).
 
 This is done this way:
 - ALTER TABLE statuses ADD COLUMN tsv tsvector;
-- CREATE INDEX tsv_idx ON documents USING gin(tsv);
+- CREATE INDEX tsv_idx ON statuses USING gin(tsv);
 - CREATE FUNCTION tsv_update_trigger() RETURNS trigger
     AS $$ begin new.tsv := to_tsvector(new.text); return new; end $$ LANGUAGE plpgsql;
 - CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON statuses FOR EACH ROW EXECUTE PROCEDURE tsv_update_trigger();
