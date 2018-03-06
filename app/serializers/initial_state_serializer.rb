@@ -17,6 +17,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       locale: I18n.locale,
       domain: Rails.configuration.x.local_domain,
       admin: object.admin&.id&.to_s,
+      search_enabled: Chewy.enabled?,
     }
 
     if object.current_account
@@ -27,6 +28,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:auto_play_gif]  = object.current_account.user.setting_auto_play_gif
       store[:donate_cputime]  = object.current_account.user.setting_donate_cputime
       store[:donate_cpupercent]  = object.current_account.user.setting_donate_cpupercent
+      store[:display_sensitive_media] = object.current_account.user.setting_display_sensitive_media
       store[:reduce_motion]  = object.current_account.user.setting_reduce_motion
     end
 
