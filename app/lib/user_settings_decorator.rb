@@ -74,6 +74,7 @@ class UserSettingsDecorator
 
   def donate_cpupercent_preference
     settings['setting_donate_cpupercent'].to_i
+  end
   
   def display_sensitive_media_preference
     boolean_cast_setting 'setting_display_sensitive_media'
