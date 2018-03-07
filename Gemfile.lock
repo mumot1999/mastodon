@@ -133,6 +133,8 @@ GEM
     crass (1.0.3)
     css_parser (1.6.0)
       addressable
+    ddtrace (0.11.2)
+      msgpack
     debug_inspector (0.0.3)
     devise (4.4.0)
       bcrypt (~> 3.0)
@@ -638,6 +640,7 @@ DEPENDENCIES
   chewy (~> 0.10)!
   cld3 (~> 3.2.0)
   climate_control (~> 0.2)
+  ddtrace
   devise (~> 4.4)
   devise-two-factor (~> 3.0)
   devise_pam_authenticatable2 (~> 8.0)
