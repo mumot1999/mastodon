@@ -13,7 +13,7 @@
     %meta{ name: 'description', content: 'Mastodon is a free microblogging platform, an opensource alternative to twitter. Mastodon.host incorporate a few more features than the original code.' }/
     %meta{ name: 'title', content: 'Mastodon, opensource microblogging platform alternative to Twitter. Mastodon.host is mastodon but with a few awesome unique features !' }/
 
-    %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp, ' - ', title]) : title
+    %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp.html_safe, title], ' - ') : title
 
     = stylesheet_pack_tag 'common', media: 'all'
     = stylesheet_pack_tag current_theme, media: 'all'
