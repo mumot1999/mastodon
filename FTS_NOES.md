@@ -26,3 +26,5 @@ of results can happen during the initial index scan => Instant huge speed bump.
 5. But they say that it will impact performance to use Postgres instead of Elastic Search ? Think about it, using ES you are moving a subset of your queries to another process ( ideally on another server, if not then the impact of performance is also true for ES, as it will consume system resources instead of leaving it for Pg ), what prevents you from routing only the search requests to a separate DB server ?
 What prevents you from running the triggers only on that separate instance ? You get the Bs about that now I hope ;)
 6. Need more info ? need to optimize further ? ping me on gled@mastodon.host.
+7. Why is ES bad ? Es is not bad, it is a fantastic tool for data aggregation from different sources, there is plenty of great frontends too to create analyticez, reporting, etc... It is not a tool adapted imho for the feature of searching the toot db of 99.999% of the instances, and even or the very few   
+instances which have a huge database, it is debatable compared to the benefits of a R/O slave.
