@@ -20,7 +20,8 @@ That patch is available in the docs folder too just in case.
 * How to go further/Faq ?
 1. If you are running a big instance, I would suggest switching from GIN to RUM for the index type. You'll be using more disk space, but the ordering/ranking 
 of results can happen during the initial index scan => Instant huge speed bump.
-2. Why not ES ? It is not necessary, creates dual tiered instances depending on the admin finances, etc.. No need to go back there.
-3. But they say that it will impact performance to use Postgres instead of Elastic Search ? Think about it, using ES you are moving a subset of your queries to another process ( ideally on another server, if not then the impact of performance is also true for ES, as it will consume system resources instead of leaving it for Pg ), what prevents you from routing only the search requests to a separate DB server ?
+2. If you want to upstream that, I would suggest looking at the gem 'pg_search' that could help quite a bit.
+3. Why not ES ? It is not necessary, even at scale. It creates dual tiered instances depending on the admin finances, was used as a shortcut to search and a way to ensure that not all the instances would deploy it, etc.. No need to go back there.
+4. But they say that it will impact performance to use Postgres instead of Elastic Search ? Think about it, using ES you are moving a subset of your queries to another process ( ideally on another server, if not then the impact of performance is also true for ES, as it will consume system resources instead of leaving it for Pg ), what prevents you from routing only the search requests to a separate DB server ?
 What prevents you from running the triggers only on that separate instance ? You get the Bs about that now I hope ;)
-4. Need more info ? need to optimize further ? ping me on gled@mastodon.host.
+5. Need more info ? need to optimize further ? ping me on gled@mastodon.host.
