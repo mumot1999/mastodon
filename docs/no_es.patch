@@ -1,9 +1,31 @@
+diff --git a/app/controllers/api/v1/search_controller.rb b/app/controllers/api/v1/search_controller.rb
+index d1b4e04..2ea7b65 100644
+--- a/app/controllers/api/v1/search_controller.rb
++++ b/app/controllers/api/v1/search_controller.rb
+@@ -3,7 +3,7 @@
+ class Api::V1::SearchController < Api::BaseController
+   include Authorization
+ 
+-  RESULTS_LIMIT = 10
++  RESULTS_LIMIT = 20
+ 
+   before_action -> { doorkeeper_authorize! :read }
+   before_action :require_user!
+@@ -11,7 +11,7 @@ class Api::V1::SearchController < Api::BaseController
+   respond_to :json
+ 
+   def index
+-    @search = Search.new(search)
++    @search = Search.new(search_results)
+     render json: @search, serializer: REST::SearchSerializer
+   end
+ 
 diff --git a/app/models/status.rb b/app/models/status.rb
-index 24d3db2bf4..57e561b6cc 100644
+index 6fb9b15..0a95a34 100644
 --- a/app/models/status.rb
 +++ b/app/models/status.rb
-@@ -126,6 +126,11 @@ def non_sensitive_with_media?
-   before_validation :set_conversation
+@@ -170,6 +170,12 @@ class Status < ApplicationRecord
+   before_validation :set_local
  
    class << self
 +    def search_for(term, limit = 20)
@@ -13,17 +35,16 @@ index 24d3db2bf4..57e561b6cc 100644
 +    end
 +
      def not_in_filtered_languages(account)
-       where.not(language: account.filtered_languages)
+       where(language: nil).or where.not(language: account.filtered_languages)
      end
-
 diff --git a/app/services/search_service.rb b/app/services/search_service.rb
-index 1ed3f0032f..8614ef4877 100644
+index fe98566..bdeedcb 100644
 --- a/app/services/search_service.rb
 +++ b/app/services/search_service.rb
-@@ -12,6 +12,7 @@ def call(query, limit, resolve = false, account = nil)
-       elsif query.present?
-         results[:accounts] = AccountSearchService.new.call(query, limit, resolve, account)
-         results[:hashtags] = Tag.search_for(query.gsub(/\A#/, ''), limit) unless query.start_with?('@')
+@@ -16,6 +16,7 @@ class SearchService < BaseService
+         results[:accounts] = perform_accounts_search! if account_searchable?
+         results[:statuses] = perform_statuses_search! if full_text_searchable?
+         results[:hashtags] = perform_hashtags_search! if hashtag_searchable?
 +        results[:statuses] = Status.search_for(query.gsub(/\A#/, ''), limit) unless query.start_with?('@') or query.start_with?('#')
        end
      end
