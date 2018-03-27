@@ -6,17 +6,15 @@ This is the fork mastodon as deployed on https://mastodon.host, necessary to add
 Patches implemented:
 - PIWIK integration ( allows to have some nice anonymous, self hosted and opensource analytics on the visitors ).
 - Full Text search for statuses ( upstream code only allow searching users and hashtags, or needs Elastic Search to allow searching your own statuses only ).
-- FTS for your home timeline ( not only your own toots, but also people you follow ).
+- FTS for your home timeline ( not only your own toots, but also people you follow, WIP ).
 - 20 results instead of 5 per type of search.
 - The FAQ link on the homepage points to /about/more instead of the github repo.
 - 1024 character limit for posts instead of 500 ( TODO: implement that as a configuration instead of being hardcoded ).
 - 512 character limit instead of 160 for profile bio ( TODO: implement that as a configuration instead of being hardcoded ).
 - replies and reboosts are displayed in the timelines instead of being ignored.
 - CI to check every user facing function is behaving correctly.
-- A few other minor tweaks like full column display to fill bigger screen, and other improvements...
+- A few other minor tweaks like full column display to fill bigger screen, multiples themes, and other improvements...
 - Oauth patch to allow authentication by either the local username or the email ( necessary for the XMPP integration ).
-
-I will release soon the version allowing searching your home timeline.
 
 Notes for admins that want to just integrate the patch for FTS ( to allow not using ES and save a bit of resources ): Check the FTS_NOES.md file !
 
