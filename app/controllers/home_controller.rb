@@ -16,9 +16,6 @@ class HomeController < ApplicationController
     render js: "<!-- Piwik -->
   var _paq = _paq || [];
   /* tracker methods like 'setCustomDimension' should be called before 'trackPageView' */
-  _paq.push(['setDocumentTitle', document.domain + '/' + document.title]);
-  _paq.push(['setCookieDomain', '*." + ENV['LOCAL_DOMAIN'] + "']);
-  _paq.push(['setDomains', ['*." + ENV['LOCAL_DOMAIN'] + "']]);
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
