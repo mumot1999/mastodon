@@ -1,7 +1,9 @@
 Important Notes Regarding this fork
 ===================================
 
-This is the fork mastodon as deployed on https://mastodon.host, necessary to add a few customisations and integrate it in a CI pipe for deployment.
+This is Mastodo, a Mastodon's fork implementing useful features that will not be implemented upstream. ( Take a look at the different topics on https://discourse.joinmastodon.org if you want to
+understand more, but you've been warned, it can be toxic ).
+It is deployed on https://mastodon.host, and tends to integrate all the upstream commits ( deactivating stuff that does not make sense of course ).
 
 Patches implemented:
 - PIWIK integration ( allows to have some nice anonymous, self hosted and opensource analytics on the visitors ).
@@ -16,7 +18,12 @@ Patches implemented:
 - A few other minor tweaks like full column display to fill bigger screen, multiples themes, and other improvements...
 - Oauth patch to allow authentication by either the local username or the email ( necessary for the XMPP integration ).
 
-Notes for admins that want to just integrate the patch for FTS ( to allow not using ES and save a bit of resources ): Check the FTS_NOES.md file !
+Policy on this fork:
+- We want to provide a customisable mastodon instance for the admins, allowing them to choose the feature set they want, and a full featured instance for your users. 
+- Pull Request welcomed and accepted, whatever your rationale ( if you code something though just for you, or a niche feature, please make it optional and we'll merge it ! )
+- We won't reject a feature or a modification because 'I dont like it', ever.
+
+Notes for admins that want to just integrate the patch for FTS ( to allow not using ES and save a bit of resources ): Check the unmaintained FTS_NOES.md file !
 
 Original README is below:
 
