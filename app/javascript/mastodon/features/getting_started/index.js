@@ -132,8 +132,8 @@ export default class GettingStarted extends ImmutablePureComponent {
           <p>
             <FormattedMessage
               id='getting_started.open_source_notice'
-              defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at <a href="https://github.com/tootsuite/mastodon" rel="noopener" target="_blank">tootsuite/mastodon</a> or on this instance <a href="https://github.com/gled-rs/mastodon" rel="noopener" target="_blank">github</a>'
-              values={{ github: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> }}
+              defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at <a href="https://github.com/gled-rs/mastodo" rel="noopener" target="_blank">gled-rs/mastodon</a> or on the official repository:<a href="https://github.com/tootsuite/mastodon" rel="noopener" target="_blank">github</a>'
+              values={{ github: <a href='https://github.com/gled-rs/mastodo' rel='noopener' target='_blank'>gled-rs/mastodo</a> }}
             />
           </p>
         </div>
