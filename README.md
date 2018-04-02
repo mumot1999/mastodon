@@ -17,6 +17,7 @@ Patches implemented:
 - CI to check every user facing function is behaving correctly.
 - A few other minor tweaks like full column display to fill bigger screen, multiples themes, and other improvements...
 - Oauth patch to allow authentication by either the local username or the email ( necessary for the XMPP integration ).
+- Glitch-Soc and Vahnj's patches are merged in the glitch-vahnj branch for now, time to add the necessary on/off switches for all those features !
 
 Policy on this fork:
 - We want to provide a customisable mastodon instance for the admins, allowing them to choose the feature set they want, and a full featured instance for your users. 
