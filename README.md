@@ -30,7 +30,6 @@ We tend to integrate all the upstream commits, but allow more features to be ava
 
 
 ###### Original full README is available on the upstream repository, extract below:
-=============
 Mastodon is a **free, open-source social network server** based on **open web protocols** like ActivityPub and OStatus. The social focus of the project is a viable decentralized alternative to commercial social media silos that returns the control of the content distribution channels to the people. The technical focus of the project is a good user interface, a clean REST API for 3rd party apps and robust anti-abuse tools.
 
 Click on the screenshot below to watch a demo of the UI:
