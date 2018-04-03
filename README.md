@@ -27,7 +27,7 @@ Policy on this fork:
 
 Notes for admins that want to just integrate the patch for FTS ( to allow not using ES and save a bit of resources ): Check the unmaintained FTS_NOES.md file !
 
-Original full README is available on the upstream repository.
+Original full README is available on the upstream repository, extract below:
 
 Mastodon
 =======
