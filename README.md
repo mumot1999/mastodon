@@ -29,16 +29,6 @@ Notes for admins that want to just integrate the patch for FTS ( to allow not us
 
 Original full README is available on the upstream repository, extract below:
 
-Mastodon
-=======
-![Mastodon](https://i.imgur.com/NhZc40l.png)
-
-[![Upstream Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][Upstream travis]
-[![Upstream Code Climate](https://img.shields.io/codeclimate/github/tootsuite/mastodon.svg)][Upstream code_climate]
-
-[Upstream travis]: https://travis-ci.org/tootsuite/mastodon
-[Upstream code_climate]: https://codeclimate.com/github/tootsuite/mastodon
-
 Mastodon is a **free, open-source social network server** based on **open web protocols** like ActivityPub and OStatus. The social focus of the project is a viable decentralized alternative to commercial social media silos that returns the control of the content distribution channels to the people. The technical focus of the project is a good user interface, a clean REST API for 3rd party apps and robust anti-abuse tools.
 
 Click on the screenshot below to watch a demo of the UI:
