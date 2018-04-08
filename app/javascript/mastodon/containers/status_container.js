@@ -4,6 +4,7 @@ import Status from '../components/status';
 import { makeGetStatus } from '../selectors';
 import {
   replyCompose,
+  quoteCompose,
   mentionCompose,
   directCompose,
 } from '../actions/compose';
@@ -72,6 +73,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       }
       _paq.push(['trackEvent', 'Statuses', 'Reblog']);
     }
+  },
+
+  onQuote (status, router) {
+    dispatch(quoteCompose(status, router));
   },
 
   onFavourite (status) {
