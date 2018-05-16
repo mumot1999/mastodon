@@ -4,3 +4,4 @@ photon_light: styles/photon_light.scss
 photon_dark: styles/photon_dark.scss
 paris: styles/paris.scss
 masto_light: styles/mastodon_light.scss
+contrast: styles/contrast.scss

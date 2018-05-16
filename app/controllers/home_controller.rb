@@ -6,6 +6,7 @@ class HomeController < ApplicationController
   # rubocop sees that as a hash ?!
   before_action :authenticate_user!, :except => %i(piwik) # rubocop:disable Style/HashSyntax
   before_action :set_initial_state_json, :except => %i(piwik)
+  before_action :set_referrer_policy_header
 
   def index
     @body_classes = 'app-body'
@@ -84,5 +85,9 @@ class HomeController < ApplicationController
     else
       about_path
     end
+  end
+
+  def set_referrer_policy_header
+    response.headers['Referrer-Policy'] = 'origin'
   end
 end
