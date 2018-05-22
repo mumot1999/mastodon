@@ -8,6 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+require 'whois'
 
 class EmailDomainBlock < ApplicationRecord
   before_validation :normalize_domain
@@ -24,6 +25,10 @@ class EmailDomainBlock < ApplicationRecord
     rescue Addressable::URI::InvalidURIError
       return true
     end
+    whois = Whois::Client.new
+    record = whois.lookup(domain)
+    return true if record.include? "movies.hecate"
+    
 
     where(domain: domain).exists?
   end

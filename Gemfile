@@ -149,3 +149,4 @@ end
 gem 'piwik_analytics', '~> 1.0.2'
 gem 'ddtrace'
 gem 'sidekiq-datadog'
+gem 'whois'
