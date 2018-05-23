@@ -17,6 +17,7 @@ We tend to integrate all the upstream commits, but allow more features to be ava
 - A few other minor tweaks like full column display to fill bigger screen, multiples themes, and other improvements...
 - Oauth patch to allow authentication by either the local username or the email ( necessary for the XMPP integration ).
 - **Glitch-Soc and Vahnj's patches are merged in the glitch-vahnj branch for now, time to add the necessary on/off switches for all those features !**
+- Quite a few other tweaks I can't recall...
 
 ## Policy on this fork:
 - Everyone willing to contribute can request R/W privileges on this repo ( via GitHub, or via Mastodon to [@gled@mastodon.host](https://mastodon.host/@gled) or to [@kemonine@mastodon.social](https://mastodon.social/@kemonine) ).
