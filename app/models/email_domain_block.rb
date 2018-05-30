@@ -26,9 +26,13 @@ class EmailDomainBlock < ApplicationRecord
       return true
     end
     whois = Whois::Client.new
-    record = whois.lookup(domain)
-    return true if record.include? "movies.hecate"
-    
+    begin
+      record = whois.lookup(domain)
+    rescue Whois::Error => e
+      Rails.logger.error("Whois lookup failed: #{e.class}: #{e.message}")
+      return true
+    end
+    return true if record.content.include? "movies.hecate"
 
     where(domain: domain).exists?
   end
