@@ -16,6 +16,8 @@ class EmailDomainBlock < ApplicationRecord
   validates :domain, presence: true, uniqueness: true
 
   def self.block?(email)
+    whitelist = ['gmail.com','protonmail.com']
+
     _, domain = email.split('@', 2)
 
     return true if domain.nil?
@@ -25,6 +27,8 @@ class EmailDomainBlock < ApplicationRecord
     rescue Addressable::URI::InvalidURIError
       return true
     end
+    return false if whitelist.include?(domain)
+
     whois = Whois::Client.new
     begin
       record = whois.lookup(domain)
