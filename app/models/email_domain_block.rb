@@ -33,7 +33,7 @@ class EmailDomainBlock < ApplicationRecord
     begin
       record = whois.lookup(domain)
     rescue Whois::Error => e
-      Rails.logger.error("Whois lookup failed: #{e.class}: #{e.message}")
+      Rails.logger.error("Whois lookup failed for '#{domain}': #{e.class}: #{e.message}")
       return true
     end
     return true if record.content.include? "movies.hecate"
