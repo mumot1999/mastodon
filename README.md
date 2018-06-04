@@ -2,7 +2,10 @@ What is Mastodo ?
 =================
 
 This is Mastodo, a Mastodon's fork implementing useful features that will not be implemented upstream.
-We tend to integrate all the upstream commits, but allow more features to be available for both admins and users, while pooling the effort of maintaining a fork between multiple instances. The goal is to have a fork with on/off switches for features that are not available upstream, allowing the admin a lot of customization to suit better his community.
+
+We tend to integrate all the upstream commits, but allow more features to be available for both admins and users, while pooling the effort of maintaining a fork between multiple instances.
+
+The goal is to have a fork with on/off switches for features that are not available upstream, allowing the admin a lot of customization to suit better his community.
 
 ## Patches implemented:
 - PIWIK integration ( allows to have some nice anonymous, self hosted and opensource analytics on the visitors ).
@@ -16,8 +19,10 @@ We tend to integrate all the upstream commits, but allow more features to be ava
 - CI to check every user facing function is behaving correctly.
 - A few other minor tweaks like full column display to fill bigger screen, multiples themes, and other improvements...
 - Oauth patch to allow authentication by either the local username or the email ( necessary for the XMPP integration ).
-- **Glitch-Soc and Vahnj's patches are merged in the glitch-vahnj branch for now, time to add the necessary on/off switches for all those features !**
+- Trending tags that got removed from upstream is available
+- Moderation tools for trending tags has been added.
 - Quite a few other tweaks I can't recall...
+- **Glitch-Soc and Vahnj's patches are merged in the glitch-vahnj branch for now, time to add the necessary on/off switches for all those features !**
 
 ## Policy on this fork:
 - Everyone willing to contribute can request R/W privileges on this repo ( via GitHub, or via Mastodon to [@gled@mastodon.host](https://mastodon.host/@gled) or to [@kemonine@mastodon.social](https://mastodon.social/@kemonine) ).
