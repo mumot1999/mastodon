@@ -53,6 +53,11 @@
   %hr/
 
   .fields-group
+    = f.input :disallowed_hashtags, wrapper: :with_block_label, label: t('admin.settings.disallowed_hashtags.title'), hint: t('admin.settings.disallowed_hashtags.desc_html')
+
+  %hr/
+
+  .fields-group
     = f.input :activity_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.activity_api_enabled.title'), hint: t('admin.settings.activity_api_enabled.desc_html')
 
   .fields-group
