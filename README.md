@@ -32,7 +32,7 @@ The goal is to have a fork with on/off switches for features that are not availa
 
 ## Notes:
 - For admins that want to just integrate the patch for FTS ( to allow not using ES and save a bit of resources ): Check the unmaintained FTS_NOES.md file !
-- If you are wondering why such a fork exists, take a look at the different topics about features on https://discourse.joinmastodon.org or check the upstream repository issue lists and the replies, but you've been warned, it can be toxic.
+- If you are wondering why such a fork exists, take a look at the different topics about features on https://discourse.joinmastodon.org or check the upstream repository issue lists and the replies. Not every feature will make it upstream, so to make sure our users would get what they wanted, fork was the easiest way to avoid drama. We still merge upstream at each tag, and are grateful for their work.
 
 Original full README is available on the upstream repository, extract below:
 
