@@ -17,7 +17,7 @@ class TrendingTags
     def get(limit)
       tag_ids = redis.zrevrange(KEY, 0, limit).map(&:to_i)
       tags    = Tag.where(id: tag_ids).to_a.map { |tag| [tag.id, tag] }.to_h
-      tag_ids.map { |tag_id| tags[tag_id] }.compact
+      tag_ids.map { |tag_id| tags[tag_id] if not disallowed_hashtags.include?(tags[tag_id].name)}.compact
     end
 
     private
