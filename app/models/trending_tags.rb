@@ -3,7 +3,7 @@
 class TrendingTags
   KEY                  = 'trending_tags'
   EXPIRE_HISTORY_AFTER = 7.days.seconds
-  THRESHOLD            = 5
+  THRESHOLD            = 3
 
   class << self
     def record_use!(tag, account, at_time = Time.now.utc)
