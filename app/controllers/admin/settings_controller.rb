@@ -55,12 +55,16 @@ module Admin
           setting = Setting.where(var: key).first_or_initialize(var: key)
           setting.update(value: value_for_update(key, value))
 	  if key == 'disallowed_hashtags'
-		  value.split.each do |tname|
-			  tag = Tag.where(name: tname)
-			  Rails.logger.error("Removing Redis hashtag: '#{tag.id}'")
-			  #redis.zrem('trending_tags',tag.id)
-		  end
-	  end
+                  value.split.each do |tname|
+                          tag = Tag.where(name: tname).first
+                          if not tag
+                                  Rails.logger.error("Failed to find tag #{tname}")
+                          else
+                                  Rails.logger.error("Removing Redis hashtag: '#{tag.id}' (#{tname})")
+                                  Redis.current.zrem('trending_tags',tag.id.to_s)
+                          end
+                  end
+          end
         end
       end
 
