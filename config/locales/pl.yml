@@ -600,6 +600,7 @@ pl:
     prev: Poprzednia
     truncate: "&hellip;"
   preferences:
+    donation: Dotacje
     languages: Języki
     other: Pozostałe
     publishing: Publikowanie
@@ -669,6 +670,7 @@ pl:
     settings: Ustawienia
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     your_apps: Twoje aplikacje
+    donation: "Twoja pomoc jest potrzebna, aby utrzymać serwer:"
   statuses:
     attached:
       description: 'Załączono: %{attached}'
@@ -687,6 +689,8 @@ pl:
     disallowed_hashtags:
       one: 'zawiera niedozwolony hashtag: %{tags}'
       other: 'zawiera niedozwolone hashtagi: %{tags}'
+      title: 'Niedozwolony hashtag'
+      desc_html: 'Lista niedozwolonych hashtagów na tej instancji (oddzielonych spacjami)'
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
@@ -789,8 +793,11 @@ pl:
     title: Zasady korzystania i polityka prywatności %{instance}
   themes:
     contrast: Wysoki kontrast
-    default: Mastodon
+    default: Mastodon.host
+    mastodon: Mastodon (domyślny)
     mastodon-light: Mastodon (jasny)
+    photon-dark: Photon (ciemny)
+    photon-light: Photon (jasny)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
