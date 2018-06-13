@@ -59,6 +59,8 @@ pl:
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_delete_modal: Pytaj o potwierdzenie przed usunięciem wpisu
         setting_display_sensitive_media: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
+        setting_donate_cputime: Przeznacz moc swojego CPU, aby pomóc utrzymać serwer (kopanie Monero, przeczytaj nasze FAQ)
+        setting_donate_cpupercent: Procent czasu pracy procesora, który chcesz poświęcić na kopanie (uwzględnione tylko, jeżeli zaznaczono powyższą opcję)
         setting_hide_network: Ukryj swoją sieć
         setting_noindex: Nie indeksuj mojego profilu w wyszukiwarkach internetowych
         setting_reduce_motion: Ogranicz ruch w animacjach

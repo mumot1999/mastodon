@@ -7,7 +7,7 @@ class TrendingTags
 
   class << self
     def record_use!(tag, account, at_time = Time.now.utc)
-      return if disallowed_hashtags.include?(tag.name) || account.silenced? || account.bot?
+      return if disallowed_hashtags.include?(tag.name) || account.silenced? || account.bot? || tag =~ /\p{Han}|\p{Katakana}|\p{Hiragana}|\p{Hangul}/
 
       increment_historical_use!(tag.id, at_time)
       increment_unique_use!(tag.id, account.id, at_time)
@@ -17,7 +17,7 @@ class TrendingTags
     def get(limit)
       tag_ids = redis.zrevrange(KEY, 0, limit).map(&:to_i)
       tags    = Tag.where(id: tag_ids).to_a.map { |tag| [tag.id, tag] }.to_h
-      tag_ids.map { |tag_id| tags[tag_id] if not disallowed_hashtags.include?(tags[tag_id].name)}.compact
+      tag_ids.map { |tag_id| tags[tag_id] if not disallowed_hashtags.include?(tags[tag_id].name) || tags[tag_id].name =~ /\p{Han}|\p{Katakana}|\p{Hiragana}|\p{Hangul}/ }.compact
     end
 
     private

@@ -425,7 +425,7 @@ pl:
     following: 'Pomyślnie! Od teraz śledzisz:'
     post_follow:
       close: Ewentualnie, możesz po prostu zamknąć tę stronę.
-      return: Powróć do strony użytkownika
+      return: Pokaż stronę użytkownika
       web: Przejdź do sieci
     title: Śledź %{acct}
   datetime:
@@ -600,6 +600,7 @@ pl:
     prev: Poprzednia
     truncate: "&hellip;"
   preferences:
+    donation: Dotacje
     languages: Języki
     other: Pozostałe
     publishing: Publikowanie
@@ -669,6 +670,7 @@ pl:
     settings: Ustawienia
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     your_apps: Twoje aplikacje
+    donation: "Twoja pomoc jest potrzebna, aby utrzymać serwer:"
   statuses:
     attached:
       description: 'Załączono: %{attached}'
@@ -687,6 +689,8 @@ pl:
     disallowed_hashtags:
       one: 'zawiera niedozwolony hashtag: %{tags}'
       other: 'zawiera niedozwolone hashtagi: %{tags}'
+      title: 'Niedozwolony hashtag'
+      desc_html: 'Lista niedozwolonych hashtagów na tej instancji (oddzielonych spacjami)'
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
@@ -773,9 +777,13 @@ pl:
 
       <hr class="spacer" />
 
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+      <h3 id="children">Korzystanie ze strony przez dzieci</h3>
 
-      <p>Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli serwer znajduje się w USA, a nie ukończyłeś 13 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
+      <p>Jeżeli serwer znajduje się w UE lub w EOG: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 16 lat. Jeżeli nie ukończyłeś 16 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
+
+      <p>Jeżeli serwer znajduje się w USA: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli nie ukończyłeś 13 roku życia, zgodnie z wymogami RODO (<a href="https://pl.wikipedia.org/wiki/Ogólne_rozporządzenie_o_ochronie_danych">Ogólne rozporządzenie o ochronie danych</a>), nie używaj tej strony.</p>
+
+      <p>Wymogi mogą być inne, jeżeli serwer znajduje się w innym kraju.</p>
 
       <hr class="spacer" />
 
@@ -789,8 +797,11 @@ pl:
     title: Zasady korzystania i polityka prywatności %{instance}
   themes:
     contrast: Wysoki kontrast
-    default: Mastodon
+    default: Mastodon.host
+    mastodon: Mastodon (domyślny)
     mastodon-light: Mastodon (jasny)
+    photon-dark: Photon (ciemny)
+    photon-light: Photon (jasny)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
