@@ -201,6 +201,10 @@ class Status < ApplicationRecord
     def not_in_filtered_languages(account)
       where(language: nil).or where.not(language: account.filtered_languages)
     end
+    
+    def in_chosen_languages(account)
+      where(language: nil).or where(language: account.chosen_languages)
+    end
 
     def as_home_timeline(account)
       where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private])
@@ -342,7 +346,7 @@ class Status < ApplicationRecord
     def filter_timeline_for_account(query, account, local_only)
       query = query.not_excluded_by_account(account)
       query = query.not_domain_blocked_by_account(account) unless local_only
-      query = query.not_in_filtered_languages(account) if account.filtered_languages.present?
+      query = query.in_chosen_languages(account) if account.chosen_languages.present?
       query.merge(account_silencing_filter(account))
     end
 
