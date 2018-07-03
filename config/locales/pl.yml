@@ -517,6 +517,7 @@ pl:
       '86400': dobie
     expires_in_prompt: Nigdy
     generate: Wygeneruj
+    invited_by: 'Zostałeś zaproszony przez:'
     max_uses:
       few: "%{count} użycia"
       many: "%{count} użyć"
@@ -691,6 +692,7 @@ pl:
       other: 'zawiera niedozwolone hashtagi: %{tags}'
       title: 'Niedozwolony hashtag'
       desc_html: 'Lista niedozwolonych hashtagów na tej instancji (oddzielonych spacjami)'
+    language_detection: Automatycznie wykrywaj język
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
