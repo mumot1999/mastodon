@@ -33,7 +33,7 @@ module Mastodon
     end
 
     def source_base_url
-      'https://github.com/gled-rs/mastodo'
+      'https://github.com/Xavienne/Mastodon'
     end
 
     # specify git tag or commit hash here
