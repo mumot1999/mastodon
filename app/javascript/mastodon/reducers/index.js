@@ -27,6 +27,7 @@ import custom_emojis from './custom_emojis';
 import lists from './lists';
 import listEditor from './list_editor';
 import trends from './trends';
+import filters from './filters';
 
 const reducers = {
   dropdown_menu,
@@ -57,6 +58,7 @@ const reducers = {
   lists,
   listEditor,
   trends,
+  filters,
 };
 
 export default combineReducers(reducers);

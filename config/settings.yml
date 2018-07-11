@@ -28,6 +28,7 @@ defaults: &defaults
   donate_cputime: false
   donate_cpupercent: 15
   display_sensitive_media: false
+  preview_sensitive_media: false
   reduce_motion: false
   system_font_ui: false
   noindex: false
