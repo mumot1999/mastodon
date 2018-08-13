@@ -9,13 +9,13 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
       next if Report.where(account: @account, target_account: target_account).exists?
 
       target_statuses = target_statuses_by_account[target_account.id]
-
+      
       ReportService.new.call(
         @account,
         target_account,
         status_ids: target_statuses.nil? ? [] : target_statuses.map(&:id),
-        comment: @json['content'] || ''
-      )
+        comment: @json['content']
+      ) if !@json['content'].empty?
     end
   end
 
