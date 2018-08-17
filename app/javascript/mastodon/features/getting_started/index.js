@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, invitesEnabled } from '../../initial_state';
+import { me, invitesEnabled, version } from '../../initial_state';
 import { fetchFollowRequests } from '../../actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
@@ -152,7 +152,7 @@ export default class GettingStarted extends ImmutablePureComponent {
             <FormattedMessage
               id='getting_started.open_source_notice'
               defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at <a href="https://github.com/gled-rs/mastodo" rel="noopener" target="_blank">gled-rs/mastodon</a> or on the official repository:<a href="https://github.com/tootsuite/mastodon" rel="noopener" target="_blank">github</a>'
-              values={{ github: <a href='https://github.com/gled-rs/mastodo' rel='noopener' target='_blank'>gled-rs/mastodo</a> }}
+              values={{ github: <span><a href='https://github.com/gled-rs/mastodo' rel='noopener' target='_blank'>gled-rs/mastodo</a> (v{version})</span>}}
             />
           </p>
         </div>
