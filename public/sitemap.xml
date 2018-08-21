@@ -5,39 +5,27 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-  <loc>https://mastodon.host/about</loc>
+  <loc>https://101010.pl/about</loc>
   <changefreq>always</changefreq>
 </url>
 <url>
-  <loc>https://mastodon.host/auth/sign_in</loc>
+  <loc>https://101010.pl/auth/sign_in</loc>
   <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://mastodon.host/about/more</loc>
+  <loc>https://101010.pl/about/more</loc>
   <changefreq>always</changefreq>
 </url>
 <url>
-  <loc>https://mastodon.host/terms</loc>
+  <loc>https://101010.pl/terms</loc>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://mastodon.host/auth/sign_up</loc>
+  <loc>https://101010.pl/auth/sign_up</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>https://mastodon.host/auth/password/new</loc>
-  <changefreq>never</changefreq>
-</url>
-<url>
-  <loc>https://mastodon.host/auth/confirmation/new</loc>
-  <changefreq>never</changefreq>
-</url>
-<url>
-  <loc>https://mastodon.host/@gled</loc>
-  <changefreq>hourly</changefreq>
-</url>
-<url>
-  <loc>https://mastodon.host/@federationbot</loc>
-  <changefreq>always</changefreq>
+  <loc>https://101010.pl/@xaphanpl</loc>
+  <changefreq>daily</changefreq>
 </url>
 </urlset>
