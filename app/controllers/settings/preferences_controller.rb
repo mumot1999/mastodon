@@ -43,8 +43,6 @@ class Settings::PreferencesController < ApplicationController
       :setting_boost_modal,
       :setting_delete_modal,
       :setting_auto_play_gif,
-      :setting_donate_cputime,
-      :setting_donate_cpupercent,
       :setting_display_sensitive_media,
       :setting_reduce_motion,
       :setting_system_font_ui,
