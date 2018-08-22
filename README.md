@@ -57,8 +57,6 @@ Click on the screenshot below to watch a demo of the UI:
 
 **Ruby on Rails** is used for the back-end, while **React.js** and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
 
-<<<<<<< HEAD
-=======
 If you would like, you can [support the development of this project on Patreon][patreon] or [Liberapay][liberapay].
 
 [patreon]: https://www.patreon.com/user?u=619786
@@ -136,4 +134,3 @@ You should have received a copy of the GNU Affero General Public License along w
 ## Extra credits
 
 The elephant friend illustrations are created by [Dopatwo](https://mastodon.social/@dopatwo)
->>>>>>> v2.4.3
