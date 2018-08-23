@@ -16,7 +16,7 @@ ko:
       humane_approach_body: 다른 SNS의 실패를 교훈삼아, 마스토돈은 소셜미디어가 잘못 사용되는 것을 막기 위하여 윤리적인 설계를 추구합니다.
       humane_approach_title: 보다 배려를 의식한 설계를 추구
       not_a_product_body: Mastodon은 이익을 추구하는 SNS가 아닙니다. 그러므로 광고와 데이터의 수집 및 분석이 존재하지 않고, 유저를 구속하지도 않습니다.
-      real_conversation_body: 자유롭게 사용할 수 있는 1024문자의 메세지와 미디어 경고 내용을 바탕으로, 자기자신을 자유롭게 표현할 수 있습니다.
+      real_conversation_body: 자유롭게 사용할 수 있는 2048문자의 메세지와 미디어 경고 내용을 바탕으로, 자기자신을 자유롭게 표현할 수 있습니다.
       not_a_product_title: 여러분은 사람이며, 상품이 아닙니다
       real_conversation_title: 진정한 커뮤니케이션을 위하여
       within_reach_body: 개발자 친화적인 API에 의해서 실현된 iOS나 Android, 그 외의 여러 Platform들 덕분에 어디서든 친구들과 자유롭게 메세지를 주고 받을 수 있습니다.
