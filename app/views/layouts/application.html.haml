@@ -24,9 +24,6 @@
     - if Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path, media: 'all'
 
-    %link{:href => "https://cdn.conversejs.org/css/converse.min.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
-    %script{:charset => "utf-8", :src => "https://cdn.conversejs.org/dist/converse.min.js"}
-
     = yield :header_tags
 
   %body{ class: body_classes }
@@ -36,11 +33,4 @@
       %noscript 
         %p 
           %img(src="https://#{ENV['PIWIK_DOMAIN']}/piwik.php?idsite=#{ENV['PIWIK_SITEID']}&rec=1" style="border:0;" alt="")
-   
-    :javascript
-      converse.initialize({
-          bosh_service_url: 'https://101010.pl/http-bind/',
-          show_controlbox_by_default: false,
-          auto_reconnect: true,
-          default_domain: '101010.pl'
-      });
+          
