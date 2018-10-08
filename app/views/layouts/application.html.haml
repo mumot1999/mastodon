@@ -23,6 +23,17 @@
 
     - if Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path, media: 'all'
+      
+    %script{:src => "https://xmpp.101010.pl/lib/jquery.min.js"}
+    %script{:src => "https://xmpp.101010.pl/lib/jquery.ui.min.js"}
+    %script{:src => "https://xmpp.101010.pl/lib/jquery.slimscroll.js"}
+    %script{:src => "https://xmpp.101010.pl/lib/jquery.fullscreen.js"}
+    %script{:src => "https://xmpp.101010.pl/lib/jsxc.dep.js"}
+    %script{:src => "https://xmpp.101010.pl/jsxc.js"}
+    %script{:src => "https://xmpp.101010.pl/js/jsxc.101010.js"}
+    %link{:href => "https://xmpp.101010.pl/css/jquery-ui.min.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://xmpp.101010.pl/css/jsxc.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://xmpp.101010.pl/css/jsxc.101010.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
 
     = yield :header_tags
 
