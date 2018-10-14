@@ -19,7 +19,6 @@ import {
 } from '../../actions/interactions';
 import {
   replyCompose,
-  quoteCompose,
   mentionCompose,
   directCompose,
 } from '../../actions/compose';
@@ -30,8 +29,6 @@ import {
   deleteStatus,
   hideStatus,
   revealStatus,
-  hideQuote,
-  revealQuote,
 } from '../../actions/statuses';
 import { initMuteModal } from '../../actions/mutes';
 import { initReport } from '../../actions/reports';
@@ -179,10 +176,6 @@ export default class Status extends ImmutablePureComponent {
     }
   }
 
-  handleQuoteClick = (status) => {
-    this.props.dispatch(quoteCompose(status, this.context.router.history));
-  }
-
   handleDeleteClick = (status, history, withRedraft = false) => {
     const { dispatch, intl } = this.props;
 
@@ -230,14 +223,6 @@ export default class Status extends ImmutablePureComponent {
       this.props.dispatch(revealStatus(status.get('id')));
     } else {
       this.props.dispatch(hideStatus(status.get('id')));
-    }
-  }
-
-  handleQuoteToggleHidden = (status) => {
-    if (status.get('quote_hidden')) {
-      this.props.dispatch(revealQuote(status.get('id')));
-    } else {
-      this.props.dispatch(hideQuote(status.get('id')));
     }
   }
 
@@ -440,7 +425,6 @@ export default class Status extends ImmutablePureComponent {
                   onOpenVideo={this.handleOpenVideo}
                   onOpenMedia={this.handleOpenMedia}
                   onToggleHidden={this.handleToggleHidden}
-                  onQuoteToggleHidden={this.handleQuoteToggleHidden}
                 />
 
                 <ActionBar
@@ -448,7 +432,6 @@ export default class Status extends ImmutablePureComponent {
                   onReply={this.handleReplyClick}
                   onFavourite={this.handleFavouriteClick}
                   onReblog={this.handleReblogClick}
-                  onQuote={this.handleQuoteClick}
                   onDelete={this.handleDeleteClick}
                   onDirect={this.handleDirectClick}
                   onMention={this.handleMentionClick}
