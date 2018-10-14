@@ -492,7 +492,6 @@ ActiveRecord::Schema.define(version: 2018_08_20_232245) do
     t.bigint "account_id", null: false
     t.bigint "application_id"
     t.bigint "in_reply_to_account_id"
-    t.bigint "quote_id"
     t.tsvector "tsv"
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20180106", order: { id: :desc }
     t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id"
