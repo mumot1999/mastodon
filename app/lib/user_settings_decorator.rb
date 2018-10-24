@@ -24,9 +24,6 @@ class UserSettingsDecorator
     user.settings['boost_modal']         = boost_modal_preference if change?('setting_boost_modal')
     user.settings['delete_modal']        = delete_modal_preference if change?('setting_delete_modal')
     user.settings['auto_play_gif']       = auto_play_gif_preference if change?('setting_auto_play_gif')
-    user.settings['display_sensitive_media'] = display_sensitive_media_preference if change?('setting_display_sensitive_media')
-    user.settings['donate_cputime']      = donate_cputime_preference if change?('setting_donate_cputime')
-    user.settings['donate_cpupercent']      = donate_cpupercent_preference if change?('setting_donate_cpupercent')
     user.settings['display_media']       = display_media_preference if change?('setting_display_media')
     user.settings['expand_spoilers']     = expand_spoilers_preference if change?('setting_expand_spoilers')
     user.settings['reduce_motion']       = reduce_motion_preference if change?('setting_reduce_motion')
@@ -71,16 +68,6 @@ class UserSettingsDecorator
   def auto_play_gif_preference
     boolean_cast_setting 'setting_auto_play_gif'
   end
-
-    boolean_cast_setting 'setting_donate_cputime'
-  end
-
-  def donate_cpupercent_preference
-    settings['setting_donate_cpupercent'].to_i
-  end
-  
-  def display_sensitive_media_preference
-    boolean_cast_setting 'setting_display_sensitive_media'
 
   def display_media_preference
     settings['setting_display_media']
