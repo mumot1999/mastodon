@@ -27,7 +27,7 @@ class Formatter
       return html.html_safe # rubocop:disable Rails/OutputSafety
     end
 
-    linkable_accounts = status.mentions.map(&:account)
+    linkable_accounts = status.active_mentions.map(&:account)
     linkable_accounts << status.account
 
     html = raw_content
@@ -223,10 +223,6 @@ class Formatter
   def link_to_account(acct)
     username, domain = acct.split('@')
 
-    if domain == "twitter.com"
-      return mention_twitter_html(username)
-    end
-
     domain  = nil if TagManager.instance.local_domain?(domain)
     account = EntityCache.instance.mention(username, domain)
 
@@ -253,9 +249,5 @@ class Formatter
 
   def mention_html(account)
     "<span class=\"h-card\"><a href=\"#{encode(TagManager.instance.url_for(account))}\" class=\"u-url mention\">@<span>#{encode(account.username)}</span></a></span>"
-  end
-
-  def mention_twitter_html(username)
-    "<span class=\"h-card\"><a href=\"https://twitter.com/#{username}\" class=\"u-url mention\">@<span>#{username}@twitter.com</span></a></span>"
   end
 end

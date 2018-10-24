@@ -46,6 +46,8 @@ class Settings::PreferencesController < ApplicationController
       :setting_donate_cputime,
       :setting_donate_cpupercent,
       :setting_display_sensitive_media,
+      :setting_display_media,
+      :setting_expand_spoilers,
       :setting_reduce_motion,
       :setting_system_font_ui,
       :setting_noindex,
