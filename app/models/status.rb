@@ -89,6 +89,7 @@ class Status < ApplicationRecord
                    :conversation,
                    :status_stat,
                    :tags,
+                   :preview_cards,
                    :stream_entry,
                    active_mentions: :account,
                    reblog: [
@@ -96,6 +97,7 @@ class Status < ApplicationRecord
                      :application,
                      :stream_entry,
                      :tags,
+                     :preview_cards,
                      :media_attachments,
                      :conversation,
                      :status_stat,
@@ -161,6 +163,10 @@ class Status < ApplicationRecord
 
   def target
     reblog
+  end
+
+  def preview_card
+    preview_cards.first
   end
 
   def title
@@ -240,14 +246,6 @@ class Status < ApplicationRecord
        Status.unscoped {
 	       Status.where("updated_at > ?", 2.months.ago).where('tsv @@ plainto_tsquery(?)', pattern).where(visibility: [:public, :unlisted]).order(updated_at: :desc).limit(limit)
        }
-    end
-
-    def not_in_filtered_languages(account)
-      where(language: nil).or where.not(language: account.filtered_languages)
-    end
-    
-    def cache_ids
-      left_outer_joins(:status_stat).select('statuses.id, greatest(statuses.updated_at, status_stats.updated_at) AS updated_at')
     end
 
     def selectable_visibilities
