@@ -41,7 +41,28 @@ export default class Trends extends ImmutablePureComponent {
     const { intl, trends, loading, showTrends } = this.props;
 
     if (!trends || trends.size < 1) {
-      return null;
+      return (
+       <div className='getting-started__trends'>
+         <div className='column-header__wrapper'>
+           <h1 className='column-header'>
+             <button>
+               <i className='fa fa-fire fa-fw' />
+               <FormattedMessage id='trends.header' defaultMessage='Trending now' />
+             </button>
+
+             <div className='column-header__buttons'>
+               {showTrends && <button onClick={this.handleRefreshTrends} className='column-header__button' title={intl.formatMessage(messages.refresh_trends)} aria-label={intl.formatMessage(messages.refresh_trends)} disabled={loading}><i className={classNames('fa', 'fa-refresh', { 'fa-spin': loading })} /></button>}
+               <button onClick={this.handleToggle} className='column-header__button'><i className={classNames('fa', showTrends ? 'fa-chevron-down' : 'fa-chevron-up')} /></button>
+             </div>
+           </h1>
+         </div>
+
+         {showTrends && <div className='getting-started__scrollable'>
+           <Link to='/trends' className='load-more'><FormattedMessage id='status.load_more' defaultMessage='Load more' /></Link>
+         </div>}
+       </div>
+     );
+     return null;
     }
 
     return (
