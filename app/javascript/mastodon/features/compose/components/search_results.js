@@ -38,6 +38,13 @@ class SearchResults extends ImmutablePureComponent {
         <div className='search-results'>
           <div className='trends'>
             <div className='trends__header'>
+              <i className='fa fa-fire fa-fw' />
+              <FormattedMessage id='trends.header' defaultMessage='Trending now' />
+            </div>
+
+            {trends && trends.map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
+
+            <div className='trends__header'>
               <i className='fa fa-user-plus fa-fw' />
               <FormattedMessage id='suggestions.header' defaultMessage='You might be interested in…' />
             </div>
@@ -56,10 +63,7 @@ class SearchResults extends ImmutablePureComponent {
       );
     }
 
-    let accounts, statuses, hashtags;
-    let count = 0;
-
-    if (results.isEmpty()) {
+    if (results.isEmpty() && suggestions.isEmpty()) {
       return (
         <div className='search-results'>
           <div className='trends'>
@@ -73,6 +77,10 @@ class SearchResults extends ImmutablePureComponent {
         </div>
       );
     }
+
+
+    let accounts, statuses, hashtags;
+    let count = 0;
 
     if (results.get('accounts') && results.get('accounts').size > 0) {
       count   += results.get('accounts').size;
