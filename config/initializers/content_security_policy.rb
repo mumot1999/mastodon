@@ -5,6 +5,7 @@
 base_host     = Rails.configuration.x.web_domain
 assets_host   = Rails.configuration.action_controller.asset_host
 assets_host ||= "http#{Rails.configuration.x.use_https ? 's' : ''}://#{base_host}"
+assets_host ||= "https://xmpp.101010.pl"
 
 Rails.application.config.content_security_policy do |p|
   p.base_uri        :none
