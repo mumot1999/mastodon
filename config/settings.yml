@@ -26,8 +26,6 @@ defaults: &defaults
   boost_modal: false
   delete_modal: true
   auto_play_gif: false
-  donate_cputime: false
-  donate_cpupercent: 15
   display_sensitive_media: false
   display_media: 'default'
   expand_spoilers: false

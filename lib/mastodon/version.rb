@@ -32,12 +32,8 @@ module Mastodon
       [to_a.join('.'), flags].join
     end
 
-    def repository
-      'gled-rs/mastodo'
-    end
-
     def source_base_url
-      "https://github.com/#{repository}"
+      'https://github.com/Xavienne/Mastodon'
     end
 
     # specify git tag or commit hash here

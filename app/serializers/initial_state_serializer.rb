@@ -25,8 +25,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:boost_modal]    = object.current_account.user.setting_boost_modal
       store[:delete_modal]   = object.current_account.user.setting_delete_modal
       store[:auto_play_gif]  = object.current_account.user.setting_auto_play_gif
-      store[:donate_cputime]  = object.current_account.user.setting_donate_cputime
-      store[:donate_cpupercent]  = object.current_account.user.setting_donate_cpupercent
       store[:display_sensitive_media] = object.current_account.user.setting_display_sensitive_media
       store[:display_media]   = object.current_account.user.setting_display_media
       store[:expand_spoilers] = object.current_account.user.setting_expand_spoilers
