@@ -8,7 +8,7 @@ class TrendingTags
 
   class << self
     def record_use!(tag, account, at_time = Time.now.utc)
-	    return if disallowed_hashtags.include?(tag.name) || account.silenced? || account.bot? || account.domain == 'switter.at'
+	    return if disallowed_hashtags.include?(tag.name) || account.silenced? || account.bot? || account.domain == 'switter.at' || account.domain == 'humblr.social'
 
       increment_historical_use!(tag.id, at_time)
       increment_unique_use!(tag.id, account.id, at_time)
