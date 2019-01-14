@@ -102,10 +102,6 @@ export function Mutes () {
   return import(/* webpackChunkName: "features/mutes" */'../../mutes');
 }
 
-export function OnboardingModal () {
-  return import(/* webpackChunkName: "modals/onboarding_modal" */'../components/onboarding_modal');
-}
-
 export function MuteModal () {
   return import(/* webpackChunkName: "modals/mute_modal" */'../components/mute_modal');
 }
@@ -132,4 +128,8 @@ export function ListEditor () {
 
 export function Trends () {
   return import(/* webpackChunkName: "features/trends" */'../../trends');
+}
+
+export function ListAdder () {
+  return import(/*webpackChunkName: "features/list_adder" */'../../list_adder');
 }

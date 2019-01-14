@@ -17,6 +17,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       version: Mastodon::Version.to_s,
       invites_enabled: Setting.min_invite_role == 'user',
       mascot: instance_presenter.mascot&.file&.url,
+      profile_directory: Setting.profile_directory,
     }
 
     if object.current_account
@@ -25,12 +26,13 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:boost_modal]    = object.current_account.user.setting_boost_modal
       store[:delete_modal]   = object.current_account.user.setting_delete_modal
       store[:auto_play_gif]  = object.current_account.user.setting_auto_play_gif
-      store[:donate_cputime]  = object.current_account.user.setting_donate_cputime
-      store[:donate_cpupercent]  = object.current_account.user.setting_donate_cpupercent
+      store[:donate_cputime]  = 0
+      store[:donate_cpupercent]  = 0
       store[:display_sensitive_media] = object.current_account.user.setting_display_sensitive_media
       store[:display_media]   = object.current_account.user.setting_display_media
       store[:expand_spoilers] = object.current_account.user.setting_expand_spoilers
-      store[:reduce_motion]  = object.current_account.user.setting_reduce_motion
+      store[:reduce_motion]   = object.current_account.user.setting_reduce_motion
+      store[:is_staff]        = object.current_account.user.staff?
     end
 
     store
