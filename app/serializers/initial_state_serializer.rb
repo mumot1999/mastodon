@@ -28,7 +28,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:auto_play_gif]  = object.current_account.user.setting_auto_play_gif
       store[:donate_cputime]  = 0
       store[:donate_cpupercent]  = 0
-      store[:display_sensitive_media] = object.current_account.user.setting_display_sensitive_media
       store[:display_media]   = object.current_account.user.setting_display_media
       store[:expand_spoilers] = object.current_account.user.setting_expand_spoilers
       store[:reduce_motion]   = object.current_account.user.setting_reduce_motion
