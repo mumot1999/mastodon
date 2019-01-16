@@ -27,6 +27,7 @@ module Admin
       disallowed_hashtags
       preview_sensitive_media
       custom_css
+      profile_directory
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
@@ -38,6 +39,7 @@ module Admin
       peers_api_enabled
       show_known_fediverse_at_about_page
       preview_sensitive_media
+      profile_directory
     ).freeze
 
     UPLOAD_SETTINGS = %w(

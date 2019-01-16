@@ -6,6 +6,9 @@
   - ["pull",2]
   - ["mailers",1]
 :schedule:
+  scheduled_statuses_scheduler:
+    every: '5m'
+    class: Scheduler::ScheduledStatusesScheduler
   subscriptions_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(4..6) %> * * *'
     class: Scheduler::SubscriptionsScheduler

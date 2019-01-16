@@ -30,7 +30,7 @@
 
     - if Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path, media: 'all'
-      
+
     %script{:src => "https://xmpp.101010.pl/lib/jquery.min.js"}
     %script{:src => "https://xmpp.101010.pl/lib/jquery.ui.min.js"}
     %script{:src => "https://xmpp.101010.pl/lib/jquery.slimscroll.js"}
@@ -48,7 +48,6 @@
     = content_for?(:content) ? yield(:content) : yield
     - if ENV.has_key?('PIWIK_DOMAIN')
       = javascript_include_tag '/piwik'
-      %noscript 
-        %p 
+      %noscript
+        %p
           %img(src="https://#{ENV['PIWIK_DOMAIN']}/piwik.php?idsite=#{ENV['PIWIK_SITEID']}&rec=1" style="border:0;" alt="")
-          
