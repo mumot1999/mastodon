@@ -733,7 +733,6 @@ DEPENDENCIES
   ox (~> 2.10)
   paperclip (~> 6.0)
   paperclip-av-transcoder (~> 0.6)
-  piwik_analytics (~> 1.0.2)
   parallel_tests (~> 2.27)
   pg (~> 1.1)
   pghero (~> 2.2)
