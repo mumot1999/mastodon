@@ -155,8 +155,6 @@ GEM
     crass (1.0.4)
     css_parser (1.6.0)
       addressable
-    ddtrace (0.11.2)
-      msgpack
     debug_inspector (0.0.3)
     derailed_benchmarks (1.3.5)
       benchmark-ips (~> 2)
