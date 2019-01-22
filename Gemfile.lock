@@ -155,8 +155,6 @@ GEM
     crass (1.0.4)
     css_parser (1.6.0)
       addressable
-    ddtrace (0.11.2)
-      msgpack
     debug_inspector (0.0.3)
     derailed_benchmarks (1.3.5)
       benchmark-ips (~> 2)
@@ -685,7 +683,6 @@ DEPENDENCIES
   chewy (~> 5.0)
   cld3 (~> 3.2.3)
   climate_control (~> 0.2)
-  ddtrace
   concurrent-ruby
   derailed_benchmarks
   devise (~> 4.5)
@@ -734,7 +731,6 @@ DEPENDENCIES
   ox (~> 2.10)
   paperclip (~> 6.0)
   paperclip-av-transcoder (~> 0.6)
-  piwik_analytics (~> 1.0.2)
   parallel_tests (~> 2.27)
   pg (~> 1.1)
   pghero (~> 2.2)

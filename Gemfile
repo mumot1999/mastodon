@@ -146,8 +146,5 @@ group :production do
   gem 'redis-rails', '~> 5.0'
 end
 
-gem 'concurrent-ruby', require: false
-
-gem 'piwik_analytics', '~> 1.0.2'
-gem 'ddtrace'
 gem 'whois'
+gem 'concurrent-ruby', require: false
