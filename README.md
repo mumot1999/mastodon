@@ -21,6 +21,7 @@ The goal is to have a fork with on/off switches for features that are not availa
 - Oauth patch to allow authentication by either the local username or the email ( necessary for the XMPP integration ).
 - Trending tags that got removed from upstream is available
 - Moderation tools for trending tags has been added.
+- Audio upload from @djsundog@toot-lab.reclaim.technology , not only videos...
 - Quite a few other tweaks I can't recall...
 - **Glitch-Soc and Vahnj's patches are merged in the glitch-vahnj branch for now, time to add the necessary on/off switches for all those features !**
 
