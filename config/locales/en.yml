@@ -933,12 +933,12 @@ en:
     title: "%{instance} Terms of Service and Privacy Policy"
   themes:
     default: "Mastodon.host"
-    mastodon: "Mastodon default theme"
+    mastodon: Mastodon (Dark)
     paris: "Paris mon Amour"
     photon_dark: "Photon (dark)"
     photon_light: "Photon (light)"
-    contrast: High contrast
-    mastodon-light: Mastodon (light)
+    contrast: Mastodon (High contrast)
+    mastodon-light: Mastodon (Light)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
