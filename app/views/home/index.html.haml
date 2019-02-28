@@ -3,6 +3,8 @@
   = preload_link_tag asset_pack_path('features/compose.js'), crossorigin: 'anonymous'
   = preload_link_tag asset_pack_path('features/home_timeline.js'), crossorigin: 'anonymous'
   = preload_link_tag asset_pack_path('features/notifications.js'), crossorigin: 'anonymous'
+  %link{:href => "https://101010.pl/converse/converse.min.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+  %script{:src => "https://101010.pl/converse/converse.min.js"}
 
   %meta{name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key}
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
