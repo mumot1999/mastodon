@@ -5,6 +5,7 @@
   = preload_link_tag asset_pack_path('features/notifications.js'), crossorigin: 'anonymous'
   %link{:href => "/converse/css/converse.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
   %script{:src => "/converse/converse.min.js"}
+  %script{:src => "/converse/start.js"}
 
   %meta{name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key}
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
