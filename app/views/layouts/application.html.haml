@@ -17,8 +17,8 @@
     %meta{ name: 'msapplication-config', content: '/browserconfig.xml' }/
     %meta{ name: 'theme-color', content: '#282c37' }/
     %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
-    %meta{ name: 'description', content: 'Mastodon is a free microblogging platform, an opensource alternative to twitter. Mastodon.host incorporate a few more features than the original code.' }/
-    %meta{ name: 'title', content: 'Mastodon, opensource microblogging platform alternative to Twitter. Mastodon.host is mastodon but with a few awesome unique features !' }/
+    %meta{ name: 'description', content: 'Mastodon is a free microblogging platform, an opensource alternative to twitter. 101010.pl incorporate a few more features than the original code.' }/
+    %meta{ name: 'title', content: 'Mastodon, opensource microblogging platform alternative to Twitter. 101010.pl is mastodon but with a few awesome unique features !' }/
 
     %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp.html_safe, title], ' - ') : title
 
@@ -31,16 +31,6 @@
     - if Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path, media: 'all'
 
-    %script{:src => "https://xmpp.101010.pl/lib/jquery.min.js"}
-    %script{:src => "https://xmpp.101010.pl/lib/jquery.ui.min.js"}
-    %script{:src => "https://xmpp.101010.pl/lib/jquery.slimscroll.js"}
-    %script{:src => "https://xmpp.101010.pl/lib/jquery.fullscreen.js"}
-    %script{:src => "https://xmpp.101010.pl/lib/jsxc.dep.js"}
-    %script{:src => "https://xmpp.101010.pl/jsxc.js"}
-    %script{:src => "https://xmpp.101010.pl/js/jsxc.101010.js"}
-    %link{:href => "https://xmpp.101010.pl/css/jquery-ui.min.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
-    %link{:href => "https://xmpp.101010.pl/css/jsxc.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
-    %link{:href => "https://xmpp.101010.pl/css/jsxc.101010.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
 
     = yield :header_tags
 
