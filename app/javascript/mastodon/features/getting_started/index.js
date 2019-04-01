@@ -1,5 +1,5 @@
 import React from 'react';
-10import Column from '../ui/components/column';
+import Column from '../ui/components/column';
 import ColumnLink from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
