@@ -2,6 +2,7 @@
 
 module Admin
   class SettingsController < BaseController
+<<<<<<< HEAD
     ADMIN_SETTINGS = %w(
       site_contact_username
       site_contact_email
@@ -48,51 +49,31 @@ module Admin
       mascot
     ).freeze
 
+=======
+>>>>>>> v2.8.0rc1
     def edit
       authorize :settings, :show?
+
       @admin_settings = Form::AdminSettings.new
     end
 
     def update
       authorize :settings, :update?
 
-      settings_params.each do |key, value|
-        if UPLOAD_SETTINGS.include?(key)
-          upload = SiteUpload.where(var: key).first_or_initialize(var: key)
-          upload.update(file: value)
-        else
-          setting = Setting.where(var: key).first_or_initialize(var: key)
-          setting.update(value: value_for_update(key, value))
-	  if key == 'disallowed_hashtags'
-                  value.split.each do |tname|
-                          tag = Tag.where(name: tname).first
-                          if not tag
-                                  Rails.logger.error("Failed to find tag #{tname}")
-                          else
-                                  Rails.logger.error("Removing Redis hashtag: '#{tag.id}' (#{tname})")
-                                  Redis.current.zrem('trending_tags',tag.id.to_s)
-                          end
-                  end
-          end
-        end
-      end
+      @admin_settings = Form::AdminSettings.new(settings_params)
 
-      flash[:notice] = I18n.t('generic.changes_saved_msg')
-      redirect_to edit_admin_settings_path
+      if @admin_settings.save
+        flash[:notice] = I18n.t('generic.changes_saved_msg')
+        redirect_to edit_admin_settings_path
+      else
+        render :edit
+      end
     end
 
     private
 
     def settings_params
-      params.require(:form_admin_settings).permit(ADMIN_SETTINGS)
-    end
-
-    def value_for_update(key, value)
-      if BOOLEAN_SETTINGS.include?(key)
-        value == '1'
-      else
-        value
-      end
+      params.require(:form_admin_settings).permit(*Form::AdminSettings::KEYS)
     end
   end
 end
