@@ -72,7 +72,7 @@ class HomeController < ApplicationController
       push_subscription: current_account.user.web_push_subscription(current_session),
       current_account: current_account,
       token: current_session.token,
-      admin: Account.find_local(Setting.site_contact_username),
+      admin: Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, '')),
       piwik_enabled: ENV.has_key?('PIWIK_DOMAIN') ? 'true' : 'false',
     }
   end
