@@ -24,6 +24,7 @@ class Form::AdminSettings
     show_known_fediverse_at_about_page
     preview_sensitive_media
     custom_css
+    disallowed_hashtags
     profile_directory
     thumbnail
     hero
