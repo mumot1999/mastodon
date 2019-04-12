@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def flags
-      'rc1'
+      nil
     end
 
     def to_a
