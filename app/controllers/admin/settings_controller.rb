@@ -2,55 +2,6 @@
 
 module Admin
   class SettingsController < BaseController
-<<<<<<< HEAD
-    ADMIN_SETTINGS = %w(
-      site_contact_username
-      site_contact_email
-      site_title
-      site_short_description
-      site_description
-      site_extended_description
-      site_terms
-      open_registrations
-      closed_registrations_message
-      open_deletion
-      timeline_preview
-      show_staff_badge
-      bootstrap_timeline_accounts
-      theme
-      thumbnail
-      hero
-      mascot
-      min_invite_role
-      activity_api_enabled
-      peers_api_enabled
-      show_known_fediverse_at_about_page
-      disallowed_hashtags
-      preview_sensitive_media
-      custom_css
-      profile_directory
-    ).freeze
-
-    BOOLEAN_SETTINGS = %w(
-      open_registrations
-      open_deletion
-      timeline_preview
-      show_staff_badge
-      activity_api_enabled
-      peers_api_enabled
-      show_known_fediverse_at_about_page
-      preview_sensitive_media
-      profile_directory
-    ).freeze
-
-    UPLOAD_SETTINGS = %w(
-      thumbnail
-      hero
-      mascot
-    ).freeze
-
-=======
->>>>>>> v2.8.0rc1
     def edit
       authorize :settings, :show?
 
