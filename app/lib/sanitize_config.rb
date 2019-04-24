@@ -24,7 +24,7 @@ class Sanitize
 
       attributes: {
         'a'          => %w(href rel class title),
-        'span' => %w(class),	        'span'       => %w(class),
+        'span'       => %w(class),
         'abbr'       => %w(title),
         'blockquote' => %w(cite),
       },
