@@ -13,7 +13,7 @@ module Mastodon
     end
 
     def patch
-      0
+      2
     end
 
     def pre
@@ -32,13 +32,17 @@ module Mastodon
       [to_a.join('.'), flags].join
     end
 
+    def repository
+      ENV.fetch('GITHUB_REPOSITORY') { '101010pl/Mastodon' }
+    end
+
     def source_base_url
-      'https://github.com/101010pl/Mastodon'
+      ENV.fetch('SOURCE_BASE_URL') { "https://github.com/#{repository}" }
     end
 
     # specify git tag or commit hash here
     def source_tag
-      nil
+      ENV.fetch('SOURCE_TAG') { nil }
     end
 
     def source_url
