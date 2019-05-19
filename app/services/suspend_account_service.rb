@@ -88,8 +88,8 @@ class SuspendAccountService < BaseService
 
     return if @options[:destroy]
 
-    @account.silenced_at      = nil
-    @account.suspended_at     = @options[:suspended_at] || Time.now.utc
+    @account.silenced         = false
+    @account.suspended        = true
     @account.locked           = false
     @account.display_name     = ''
     @account.note             = ''

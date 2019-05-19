@@ -39,12 +39,12 @@ RSpec.describe NotifyService, type: :service do
   end
 
   it 'does not notify when sender is silenced and not followed' do
-    sender.silence!
+    sender.update(silenced: true)
     is_expected.to_not change(Notification, :count)
   end
 
   it 'does not notify when recipient is suspended' do
-    recipient.suspend!
+    recipient.update(suspended: true)
     is_expected.to_not change(Notification, :count)
   end
 
