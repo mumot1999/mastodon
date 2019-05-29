@@ -5,7 +5,7 @@ This is Mastodo, a Mastodon's fork implementing useful features that will not be
 
 We tend to integrate all the upstream commits, but allow more features to be available for both admins and users, while pooling the effort of maintaining a fork between multiple instances.
 
-The goal is to have a fork with on/off switches for features that are not available upstream, allowing the admin a lot of customization to suit better his community.
+The goal is to have a fork with on/off switches for features that are not available upstream, allowing the admin a lot of customization to suit better their community.
 
 ## Patches implemented:
 - PIWIK integration ( allows to have some nice anonymous, self hosted and opensource analytics on the visitors ).
