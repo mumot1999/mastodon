@@ -363,6 +363,8 @@
   "time_remaining.moments": "Pozostała chwila",
   "time_remaining.seconds": "{number, plural, one {Pozostała # sekunda} few {Pozostały # sekundy} many {Pozostało # sekund} other {Pozostało # sekund}}",
   "trends.count_by_accounts": "{count} {rawCount, plural, one {osoba rozmawia} few {osoby rozmawiają} other {osób rozmawia}} o tym",
+  "trends.header": "Aktualne trendy",
+  "trends.refresh": "Odśwież",
   "ui.beforeunload": "Utracisz tworzony wpis, jeżeli opuścisz Mastodona.",
   "upload_area.title": "Przeciągnij i upuść aby wysłać",
   "upload_button.label": "Dodaj zawartość multimedialną (JPEG, PNG, GIF, WebM, MP4, MOV)",
