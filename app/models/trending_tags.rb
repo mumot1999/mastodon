@@ -21,7 +21,7 @@ class TrendingTags
       key     = "#{KEY}:#{Time.now.utc.beginning_of_day.to_i}"
       tag_ids = redis.zrevrange(key, 0, limit - 1).map(&:to_i)
       tags    = Tag.where(id: tag_ids).to_a.each_with_object({}) { |tag, h| h[tag.id] = tag }
-      tag_ids.map { |tag_id| tags[tag_id] if not (disallowed_hashtags.any? { |n| tags[tag_id].name.include?(n) } || tags[tag_id].name =~ /\p{Han}|\p{Katakana}|\p{Hiragana}|\p{Hangul}/ }.compact)
+      tag_ids.map { |tag_id| tags[tag_id] if not (disallowed_hashtags.any? { |n| tags[tag_id].name.include?(n) } || tags[tag_id].name =~ /\p{Han}|\p{Katakana}|\p{Hiragana}|\p{Hangul}/) }.compact
     end
 
     private
