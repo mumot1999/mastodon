@@ -144,14 +144,9 @@ export const urlRegex = (function() {
       'do|dm|dk|dj|de|cz|cy|cx|cw|cv|cu|cr|co|cn|cm|cl|ck|ci|ch|cg|cf|cd|cc|ca|bz|by|bw|bv|bt|bs|br|bq|' +
       'bo|bn|bm|bl|bj|bi|bh|bg|bf|be|bd|bb|ba|az|ax|aw|au|at|as|ar|aq|ao|an|am|al|ai|ag|af|ae|ad|ac' +
     ')(?=[^0-9a-zA-Z@]|$))'));
-  regexen.validOpenNICTLD = regexSupplant(RegExp(
-    '(?:(?:' +
-      'bazar|bbs|bit|chan|coin|cyb|dyn|emc|fur|geek|gopher|indy|ku|lib|libre|neo|null|o|oss|oz|parody|' +
-      'pirate|te|ti|uu|' +
-    ')(?=[^0-9a-zA-Z@]|$))'));
   regexen.validPunycode = /(?:xn--[0-9a-z]+)/;
   regexen.validSpecialCCTLD = /(?:(?:co|tv)(?=[^0-9a-zA-Z@]|$))/;
-  regexen.validDomain = regexSupplant(/(?:#{validSubdomain}*#{validDomainName}(?:#{validGTLD}|#{validCCTLD}|#{validOpenNICTLD}|#{validPunycode}))/);
+  regexen.validDomain = regexSupplant(/(?:#{validSubdomain}*#{validDomainName}(?:#{validGTLD}|#{validCCTLD}|#{validPunycode}))/);
   regexen.validPortNumber = /[0-9]+/;
   regexen.pd = /\u002d\u058a\u05be\u1400\u1806\u2010-\u2015\u2e17\u2e1a\u2e3a\u2e40\u301c\u3030\u30a0\ufe31\ufe58\ufe63\uff0d/;
   regexen.validGeneralUrlPathChars = regexSupplant(/[^#{spaces_group}\(\)\?]/i);
