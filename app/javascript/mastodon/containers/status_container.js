@@ -71,20 +71,18 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onModalReblog (status) {
-    dispatch(reblog(status));
+    if (status.get('reblogged')) {
+      dispatch(unreblog(status));
+    } else {
+      dispatch(reblog(status));
+    }
   },
 
   onReblog (status, e) {
-    if (status.get('reblogged')) {
-      dispatch(unreblog(status));
-      _paq.push(['trackEvent', 'Statuses', 'Unreblog']);
+    if (e.shiftKey || !boostModal) {
+      this.onModalReblog(status);
     } else {
-      if (e.shiftKey || !boostModal) {
-        this.onModalReblog(status);
-      } else {
-        dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
-      }
-      _paq.push(['trackEvent', 'Statuses', 'Reblog']);
+      dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
     }
   },
 
