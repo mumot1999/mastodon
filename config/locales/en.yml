@@ -898,8 +898,11 @@ en:
     boosted_from_html: Boosted from %{acct_link}
     content_warning: 'Content warning: %{warning}'
     disallowed_hashtags:
+      title: 'Hashtags to remove from trending'
       one: 'contained a disallowed hashtag: %{tags}'
       other: 'contained the disallowed hashtags: %{tags}'
+    forbidden_keywords:
+      title: 'Forbidden keywords'
     language_detection: Automatically detect language
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded

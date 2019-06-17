@@ -57,6 +57,8 @@
   .fields-group
     = f.input :disallowed_hashtags, wrapper: :with_block_label, label: t('statuses.disallowed_hashtags.title'), hint: t('statuses.disallowed_hashtags.desc_html')
 
+  .fields-group
+    = f.input :forbidden_keywords, wrapper: :with_block_label, label: t('statuses.forbidden_keywords.title'), hint: t('statuses.forbidden_keywords.desc_html')
   %hr/
 
   .fields-group

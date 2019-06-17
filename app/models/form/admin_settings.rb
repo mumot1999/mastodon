@@ -24,6 +24,7 @@ class Form::AdminSettings
     show_known_fediverse_at_about_page
     preview_sensitive_media
     disallowed_hashtags
+    forbidden_keywords
     custom_css
     profile_directory
     thumbnail

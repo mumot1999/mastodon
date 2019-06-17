@@ -68,7 +68,8 @@ class Status < ApplicationRecord
   validates :uri, uniqueness: true, presence: true, unless: :local?
   validates :text, presence: true, unless: -> { with_media? || reblog? }
   validates_with StatusLengthValidator
-  validates_with DisallowedHashtagsValidator
+  #validates_with DisallowedHashtagsValidator
+  validates_with ForbiddenKeywordsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
   validates :visibility, exclusion: { in: %w(direct limited) }, if: :reblog?
 
@@ -530,4 +531,5 @@ class Status < ApplicationRecord
       AccountConversation.remove_status(inbox_owner, self)
     end
   end
+
 end
