@@ -11,8 +11,7 @@ class ForbiddenKeywordsValidator < ActiveModel::Validator
   private
 
   def check_keywords
-    txt = @status.text
-    txt.downcase!
+    txt = @status.text.downcase
 
     forbidden_keywords.any? { |fk| txt.include? fk }
   end
