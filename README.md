@@ -13,7 +13,7 @@ The goal is to have a fork with on/off switches for features that are not availa
 - FTS for your home timeline ( not only your own toots, but also people you follow, WIP ).
 - 20 results instead of 5 per type of search.
 - The FAQ link on the homepage points to /about/more instead of the github repo.
-- Configurable character limit for posts with `MAX_TOOT_CHARS` in `.env.production` (default is 2048) by @lambadalambda .
+- Configurable character limit for posts with `MAX_TOOT_CHARS` in `.env.production` (default is 2048) by <a href="https://github.com/lambadalambda">@lambadalambda</a>.
 - 512 character limit instead of 160 for profile bio ( TODO: implement that as a configuration instead of being hardcoded ).
 - replies and reboosts are displayed in the timelines instead of being ignored.
 - CI to check every user facing function is behaving correctly.
