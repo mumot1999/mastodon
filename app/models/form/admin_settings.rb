@@ -26,7 +26,6 @@ class Form::AdminSettings
     disallowed_hashtags
     forbidden_keywords
     custom_css
-    disallowed_hashtags
     profile_directory
     thumbnail
     hero
