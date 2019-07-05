@@ -7,6 +7,7 @@ import Permalink from './permalink';
 import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
+import { stripFormatting } from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
@@ -158,6 +159,8 @@ export default class StatusContent extends React.PureComponent {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
       'status__content--collapsed': this.state.collapsed === true,
+      'rich-text': stripFormatting !== 'all',
+      'rich-blocks': stripFormatting === 'none',
     });
 
     if (isRtl(status.get('search_index'))) {
@@ -229,7 +232,7 @@ export default class StatusContent extends React.PureComponent {
         <div
           tabIndex='0'
           ref={this.setRef}
-          className='status__content'
+          className={classNames}
           style={directionStyle}
           dangerouslySetInnerHTML={content}
           lang={status.get('language')}

@@ -35,6 +35,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:reduce_motion]   = object.current_account.user.setting_reduce_motion
       store[:advanced_layout] = object.current_account.user.setting_advanced_layout
       store[:is_staff]        = object.current_account.user.staff?
+      store[:strip_formatting] = object.current_account.user.setting_strip_formatting
     end
 
     store
