@@ -23,6 +23,8 @@ class Form::AdminSettings
     peers_api_enabled
     show_known_fediverse_at_about_page
     preview_sensitive_media
+    disallowed_hashtags
+    forbidden_keywords
     custom_css
     disallowed_hashtags
     profile_directory

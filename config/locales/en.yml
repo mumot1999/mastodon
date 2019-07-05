@@ -174,6 +174,7 @@ en:
       statuses: Statuses
       subscribe: Subscribe
       suspended: Suspended
+      time_in_queue: Waiting in queue %{time}
       title: Accounts
       unconfirmed_email: Unconfirmed email
       undo_silenced: Undo silence
@@ -498,6 +499,12 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Change e-mail preferences
     salutation: "%{name},"
@@ -777,10 +784,9 @@ en:
       too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
   preferences:
-    languages: Languages
     other: Other
-    publishing: Publishing
-    web: Web
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
   relationships:
     activity: Account activity
     dormant: Dormant
@@ -880,8 +886,6 @@ en:
     profile: Profile
     relationships: Follows and followers
     two_factor_authentication: Two-factor Auth
-    your_apps: Your applications
-    donation: "Your help is needed to keep the server running:"
   statuses:
     attached:
       description: 'Attached: %{attached}'
@@ -894,10 +898,11 @@ en:
     boosted_from_html: Boosted from %{acct_link}
     content_warning: 'Content warning: %{warning}'
     disallowed_hashtags:
+      title: 'Hashtags to remove from trending'
       one: 'contained a disallowed hashtag: %{tags}'
       other: 'contained the disallowed hashtags: %{tags}'
-      title: 'Hashtag disallowed'
-      desc_html: 'List of disallowed hashtags on this instance ( space separated )'
+    forbidden_keywords:
+      title: 'Forbidden keywords'
     language_detection: Automatically detect language
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
@@ -913,13 +918,6 @@ en:
       vote: Vote
     show_more: Show more
     sign_in_to_participate: Sign in to participate in the conversation
-    strip_formatting:
-      all: All
-      all_long: Strip all advanced formatting
-      blocks: Block elements
-      blocks_long: Strip formatting for title headers and block quotes
-      none: None
-      none_long: Do not strip any formatting supported by Mastodon
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Followers-only
@@ -1016,12 +1014,8 @@ en:
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
   themes:
-    default: "Mastodon.host"
-    mastodon: Mastodon (Dark)
-    paris: "Paris mon Amour"
-    photon_dark: "Photon (dark)"
-    photon_light: "Photon (light)"
     contrast: Mastodon (High contrast)
+    default: Mastodon (Dark)
     mastodon-light: Mastodon (Light)
   time:
     formats:

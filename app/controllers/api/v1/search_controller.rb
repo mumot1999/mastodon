@@ -11,6 +11,7 @@ class Api::V1::SearchController < Api::BaseController
   respond_to :json
 
   def index
+    # @search = Search.new(search)
     @search = Search.new(search_results)
     render json: @search, serializer: REST::SearchSerializer
   end

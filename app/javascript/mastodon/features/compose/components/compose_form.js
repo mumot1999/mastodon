@@ -19,10 +19,10 @@ import { isMobile } from '../../../is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 import { countableText } from '../util/counter';
-import Icon from 'mastodon/components/icon';
 import initialState from '../../../initial_state';
 
 const maxChars = initialState.max_toot_chars;
+import Icon from 'mastodon/components/icon';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
@@ -63,6 +63,7 @@ class ComposeForm extends ImmutablePureComponent {
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
     anyMedia: PropTypes.bool,
+    singleColumn: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -90,7 +91,7 @@ class ComposeForm extends ImmutablePureComponent {
     const { isSubmitting, isChangingUpload, isUploading, anyMedia } = this.props;
     const fulltext = [this.props.spoilerText, countableText(this.props.text)].join('');
 
-    if (isSubmitting || isUploading || isChangingUpload || length(fulltext) > 2048 || (fulltext.length !== 0 && fulltext.trim().length === 0 && !anyMedia)) {
+    if (isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars || (fulltext.length !== 0 && fulltext.trim().length === 0 && !anyMedia)) {
       return;
     }
 
@@ -115,6 +116,12 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleChangeSpoilerText = (e) => {
     this.props.onChangeSpoilerText(e.target.value);
+  }
+
+  handleFocus = () => {
+    if (this.composeForm && !this.props.singleColumn) {
+      this.composeForm.scrollIntoView();
+    }
   }
 
   componentDidUpdate (prevProps) {
@@ -158,6 +165,10 @@ class ComposeForm extends ImmutablePureComponent {
     this.spoilerText = c;
   }
 
+  setRef = c => {
+    this.composeForm = c;
+  };
+
   handleEmojiPick = (data) => {
     const { text }     = this.props;
     const position     = this.autosuggestTextarea.textarea.selectionStart;
@@ -180,7 +191,7 @@ class ComposeForm extends ImmutablePureComponent {
     }
 
     return (
-      <div className='compose-form'>
+      <div className='compose-form' ref={this.setRef}>
         <WarningContainer />
 
         <ReplyIndicatorContainer />
@@ -203,29 +214,27 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
-        <div className='compose-form__autosuggest-wrapper'>
-          <AutosuggestTextarea
-            ref={this.setAutosuggestTextarea}
-            placeholder={intl.formatMessage(messages.placeholder)}
-            disabled={disabled}
-            value={this.props.text}
-            onChange={this.handleChange}
-            suggestions={this.props.suggestions}
-            onKeyDown={this.handleKeyDown}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            onSuggestionSelected={this.onSuggestionSelected}
-            onPaste={onPaste}
-            autoFocus={!showSearch && !isMobile(window.innerWidth)}
-          />
-
+        <AutosuggestTextarea
+          ref={this.setAutosuggestTextarea}
+          placeholder={intl.formatMessage(messages.placeholder)}
+          disabled={disabled}
+          value={this.props.text}
+          onChange={this.handleChange}
+          suggestions={this.props.suggestions}
+          onFocus={this.handleFocus}
+          onKeyDown={this.handleKeyDown}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          onSuggestionSelected={this.onSuggestionSelected}
+          onPaste={onPaste}
+          autoFocus={!showSearch && !isMobile(window.innerWidth)}
+        >
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
-        </div>
-
-        <div className='compose-form__modifiers'>
-          <UploadFormContainer />
-          <PollFormContainer />
-        </div>
+          <div className='compose-form__modifiers'>
+            <UploadFormContainer />
+            <PollFormContainer />
+          </div>
+        </AutosuggestTextarea>
 
         <div className='compose-form__buttons-wrapper'>
           <div className='compose-form__buttons'>

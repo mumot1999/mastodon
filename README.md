@@ -5,7 +5,7 @@ This is Mastodo, a Mastodon's fork implementing useful features that will not be
 
 We tend to integrate all the upstream commits, but allow more features to be available for both admins and users, while pooling the effort of maintaining a fork between multiple instances.
 
-The goal is to have a fork with on/off switches for features that are not available upstream, allowing the admin a lot of customization to suit better his community.
+The goal is to have a fork with on/off switches for features that are not available upstream, allowing the admin a lot of customization to suit better their community.
 
 ## Patches implemented:
 - PIWIK integration ( allows to have some nice anonymous, self hosted and opensource analytics on the visitors ).
@@ -13,7 +13,7 @@ The goal is to have a fork with on/off switches for features that are not availa
 - FTS for your home timeline ( not only your own toots, but also people you follow, WIP ).
 - 20 results instead of 5 per type of search.
 - The FAQ link on the homepage points to /about/more instead of the github repo.
-- 2048 character limit for posts instead of 500 ( TODO: implement that as a configuration instead of being hardcoded ).
+- Configurable character limit for posts with `MAX_TOOT_CHARS` in `.env.production` (default is 2048) by <a href="https://github.com/lambadalambda">@lambadalambda</a>.
 - 512 character limit instead of 160 for profile bio ( TODO: implement that as a configuration instead of being hardcoded ).
 - replies and reboosts are displayed in the timelines instead of being ignored.
 - CI to check every user facing function is behaving correctly.
@@ -22,6 +22,7 @@ The goal is to have a fork with on/off switches for features that are not availa
 - Trending tags that got removed from upstream is available
 - Moderation tools for trending tags has been added.
 - Audio upload from @djsundog@toot-lab.reclaim.technology , not only videos...
+- Rich text formatting from Thib@social.sitedethib.com ( allow displaying posts as they were written from other fediverse softs rather than stripping everything )
 - Quite a few other tweaks I can't recall...
 - **Glitch-Soc and Vahnj's patches are merged in the glitch-vahnj branch for now, time to add the necessary on/off switches for all those features !**
 
@@ -44,13 +45,13 @@ Mastodon
 [![GitHub release](https://img.shields.io/github/release/tootsuite/mastodon.svg)][releases]
 [![Build Status](https://img.shields.io/circleci/project/github/tootsuite/mastodon.svg)][circleci]
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/tootsuite/mastodon.svg)][code_climate]
-[![Translation status](https://weblate.joinmastodon.org/widgets/mastodon/-/svg-badge.svg)][weblate]
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)][crowdin]
 [![Docker Pulls](https://img.shields.io/docker/pulls/tootsuite/mastodon.svg)][docker]
 
 [releases]: https://github.com/tootsuite/mastodon/releases
 [circleci]: https://circleci.com/gh/tootsuite/mastodon
 [code_climate]: https://codeclimate.com/github/tootsuite/mastodon
-[weblate]: https://weblate.joinmastodon.org/engage/mastodon/
+[crowdin]: https://crowdin.com/project/mastodon
 [docker]: https://hub.docker.com/r/tootsuite/mastodon/
 
 Mastodon is a **free, open-source social network server** based on ActivityPub. Follow friends and discover new ones. Publish anything you want: links, pictures, text, video. All servers of Mastodon are interoperable as a federated network, i.e. users on one server can seamlessly communicate with users from another one. This includes non-Mastodon software that also implements ActivityPub!

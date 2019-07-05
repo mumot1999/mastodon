@@ -39,6 +39,14 @@ class SearchResults extends ImmutablePureComponent {
         <div className='search-results'>
           <div className='trends'>
             <div className='trends__header'>
+              <i className='fa fa-fire fa-fw' />
+              <FormattedMessage id='trends.header' defaultMessage='Trending now' />
+            </div>
+
+            {trends && trends.map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
+
+            <div className='trends__header'>
+              <i className='fa fa-user-plus fa-fw' />
               <Icon id='user-plus' fixedWidth />
               <FormattedMessage id='suggestions.header' defaultMessage='You might be interested in…' />
             </div>

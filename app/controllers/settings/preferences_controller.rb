@@ -12,16 +12,17 @@ class Settings::PreferencesController < Settings::BaseController
 
     if current_user.update(user_params)
       I18n.locale = current_user.locale
-      response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
-      response.headers["Pragma"] = "no-cache"
-      response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
-      redirect_to settings_preferences_path, notice: I18n.t('generic.changes_saved_msg')
+      redirect_to after_update_redirect_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render :show
     end
   end
 
   private
+
+  def after_update_redirect_path
+    settings_preferences_path
+  end
 
   def user_settings
     UserSettingsDecorator.new(current_user)
@@ -43,6 +44,8 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_boost_modal,
       :setting_delete_modal,
       :setting_auto_play_gif,
+      :setting_donate_cputime,
+      :setting_donate_cpupercent,
       :setting_display_sensitive_media,
       :setting_display_media,
       :setting_expand_spoilers,
@@ -53,9 +56,9 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_hide_network,
       :setting_aggregate_reblogs,
       :setting_show_application,
-      :setting_strip_formatting,
+      :setting_advanced_layout,
       notification_emails: %i(follow follow_request reblog favourite mention digest report pending_account),
-      interactions: %i(must_be_follower must_be_following)
+      interactions: %i(must_be_follower must_be_following must_be_following_dm)
     )
   end
 end

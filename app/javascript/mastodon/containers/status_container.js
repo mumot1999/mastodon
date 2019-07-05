@@ -81,10 +81,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onReblog (status, e) {
     if (e.shiftKey || !boostModal) {
       this.onModalReblog(status);
-      _paq.push(['trackEvent', 'Statuses', 'Unreblog']);
     } else {
-     dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
-      _paq.push(['trackEvent', 'Statuses', 'Reblog']);
+      dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
     }
   },
 
