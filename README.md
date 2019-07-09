@@ -14,7 +14,10 @@ The goal is to have a fork with on/off switches for features that are not availa
 - 20 results instead of 5 per type of search.
 - The FAQ link on the homepage points to /about/more instead of the github repo.
 - Configurable character limit for posts with `MAX_TOOT_CHARS` in `.env.production` (default is 2048) by <a href="https://github.com/lambadalambda">@lambadalambda</a>.
-- 512 character limit instead of 160 for profile bio ( TODO: implement that as a configuration instead of being hardcoded ).
+- Configurable character limit instead of 160 for profile bio with `MAX_BIO_CHARS` in `.env.production` (default is 512).
+- Configurable display name limit with `MAX_DISPLAY_NAME_CHARS` in `.env.production`.
+- Configurable number of profile fields with `MAX_PROFILE_FIELDS` in `.env.production`.
+- Configurable media upload limit with with `MAX_IMG_SIZE` and `MAX_VID_SIZE` in `.env.production`.
 - replies and reboosts are displayed in the timelines instead of being ignored.
 - CI to check every user facing function is behaving correctly.
 - A few other minor tweaks like full column display to fill bigger screen, multiples themes, and other improvements...
