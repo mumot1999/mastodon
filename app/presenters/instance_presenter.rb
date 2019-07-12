@@ -12,6 +12,10 @@ class InstancePresenter
     to: Setting
   )
 
+  def active_count(timespan: Time.zone.now - 1.month..Time.zone.now)
+    Status.select('distinct (account_id)').where(local: true, created_at: timespan).count
+  end
+
   def contact_account
     Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
   end
