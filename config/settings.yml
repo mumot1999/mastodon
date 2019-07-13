@@ -11,6 +11,7 @@ defaults: &defaults
   site_contact_email: ''
   registrations_mode: 'open'
   profile_directory: true
+  nodeinfo_show_blocks: false
   closed_registrations_message: ''
   open_deletion: true
   min_invite_role: 'admin'
