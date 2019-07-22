@@ -30,6 +30,7 @@ class Form::AdminSettings
     thumbnail
     hero
     mascot
+    nodeinfo_show_blocks
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -41,12 +42,15 @@ class Form::AdminSettings
     show_known_fediverse_at_about_page
     preview_sensitive_media
     profile_directory
+    nodeinfo_show_blocks
   ).freeze
 
   UPLOAD_KEYS = %i(
     thumbnail
     hero
     mascot
+    nodeinfo_show_blocks,
+    nodeinfo_show_blocks=,
   ).freeze
 
   attr_accessor(*KEYS)
