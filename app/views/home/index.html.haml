@@ -4,6 +4,7 @@
   = preload_link_tag asset_pack_path('features/home_timeline.js'), crossorigin: 'anonymous'
   = preload_link_tag asset_pack_path('features/notifications.js'), crossorigin: 'anonymous'
   %link{:href => "/converse/css/converse.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+  %script{:src => "/converse/libsignal-protocol.js"}
   %script{:src => "/converse/converse.min.js"}
   %script{:src => "/converse/start.js"}
 
