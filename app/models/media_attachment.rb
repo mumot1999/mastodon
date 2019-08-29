@@ -53,21 +53,6 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
-  AUDIO_STYLES = {
-    original: {
-      format: 'mp4',
-      convert_options: {
-        output: {
-          filter_complex: '"[0:a]compand,showwaves=s=640x360:mode=line,format=yuv420p[v]"',
-          map: '"[v]" -map 0:a', 
-          threads: 2,
-          vcodec: 'libx264',
-          acodec: 'aac',
-          movflags: '+faststart',
-        },
-      },
-    },
-  }.freeze
 
   VIDEO_STYLES = {
     small: {
