@@ -53,21 +53,6 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
-  AUDIO_STYLES = {
-    original: {
-      format: 'mp4',
-      convert_options: {
-        output: {
-          filter_complex: '"[0:a]compand,showwaves=s=640x360:mode=line,format=yuv420p[v]"',
-          map: '"[v]" -map 0:a', 
-          threads: 2,
-          vcodec: 'libx264',
-          acodec: 'aac',
-          movflags: '+faststart',
-        },
-      },
-    },
-  }.freeze
 
   VIDEO_STYLES = {
     small: {
@@ -129,7 +114,7 @@ class MediaAttachment < ApplicationRecord
   has_attached_file :file,
                     styles: ->(f) { file_styles f },
                     processors: ->(f) { file_processors f },
-                    convert_options: { all: '-quality 90 -strip' }
+                    convert_options: { all: '-quality 90 -strip +set modify-date +set create-date' }
 
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
   validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :larger_media_format?
