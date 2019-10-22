@@ -31,6 +31,11 @@ class Form::AdminSettings
     hero
     mascot
     nodeinfo_show_blocks
+    spam_check_enabled
+    trends
+    show_domain_blocks
+    show_domain_blocks_rationale
+    noindex
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -43,6 +48,9 @@ class Form::AdminSettings
     preview_sensitive_media
     profile_directory
     nodeinfo_show_blocks
+    spam_check_enabled
+    trends
+    noindex
   ).freeze
 
   UPLOAD_KEYS = %i(
@@ -62,6 +70,8 @@ class Form::AdminSettings
   validates :site_contact_email, :site_contact_username, presence: true
   validates :site_contact_username, existing_username: true
   validates :bootstrap_timeline_accounts, existing_username: { multiple: true }
+  validates :show_domain_blocks, inclusion: { in: %w(disabled users all) }
+  validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }
 
   def initialize(_attributes = {})
     super
