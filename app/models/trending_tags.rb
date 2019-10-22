@@ -92,7 +92,7 @@ class TrendingTags
       tag_ids.map { |tag_id| tags[tag_id] if not (disallowed_hashtags.any? { |n| tags[tag_id].name.include?(n) } || tags[tag_id].name =~ /\p{Han}|\p{Katakana}|\p{Hiragana}|\p{Hangul}/) }.compact
 
       tags = Tag.where(id: tag_ids)
-      tags = tags.where(trendable: true) if filtered
+      tags = tags.trendable if filtered
       tags = tags.each_with_object({}) { |tag, h| h[tag.id] = tag }
 
       tag_ids.map { |tag_id| tags[tag_id] }.compact.take(limit)
