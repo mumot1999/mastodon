@@ -9,8 +9,7 @@
   %script{:src => "/converse/start.js"}
 
   %meta{name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key}
-  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
-
+  = render_initial_state
   = javascript_pack_tag 'application', integrity: true, crossorigin: 'anonymous'
 
 .app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
