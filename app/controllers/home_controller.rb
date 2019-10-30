@@ -5,7 +5,6 @@ class HomeController < ApplicationController
   skip_before_action :store_current_location, only: :piwik
   # rubocop sees that as a hash ?!
   before_action :authenticate_user!, :except => %i(piwik) # rubocop:disable Style/HashSyntax
-  before_action :set_initial_state_json, :except => %i(piwik)
   before_action :set_referrer_policy_header
 
   def index
