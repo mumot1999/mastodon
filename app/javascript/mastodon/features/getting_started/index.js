@@ -163,6 +163,8 @@ class GettingStarted extends ImmutablePureComponent {
             {navItems}
           </div>
 
+          {multiColumn && <TrendsContainer />}
+
           {!multiColumn && <div className='flex-spacer' />}
 
           <LinkFooter withHotkeys={multiColumn} />
