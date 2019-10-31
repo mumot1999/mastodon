@@ -10,7 +10,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchTrends: () => dispatch(fetchTrends()),
   fetchSuggestions: () => dispatch(fetchSuggestions()),
   expandSearch: type => dispatch(expandSearch(type)),
   dismissSuggestion: account => dispatch(dismissSuggestion(account.get('id'))),

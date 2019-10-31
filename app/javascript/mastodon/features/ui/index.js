@@ -47,7 +47,6 @@ import {
   Mutes,
   PinnedStatuses,
   Lists,
-  Trends,
   Search,
   Directory,
 } from './util/async-components';
