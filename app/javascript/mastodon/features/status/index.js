@@ -69,6 +69,7 @@ const makeMapStateToProps = () => {
     let ancestorsIds = Immutable.List();
     ancestorsIds = ancestorsIds.withMutations(mutable => {
       let id = statusId;
+
       while (id) {
         mutable.unshift(id);
         id = inReplyTos.get(id);

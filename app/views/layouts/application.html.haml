@@ -17,8 +17,6 @@
     %meta{ name: 'msapplication-config', content: '/browserconfig.xml' }/
     %meta{ name: 'theme-color', content: '#282c37' }/
     %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
-    %meta{ name: 'description', content: 'Mastodon is a free microblogging platform, an opensource alternative to twitter. Mastodon.host incorporate a few more features than the original code.' }/
-    %meta{ name: 'title', content: 'Mastodon, opensource microblogging platform alternative to Twitter. Mastodon.host is mastodon but with a few awesome unique features !' }/
 
     %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp.html_safe, title], ' - ') : title
 
@@ -35,12 +33,7 @@
 
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
-    - if ENV.has_key?('PIWIK_DOMAIN')
-      = javascript_include_tag '/piwik'
-      %noscript 
-        %p 
-          %img(src="https://#{ENV['PIWIK_DOMAIN']}/piwik.php?idsite=#{ENV['PIWIK_SITEID']}&rec=1" style="border:0;" alt="")
-    
+
     %div{ style: 'display: none'}
       = render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
       = render file: Rails.root.join('app', 'javascript', 'images', 'logo_full.svg')

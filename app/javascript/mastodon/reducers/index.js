@@ -64,7 +64,6 @@ const reducers = {
   identity_proofs,
   lists,
   listEditor,
-  trends,
   listAdder,
   filters,
   conversations,

@@ -236,11 +236,11 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     if (status.get('in_reply_to_id', null) === null) {
-      replyTitle = intl.formatMessage(messages.reply);
       replyIcon = 'reply';
+      replyTitle = intl.formatMessage(messages.reply);
     } else {
-      replyTitle = intl.formatMessage(messages.replyAll);
       replyIcon = 'reply-all';
+      replyTitle = intl.formatMessage(messages.replyAll);
     }
 
     const shareButton = ('share' in navigator) && status.get('visibility') === 'public' && (
