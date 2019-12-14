@@ -14,8 +14,7 @@ class TrendingTags
     include Redisable
 
     def record_use!(tag, account, at_time = Time.now.utc)
-      #return if disallowed_hashtags.any? { |n| tag.name.include?(n) } || account.silenced? || account.bot? || account.domain == 'switter.at' || account.domain == 'humblr.social' || !tag.usable? || !(tag.trendable? || tag.requires_review?)
-      return if account.silenced? || account.bot? || account.domain == 'switter.at' || account.domain == 'humblr.social' || !tag.usable? || !tag.trendable?
+      return if account.silenced? || account.bot? || !tag.usable? || !(tag.trendable? || tag.requires_review?)
 
       increment_historical_use!(tag.id, at_time)
       increment_unique_use!(tag.id, account.id, at_time)
@@ -89,7 +88,6 @@ class TrendingTags
 
     def get(limit, filtered: true)
       tag_ids = redis.zrevrange(KEY, 0, LIMIT - 1).map(&:to_i)
-      tag_ids.map { |tag_id| tags[tag_id] if not (disallowed_hashtags.any? { |n| tags[tag_id].name.include?(n) } || tags[tag_id].name =~ /\p{Han}|\p{Katakana}|\p{Hiragana}|\p{Hangul}/) }.compact
 
       tags = Tag.where(id: tag_ids)
       tags = tags.trendable if filtered
@@ -104,19 +102,6 @@ class TrendingTags
     end
 
     private
-
-    def increment_vote!(tag_id, at_time)
-      expected = redis.pfcount("activity:tags:#{tag_id}:#{(at_time - 1.day).beginning_of_day.to_i}:accounts").to_f
-      expected = 1.0 if expected.zero?
-      observed = redis.pfcount("activity:tags:#{tag_id}:#{at_time.beginning_of_day.to_i}:accounts").to_f
-
-      if expected > observed || observed < THRESHOLD
-        redis.zrem(KEY, tag_id.to_s)
-      else
-        score = ((observed - expected)**2) / expected
-        redis.zadd(KEY, score, tag_id.to_s)
-      end
-    end
 
     def increment_historical_use!(tag_id, at_time)
       key = "activity:tags:#{tag_id}:#{at_time.beginning_of_day.to_i}"

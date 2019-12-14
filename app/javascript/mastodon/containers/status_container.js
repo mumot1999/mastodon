@@ -29,8 +29,6 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { boostModal, deleteModal } from '../initial_state';
 import { showAlertForError } from '../actions/alerts';
 
-var _paq = _paq || [];
-
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
@@ -87,10 +85,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onFavourite (status) {
     if (status.get('favourited')) {
       dispatch(unfavourite(status));
-      _paq.push(['trackEvent', 'Statuses', 'UnFav']);
     } else {
       dispatch(favourite(status));
-      _paq.push(['trackEvent', 'Statuses', 'Fav']);
     }
   },
 
@@ -119,7 +115,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
         onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
       }));
     }
-    _paq.push(['trackEvent', 'Statuses', 'Delete']);
   },
 
   onDirect (account, router) {
@@ -128,7 +123,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onMention (account, router) {
     dispatch(mentionCompose(account, router));
-    _paq.push(['trackEvent', 'Statuses', 'Mention']);
   },
 
   onOpenMedia (media, index) {
