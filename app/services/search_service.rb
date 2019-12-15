@@ -15,11 +15,7 @@ class SearchService < BaseService
       elsif @query.present?
         results[:accounts] = perform_accounts_search! if account_searchable?
         results[:hashtags] = perform_hashtags_search! if hashtag_searchable?
-	if full_text_searchable?
-          results[:statuses] = perform_statuses_search!
-	else
-          results[:statuses] = Status.search_for(query.gsub(/\A#/, ''), limit) unless query.start_with?('@') or query.start_with?('#')
-	end
+        results[:statuses] = perform_statuses_search!
       end
     end
   end
