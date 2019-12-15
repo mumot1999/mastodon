@@ -275,14 +275,6 @@ class Status < ApplicationRecord
   after_create :set_poll_id
 
   class << self
-    def search_for(term, limit = 20)
-       pattern = sanitize_sql_like(term)
-       pattern = "#{pattern}"
-       Status.unscoped {
-	       Status.where("updated_at > ?", 2.months.ago).where('tsv @@ plainto_tsquery(?)', pattern).where(visibility: [:public, :unlisted]).order(updated_at: :desc).limit(limit)
-       }
-    end
-
     def selectable_visibilities
       visibilities.keys - %w(direct limited)
     end
