@@ -75,12 +75,22 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if single_user_mode? || !allowed_registrations?
+    # redirect_to root_path if single_user_mode? || !allowed_registrations?
+    redirect_to root_path if single_user_mode? || !allowed_registrations? || !validate_registrations?
   end
 
   def allowed_registrations?
     Setting.registrations_mode != 'none' || @invite&.valid_for_use?
   end
+
+  def validate_registrations?
+     if params[:user]
+      ((Setting.registrations_mode == 'approved' && params[:user][:invite_request_attributes] && !params[:user][:invite_request_attributes][:text].nil? && !params[:user][:invite_request_attributes][:text].empty?) || Setting.registrations_mode != 'approved')
+    else
+      (Setting.registrations_mode == 'approved' && params[:invite_request_attributes] && !params[:invite_request_attributes][:text].nil? && !params[:invite_request_attributes][:text].empty?) || Setting.registrations_mode != 'approved'
+    end
+  end
+
 
   def invite_code
     if params[:user]
