@@ -265,9 +265,8 @@ class Formatter
 
   def link_to_mention(entity, linkable_accounts)
     acct = entity[:screen_name]
-    username, domain = acct.split('@')
 
-    return link_to_account(acct) unless linkable_accounts and domain != "twitter.com"
+    return link_to_account(acct) unless linkable_accounts
 
     account = linkable_accounts.find { |item| TagManager.instance.same_acct?(item.acct, acct) }
     account ? mention_html(account) : "@#{encode(acct)}"

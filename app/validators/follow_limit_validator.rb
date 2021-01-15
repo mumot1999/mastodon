@@ -22,10 +22,6 @@ class FollowLimitValidator < ActiveModel::Validator
   private
 
   def limit_reached?(account)
-	  if account.local? and account.username == 'federationbot'
-		  false
-	  else
-		  account.following_count >= self.class.limit_for_account(account)
-	  end
+    account.following_count >= self.class.limit_for_account(account)
   end
 end

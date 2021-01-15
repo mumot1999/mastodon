@@ -528,9 +528,6 @@ en:
       profile_directory:
         desc_html: Allow users to be discoverable
         title: Enable profile directory
-      nodeinfo_show_blocks:
-        desc_html: List instance suspends, silence and rejects in the public nodeinfo API
-        title: Enable showing blocks in nodeinfo API
       registrations:
         closed_message:
           desc_html: Displayed on frontpage when registrations are closed. You can use HTML tags
@@ -1121,7 +1118,6 @@ en:
     boosted_from_html: Boosted from %{acct_link}
     content_warning: 'Content warning: %{warning}'
     disallowed_hashtags:
-      title: 'Hashtags to remove from trending'
       one: 'contained a disallowed hashtag: %{tags}'
       other: 'contained the disallowed hashtags: %{tags}'
     errors:
@@ -1145,13 +1141,6 @@ en:
     show_more: Show more
     show_thread: Show thread
     sign_in_to_participate: Sign in to participate in the conversation
-    strip_formatting:
-      all: All
-      all_long: Strip all advanced formatting
-      blocks: Block elements
-      blocks_long: Strip formatting for title headers and block quotes
-      none: None
-      none_long: Do not strip any formatting supported by Mastodon
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Followers-only

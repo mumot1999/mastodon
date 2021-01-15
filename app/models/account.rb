@@ -73,24 +73,17 @@ class Account < ApplicationRecord
   enum protocol: [:ostatus, :activitypub]
 
   validates :username, presence: true
-  
-  MAX_DISPLAY_NAME_LENGTH = (ENV['MAX_DISPLAY_NAME_CHARS'] || 30).to_i
-  MAX_NOTE_LENGTH = (ENV['MAX_BIO_CHARS'] || 512).to_i
-  MAX_FIELDS = (ENV['MAX_PROFILE_FIELDS'] || 4).to_i
-  
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
   # Remote user validations
-  #validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
-  validates :username, uniqueness: { scope: :domain, case_sensitive: true }, if: -> { !local? && will_save_change_to_username? }
+  validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
-  validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
-  #validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
-  validates :display_name, length: { maximum: MAX_DISPLAY_NAME_LENGTH }, if: -> { local? && will_save_change_to_display_name? }
-  validates :note, note_length: { maximum: MAX_NOTE_LENGTH }, if: -> { local? && will_save_change_to_note? }
-  validates :fields, length: { maximum: MAX_FIELDS }, if: -> { local? && will_save_change_to_fields? }
+  validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
+  validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
+  validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
+  validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
@@ -309,13 +302,15 @@ class Account < ApplicationRecord
     self[:fields] = fields
   end
 
+  DEFAULT_FIELDS_SIZE = 4
+
   def build_fields
-    return if fields.size >= MAX_FIELDS
+    return if fields.size >= DEFAULT_FIELDS_SIZE
 
     tmp = self[:fields] || []
     tmp = [] if tmp.is_a?(Hash)
 
-    (MAX_FIELDS - tmp.size).times do
+    (DEFAULT_FIELDS_SIZE - tmp.size).times do
       tmp << { name: '', value: '' }
     end
 

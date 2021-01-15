@@ -12,11 +12,7 @@ Doorkeeper.configure do
     user ||= User.authenticate_with_pam(email: request.params[:username], password: request.params[:password]) if Devise.pam_authentication
 
     if user.nil?
-     if request.params[:username].include?('@')
       user = User.find_by(email: request.params[:username])
-    else
-      user = Account.find_local(request.params[:username]).user
-    end
       user = nil unless user&.valid_password?(request.params[:password])
     end
 

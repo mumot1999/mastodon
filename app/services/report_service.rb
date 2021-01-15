@@ -10,9 +10,8 @@ class ReportService < BaseService
     @comment        = options.delete(:comment) || ''
     @options        = options
 
-    @comment.strip!
-    create_report! unless @comment == ''
-    notify_staff! unless @comment == ''
+    create_report!
+    notify_staff!
     forward_to_origin! if !@target_account.local? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
 
     @report

@@ -47,10 +47,6 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     }
   end
 
-  def max_toot_chars
-    StatusLengthValidator::MAX_CHARS
-  end
-
   def urls
     { streaming_api: Rails.configuration.x.streaming_api_base_url }
   end

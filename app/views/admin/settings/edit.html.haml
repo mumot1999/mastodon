@@ -63,13 +63,6 @@
   .fields-group
     = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')
 
-  .fields-group
-    = f.input :disallowed_hashtags, wrapper: :with_block_label, label: t('statuses.disallowed_hashtags.title'), hint: t('statuses.disallowed_hashtags.desc_html')
-
-  .fields-group
-    = f.input :forbidden_keywords, wrapper: :with_block_label, label: t('statuses.forbidden_keywords.title'), hint: t('statuses.forbidden_keywords.desc_html')
-  %hr/
-
   - unless whitelist_mode?
     .fields-group
       = f.input :activity_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.activity_api_enabled.title'), hint: t('admin.settings.activity_api_enabled.desc_html')
@@ -94,11 +87,6 @@
 
   .fields-group
     = f.input :spam_check_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.spam_check_enabled.title'), hint: t('admin.settings.spam_check_enabled.desc_html')
-
-  .fields-group
-    = f.input :nodeinfo_show_blocks, as: :boolean, wrapper: :with_label, label: t('admin.settings.nodeinfo_show_blocks.title'), hint: t('admin.settings.nodeinfo_show_blocks.desc_html')
-
-
 
   %hr.spacer/
 

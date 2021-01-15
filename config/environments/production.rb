@@ -46,7 +46,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'warn').to_sym
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -105,9 +105,9 @@ Rails.application.configure do
 
   config.action_dispatch.default_headers = {
     'Server'                 => 'Mastodon',
-    #'X-Frame-Options'        => 'DENY',
-    #'X-Content-Type-Options' => 'nosniff',
-    #'X-XSS-Protection'       => '1; mode=block',
+    'X-Frame-Options'        => 'DENY',
+    'X-Content-Type-Options' => 'nosniff',
+    'X-XSS-Protection'       => '1; mode=block',
   }
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET')
