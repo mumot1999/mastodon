@@ -25,4 +25,7 @@
 @import 'mastodon/admin';
 @import 'mastodon/dashboard';
 @import 'mastodon/rtl';
+div.column {
+	          flex-grow: 1;
+}
 @import 'mastodon/accessibility';
