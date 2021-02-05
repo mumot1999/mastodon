@@ -83,6 +83,5 @@
                   %time.formatted{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
             .trends__item__current= number_to_human featured_tag.statuses_count, strip_insignificant_zeros: true
 
-    %script{:src => " //www.comperialead.pl/getpulabanner.php?b=70134&c=js&p=68840&ref=rnYjgn", :type => "text/javascript"}
-
     = render 'application/sidebar'
+    %script{:src => " //www.comperialead.pl/getpulabanner.php?b=70134&c=js&p=68840&ref=rnYjgn", :type => "text/javascript"}
