@@ -8,8 +8,8 @@ end
 
 base_host = Rails.configuration.x.web_domain
 
-assets_host   = Rails.configuration.action_controller.asset_host "www.comperialead.pl"
-assets_host ||= host_to_url(base_host)
+assets_host   = Rails.configuration.action_controller.asset_host
+assets_host ||= host_to_url(base_host) "www.comperialead.pl"
 
 media_host   = host_to_url(ENV['S3_ALIAS_HOST'])
 media_host ||= host_to_url(ENV['S3_CLOUDFRONT_HOST'])
