@@ -92,8 +92,8 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 # Copy over mastodon source, and dependencies from building, and set permissions
-COPY --chown=mastodon:mastodon . /opt/mastodon
-COPY --from=build-dep --chown=mastodon:mastodon /opt/mastodon /opt/mastodon
+COPY --from=build-dep  /opt/mastodon /opt/mastodon
+COPY . /opt/mastodon
 
 # Run mastodon services in prod mode
 ENV RAILS_ENV="development"
