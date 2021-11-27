@@ -421,7 +421,7 @@ export function clearComposeSuggestions() {
   };
 };
 
-const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => {
+const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token, initiator) => {
   if (cancelFetchComposeSuggestionsAccounts) {
     cancelFetchComposeSuggestionsAccounts();
   }
@@ -438,7 +438,7 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
     },
   }).then(response => {
     dispatch(importFetchedAccounts(response.data));
-    dispatch(readyComposeSuggestionsAccounts(token, response.data));
+    dispatch(readyComposeSuggestionsAccounts(token, response.data, initiator));
   }).catch(error => {
     if (!isCancel(error)) {
       dispatch(showAlertForError(error));
@@ -451,7 +451,7 @@ const fetchComposeSuggestionsEmojis = (dispatch, getState, token) => {
   dispatch(readyComposeSuggestionsEmojis(token, results));
 };
 
-const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
+const fetchComposeSuggestionsTags = throttle((dispatch, getState, token, initiator) => {
   if (cancelFetchComposeSuggestionsTags) {
     cancelFetchComposeSuggestionsTags();
   }
@@ -479,17 +479,17 @@ const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
   });
 }, 200, { leading: true, trailing: true });
 
-export function fetchComposeSuggestions(token) {
+export function fetchComposeSuggestions(token, initiator) {
   return (dispatch, getState) => {
     switch (token[0]) {
     case ':':
-      fetchComposeSuggestionsEmojis(dispatch, getState, token);
+      fetchComposeSuggestionsEmojis(dispatch, getState, token, initiator);
       break;
     case '#':
-      fetchComposeSuggestionsTags(dispatch, getState, token);
+      fetchComposeSuggestionsTags(dispatch, getState, token, initiator);
       break;
     default:
-      fetchComposeSuggestionsAccounts(dispatch, getState, token);
+      fetchComposeSuggestionsAccounts(dispatch, getState, token, initiator);
       break;
     }
   };
@@ -503,18 +503,20 @@ export function readyComposeSuggestionsEmojis(token, emojis) {
   };
 };
 
-export function readyComposeSuggestionsAccounts(token, accounts) {
+export function readyComposeSuggestionsAccounts(token, accounts, initiator) {
   return {
     type: COMPOSE_SUGGESTIONS_READY,
     token,
     accounts,
+    initiator,
   };
 };
 
-export const readyComposeSuggestionsTags = (token, tags) => ({
+export const readyComposeSuggestionsTags = (token, tags, initiator) => ({
   type: COMPOSE_SUGGESTIONS_READY,
   token,
   tags,
+  initiator,
 });
 
 export function selectComposeSuggestion(position, token, suggestion, path) {
