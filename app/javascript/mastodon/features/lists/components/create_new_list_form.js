@@ -20,6 +20,12 @@ const messages = defineMessages({
     defaultMessage: "New list title",
   },
   title: { id: "lists.new.create", defaultMessage: "Add list" },
+  hashtag: { id: "lists.extended_lists.hashtag", defaultMessage: "Hashtag" },
+  users: { id: "lists.extended_lists.users", defaultMessage: "Users" },
+  listTypes: {
+    id: "lists.extended_lists.list_types",
+    defaultMessage: "Choose list type:",
+  },
 });
 
 const CreateNewListForm = (props) => {
@@ -29,6 +35,7 @@ const CreateNewListForm = (props) => {
   const title = intl.formatMessage(messages.title);
 
   const [listName, setListName] = useState(false);
+  const [listType, setListType] = useState(undefined);
 
   const dispatch = useDispatch();
 
@@ -80,28 +87,57 @@ const CreateNewListForm = (props) => {
     dispatch(clearListSuggestions());
   };
 
+  const handleListType = ({ target }) => {
+    setListType(target.value);
+    console.log(target.value);
+  };
+
   return (
     <div>
       <h4>List creator</h4>
-      <form className="column-inline-form" onSubmit={handleSubmit}>
-        <label>
-          <span style={{ display: "none" }}>{label}</span>
+      <form className="column-settings__row" onSubmit={handleSubmit}>
+        <div className="column-inline-form">
+          <label>
+            <span style={{ display: "none" }}>{label}</span>
 
-          <input
-            className="setting-text"
-            value={value}
-            disabled={disabled}
-            onChange={handleChange}
-            placeholder={value === "" ? label : value}
+            <input
+              className="setting-text"
+              value={value}
+              disabled={disabled}
+              onChange={handleChange}
+              placeholder={value === "" ? label : value}
+            />
+          </label>
+
+          <IconButton
+            disabled={disabled || !value || !listType}
+            icon={!listName ? "plus" : "check"}
+            title={title}
+            onClick={handleClick}
           />
-        </label>
-
-        <IconButton
-          disabled={disabled || !value}
-          icon={!listName ? "plus" : "check"}
-          title={title}
-          onClick={handleClick}
-        />
+        </div>
+        {!listName && (
+          <div className="radio-button-list" role="group">
+            <span className="column-settings__section">
+              <FormattedMessage
+                id="lists.extended_lists.list_types"
+                defaultMessage="Choose list type:"
+              />
+            </span>
+            <div className="column-settings__row">
+              {["users", "hashtag"].map((type) => (
+                <RadioButton
+                  name="order"
+                  key={type}
+                  value={type}
+                  label={intl.formatMessage(messages[type])}
+                  checked={listType === type}
+                  onChange={handleListType}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </form>
 
       {listName && (
