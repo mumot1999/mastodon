@@ -135,7 +135,6 @@ export const changeListEditorType = listType => ({
 
 export const createList = (title, listType, shouldReset) => (dispatch, getState) => {
   dispatch(createListRequest());
-  console.log("CREATE LIST:" + listType);
 
   api(getState).post('/api/v1/lists', { title, list_types: listType }).then(({ data }) => {
     dispatch(createListSuccess(data));
