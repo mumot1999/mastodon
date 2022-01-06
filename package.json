@@ -161,6 +161,7 @@
     "tesseract.js": "^2.1.1",
     "throng": "^4.0.0",
     "tiny-queue": "^0.2.1",
+    "ts-loader": "^8",
     "twitter-text": "3.1.0",
     "uuid": "^8.3.1",
     "webpack": "^4.46.0",
@@ -186,6 +187,8 @@
     "react-intl-translations-manager": "^5.0.3",
     "react-test-renderer": "^16.14.0",
     "sass-lint": "^1.13.1",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.5.2",
     "webpack-dev-server": "^3.11.2",
     "yargs": "^17.2.1"
   },
