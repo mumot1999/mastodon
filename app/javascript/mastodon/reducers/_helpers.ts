@@ -43,3 +43,16 @@ export function filter<T extends (item: ListItem<L>) => boolean, L extends List<
     return list.filter(predicate).toList() as L;
   };
 }
+
+export function getActionFunctor<Actions extends Action<string, any>>() {
+  return function <K extends Actions["type"]>(k: K) {
+    return function (
+      p: { [Key in Actions as Key["type"]]: Key["payload"] }[typeof k]
+    ) {
+      return {
+        payload: p,
+        type: k,
+      } as Action<typeof k, typeof p>;
+    };
+  };
+}
