@@ -1,6 +1,6 @@
 import { pipe } from "fp-ts/lib/function";
 import { List } from "immutable";
-import { Action, filter, notEq, pick, prop, reducer } from "./_helpers";
+import { Action, filter, getActionFunctor, notEq, pick, prop, reducer } from "./_helpers";
 
 export type MultipleAccountsAction =
   | Action<"addAccount", Account>
@@ -37,3 +37,4 @@ export default reducer<typeof initialState, MultipleAccountsAction>(initialState
   },
 });
 
+export const createAction = getActionFunctor<MultipleAccountsAction>();

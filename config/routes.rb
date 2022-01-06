@@ -148,6 +148,7 @@ Rails.application.routes.draw do
 
     resources :identity_proofs, only: [:index, :new, :create, :destroy]
 
+    resources :remote_accounts
     resources :applications, except: [:edit] do
       member do
         post :regenerate
@@ -519,6 +520,7 @@ Rails.application.routes.draw do
       resources :media, only: [:create]
       get '/search', to: 'search#index', as: :search
       resources :suggestions, only: [:index]
+      resources :multiple_accounts
     end
 
     namespace :web do

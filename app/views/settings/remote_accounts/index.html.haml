@@ -1,0 +1,33 @@
+- content_for :page_title do
+  = t('remote_accounts.remote_accounts')
+
+
+  = render 'shared/error_messages', object: @account
+- if @accounts.empty?
+  %div.muted-hint.center-text=t 'doorkeeper.applications.index.empty'
+- else
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('remote_accounts.token')
+          %th= t('remote_accounts.origin')
+          %th
+      %tbody
+        - @accounts.each do |ac|
+          %tr
+            %td= ac.token
+            %th= ac.origin
+            %td
+              = table_link_to 'times', t('doorkeeper.applications.index.delete'), settings_remote_account_path(ac), method: :delete, data: { confirm: t('doorkeeper.applications.confirmations.destroy') }
+= paginate @accounts
+%hr
+= simple_form_for RemoteAccount.new, url: settings_remote_accounts_path, html: { method: :post, id: 'add_account' } do |f|
+  .fields-row
+    .fields-row__column.fields-group.fields-row__column-6
+      = f.input :token, wrapper: :with_label, hint: false
+      = f.input :origin, wrapper: :with_label, input_html: { maxlength: 500 }, hint: false
+
+  .actions
+    = f.button :button, t('generic.create'), type: :submit
+
