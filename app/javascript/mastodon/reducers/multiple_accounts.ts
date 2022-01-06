@@ -26,11 +26,11 @@ export default reducer<typeof initialState, MultipleAccountsAction>(initialState
   addAccount(newAccount, { accounts, ...s }) {
     return { ...s, accounts: accounts.push(newAccount) };
   },
-  removeAccount(accountId, s) {
+  removeAccount(token, s) {
     const accounts = pipe(
       s,
       pick("accounts"),
-      filter(prop("originMastodonServer").chain(notEq(accountId)))
+      filter(prop("token").chain(notEq(token)))
     );
 
     return { ...s, accounts };

@@ -37,7 +37,7 @@ it("removes account", () => {
         ]),
       },
       {
-        payload: "url",
+        payload: "apikey",
         type: "removeAccount",
       }
     )
