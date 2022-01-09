@@ -361,6 +361,8 @@ Rails.application.routes.draw do
       resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
       resources :preferences, only: [:index]
 
+      resources :remote_accounts, only: [:index]
+
       resources :announcements, only: [:index] do
         scope module: :announcements do
           resources :reactions, only: [:update, :destroy]
