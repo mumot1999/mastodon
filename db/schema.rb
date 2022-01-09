@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_08_071221) do
+ActiveRecord::Schema.define(version: 2022_01_08_161025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -194,7 +194,7 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.integer "suspension_origin"
     t.datetime "sensitized_at"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
-    t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
+    t.index "lower((username)::text), (COALESCE(lower((domain)::text), ''::text))", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
     t.index ["uri"], name: "index_accounts_on_uri"
     t.index ["url"], name: "index_accounts_on_url"
@@ -727,6 +727,16 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.integer "state", default: 0, null: false
   end
 
+  create_table "remote_accounts", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "token"
+    t.string "origin"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "remote_account_id"
+    t.index ["account_id"], name: "index_remote_accounts_on_account_id"
+  end
+
   create_table "report_notes", force: :cascade do |t|
     t.text "content", null: false
     t.bigint "report_id", null: false
@@ -1063,6 +1073,7 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
   add_foreign_key "poll_votes", "polls", on_delete: :cascade
   add_foreign_key "polls", "accounts", on_delete: :cascade
   add_foreign_key "polls", "statuses", on_delete: :cascade
+  add_foreign_key "remote_accounts", "accounts"
   add_foreign_key "report_notes", "accounts", on_delete: :cascade
   add_foreign_key "report_notes", "reports", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_bca45b75fd", on_delete: :nullify
