@@ -518,7 +518,6 @@ Rails.application.routes.draw do
       resources :media, only: [:create]
       get '/search', to: 'search#index', as: :search
       resources :suggestions, only: [:index]
-      resources :multiple_accounts
     end
 
     namespace :web do
