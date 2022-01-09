@@ -15,7 +15,8 @@ class RemoteAccountClientService < BaseService
   def call(url, verb, data = '')
     return if url.blank?
 
-    process(url, verb, data)
+    res = process(url, verb, data)
+    body_to_json(res.to_s)
   rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
     Rails.logger.debug "Error fetching resource #{@url}: #{e}"
     nil
@@ -26,16 +27,26 @@ class RemoteAccountClientService < BaseService
   def process(url, verb, data)
     @url = @origin + url
 
-    perform_request verb, data do |response|
-      puts response
-    end
-  end
-
-  def perform_request(verb, data, &block)
+    r = ''
+    # perform_request verb, data
     Request.new(verb, @url, 'body' => data).tap do |request|
       request.add_headers('Accept' => ACCEPT_HEADER)
       request.add_headers('Content-Type' => 'application/json')
       request.add_headers('Authorization' => 'Bearer ' + @token)
-    end.perform(&block)
+    end.perform do |res|
+      # Doesnt work without puts (the return value is null)
+      puts res
+      r = res
+    end
+    r
+  end
+
+  def perform_request(verb, data)
+    r = Request.new(verb, @url, 'body' => data).tap do |request|
+      request.add_headers('Accept' => ACCEPT_HEADER)
+      request.add_headers('Content-Type' => 'application/json')
+      request.add_headers('Authorization' => 'Bearer ' + @token)
+    end.perform
+    r
   end
 end
