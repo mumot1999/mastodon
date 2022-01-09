@@ -18,7 +18,12 @@ class Settings::RemoteAccountsController < Settings::BaseController
   end
 
   def create
-    @account.remote_accounts.new(params[:remote_account].permit(:token, :origin)).save
+    remote_account_data = params[:remote_account].permit(:token, :origin)
+    response = RemoteAccountClientService.new(remote_account_data[:origin], remote_account_data[:token]).call(api_v1_accounts_verify_credentials_path, :get)
+
+    remote_account_data['remote_account_id'] = response['id']
+    @account.remote_accounts.new(remote_account_data).save
+
     redirect_to settings_remote_accounts_path
   end
 
