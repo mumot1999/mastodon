@@ -112,14 +112,18 @@ class DropdownMenu extends React.PureComponent {
     const i = Number(e.currentTarget.getAttribute('data-index'));
     const { action, to } = this.props.items[i];
 
-    this.props.onClose();
+    // this.props.onClose();
 
     if (typeof action === 'function') {
       e.preventDefault();
-      action(e);
+      const shouldClose = action(e);
+      if(shouldClose === true || shouldClose === undefined){
+        // this.props.onClose()
+      }
     } else if (to) {
       e.preventDefault();
       this.context.router.history.push(to);
+      // this.props.onClose()
     }
   }
 
