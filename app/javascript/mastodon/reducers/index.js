@@ -39,6 +39,7 @@ import announcements from './announcements';
 import markers from './markers';
 import picture_in_picture from './picture_in_picture';
 import accounts_map from './accounts_map';
+import remote_accounts from './remote_accounts'
 
 const reducers = {
   announcements,
@@ -56,6 +57,7 @@ const reducers = {
   accounts_map,
   statuses,
   relationships,
+  remote_accounts,
   settings,
   push_notifications,
   mutes,

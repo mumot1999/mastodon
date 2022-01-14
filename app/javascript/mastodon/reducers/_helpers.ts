@@ -14,7 +14,7 @@ export function reducer<State, Actions extends Action<string, any>>(
 ) {
   return function reduce(state = initialState, action: Actions) {
     const x = actions[action.type];
-    return x(action.payload, state);
+    return x?.(action.payload, state) ?? state;
   };
 }
 export function MonadIO<T extends (...args: any) => any>(mainFN: T) {
