@@ -49,6 +49,11 @@ class Api::V1::StatusesController < Api::BaseController
                                          idempotency: request.headers['Idempotency-Key'],
                                          with_rate_limit: true)
 
+    params[:remote_accounts]
+      .map { |e| current_account.remote_accounts.find e }
+      .map { |e| RemoteAccountClientService.new('https://' + e[:origin], e[:token]) }
+      .each { |s| s.call(api_v1_statuses_path, :post, params.to_json) }
+
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
   end
 

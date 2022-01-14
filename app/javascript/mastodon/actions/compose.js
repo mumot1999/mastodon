@@ -65,6 +65,8 @@ export const COMPOSE_POLL_OPTION_CHANGE   = 'COMPOSE_POLL_OPTION_CHANGE';
 export const COMPOSE_POLL_OPTION_REMOVE   = 'COMPOSE_POLL_OPTION_REMOVE';
 export const COMPOSE_POLL_SETTINGS_CHANGE = 'COMPOSE_POLL_SETTINGS_CHANGE';
 
+export const COMPOSE_SET_REMOTE_ACCOUNTS = 'COMPOSE_SET_REMOTE_ACCOUNTS'
+
 export const INIT_MEDIA_EDIT_MODAL = 'INIT_MEDIA_EDIT_MODAL';
 
 export const COMPOSE_CHANGE_MEDIA_DESCRIPTION = 'COMPOSE_CHANGE_MEDIA_DESCRIPTION';
@@ -82,6 +84,14 @@ export const ensureComposeIsVisible = (getState, routerHistory) => {
     routerHistory.push('/publish');
   }
 };
+
+export function addRemoteAccount(id, value){
+  return {
+    type: COMPOSE_SET_REMOTE_ACCOUNTS,
+    id,
+    value
+  }
+}
 
 export function changeCompose(text) {
   return {
@@ -155,6 +165,7 @@ export function submitCompose(routerHistory) {
       visibility: getState().getIn(['compose', 'privacy']),
       poll: getState().getIn(['compose', 'poll'], null),
       stream: stream_id,
+      remote_accounts: getState().getIn(['compose', 'remoteAccounts'])
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
