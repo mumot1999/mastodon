@@ -1,14 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useStore } from "react-redux";
 import { lookupAccount } from "../../../actions/accounts";
+import { addRemoteAccount } from "../../../actions/compose";
 import { fetchRemoteAccounts } from "../../../actions/remote_accounts";
 import { Account, Accounts } from "../../../reducers/remote_accounts";
 import RemoteAccountsForm, {
   ItemOption,
 } from "../components/remote_accounts_form";
 
-function getAccountIdToOption(domain) {
-  return function accountIdToOption(currentAccount, checked = false) {
+function getAccountIdToOption() {
+  return function accountIdToOption(
+    currentAccount,
+    domain: string,
+    checked = false
+  ) {
     if (currentAccount) {
       return {
         name: currentAccount.get("username"),
@@ -43,21 +48,26 @@ export default function RemoteAccountsFormContainer() {
   }, []);
 
   const [options, setOptions] = useState<ItemOption[]>([]);
-  const accountIdToOption = getAccountIdToOption(domain);
+  const accountIdToOption = getAccountIdToOption();
 
   useEffect(
     function getOptions() {
       setOptions([
-        accountIdToOption(accounts.get(me), true),
+        // accountIdToOption(accounts.get(me), true),
         ...(
-          remote_accounts?.toJS?.().map((x: Account) =>
-            accountIdToOption(
-              accounts.find(
-                (y) => y.get("acct") === `${x.remote_account_login}@${x.origin}`
-              ),
-              false
-            )
-          ) ?? []
+          remote_accounts?.toJS?.().map((x: Account) => {
+            const account = accounts.find(
+              (y) => y.get("acct") === `${x.remote_account_login}@${x.origin}`
+            );
+            if (account)
+              return {
+                name: account.get("username"),
+                avatar: account.get("avatar"),
+                checked: false,
+                domain: x.origin,
+                id: x.id,
+              } as ItemOption;
+          }) ?? []
         ).filter((x) => x),
       ] as ItemOption[]);
     },
@@ -66,11 +76,24 @@ export default function RemoteAccountsFormContainer() {
 
   const toggle = useCallback(function toggleOption(id: number) {
     setOptions(function toggle(items) {
-      return items.map((item) =>
-        item.id === id ? { ...item, checked: !item.checked } : item
-      );
+      return items.map((item) => {
+        if (item.id === id) {
+          store.dispatch(addRemoteAccount(id, !item.checked));
+          return { ...item, checked: !item.checked };
+        }
+        return item;
+      });
     });
   }, []);
 
-  return <RemoteAccountsForm options={options} toggle={toggle} />;
+  if (options.length > 0) {
+    return (
+      <RemoteAccountsForm
+        options={options.map((o) => ({ ...o, name: `${o.name}@${o.domain}` }))}
+        toggle={toggle}
+      />
+    );
+  }
+
+  return null;
 }
