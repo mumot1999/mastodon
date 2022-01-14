@@ -19,10 +19,12 @@ class Settings::RemoteAccountsController < Settings::BaseController
 
   def create
     remote_account_data = params[:remote_account].permit(:token, :origin)
-    response = RemoteAccountClientService.new(remote_account_data[:origin], remote_account_data[:token]).call(api_v1_accounts_verify_credentials_path, :get)
+    response = RemoteAccountClientService.new('https://' + remote_account_data[:origin], remote_account_data[:token]).call(api_v1_accounts_verify_credentials_path, :get)
 
     if response['id'].present?
       remote_account_data['remote_account_id'] = response['id']
+      remote_account_data['remote_account_login'] = response['acct']
+
       @account.remote_accounts.new(remote_account_data).save
     end
     redirect_to settings_remote_accounts_path
@@ -32,7 +34,6 @@ class Settings::RemoteAccountsController < Settings::BaseController
     @account.remote_accounts.find(params[:id]).destroy
     redirect_to settings_remote_accounts_path
   end
-
 
   private
 
