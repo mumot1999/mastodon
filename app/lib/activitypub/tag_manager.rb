@@ -10,10 +10,15 @@ class ActivityPub::TagManager
 
   COLLECTIONS = {
     public: 'https://www.w3.org/ns/activitystreams#Public',
+    local: 'https://www.w3.org/ns/activitystreams#Local'
   }.freeze
 
   def public_collection?(uri)
     uri == COLLECTIONS[:public] || uri == 'as:Public' || uri == 'Public'
+  end
+
+  def local_collection?(uri)
+    uri == COLLECTIONS[:local] || uri == 'as:Local' || uri == 'Local'
   end
 
   def url_for(target)
@@ -76,6 +81,8 @@ class ActivityPub::TagManager
     case status.visibility
     when 'public'
       [COLLECTIONS[:public]]
+    when 'local'
+      [COLLECTIONS[:local]]
     when 'unlisted', 'private'
       [account_followers_url(status.account)]
     when 'direct', 'limited'

@@ -349,6 +349,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def visibility_from_audience
     if audience_to.any? { |to| ActivityPub::TagManager.instance.public_collection?(to) }
       :public
+    elsif
+      audience_to.any? { |to| ActivityPub::TagManager.instance.local_collection?(to) }
+      :local
     elsif audience_cc.any? { |cc| ActivityPub::TagManager.instance.public_collection?(cc) }
       :unlisted
     elsif audience_to.include?(@account.followers_url)
