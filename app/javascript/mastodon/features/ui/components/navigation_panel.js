@@ -7,8 +7,6 @@ import NotificationsCounterIcon from "./notifications_counter_icon";
 import FollowRequestsNavLink from "./follow_requests_nav_link";
 import ListPanel from "./list_panel";
 import TrendsContainer from "mastodon/features/getting_started/containers/trends_container";
-import IconButton from "../../../components/icon_button";
-import RadioButton from "../../../components/radio_button";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const messages = defineMessages({
@@ -243,6 +241,7 @@ const NavigationPanel = (props) => {
   const changeNavPanel = intl.formatMessage(messages.changeNavPanel);
 
   const [changePanel, setChangePanel] = useState(false);
+  const [checkbox, setCheckbox] = useState(false);
 
   const handleClick = () => {
     setChangePanel(!changePanel);
@@ -251,18 +250,22 @@ const NavigationPanel = (props) => {
 
   const changeHomeClick = () => {
     panel.home.visible = !panel.home.visible;
+    setCheckbox(!checkbox);
   };
 
   const changeNotificationsClick = () => {
     panel.notifications.visible = !panel.notifications.visible;
+    setCheckbox(!checkbox);
   };
 
   const changeLocalClick = () => {
     panel.local.visible = !panel.local.visible;
+    setCheckbox(!checkbox);
   };
 
   const changeFederatedClick = () => {
     panel.federated.visible = !panel.federated.visible;
+    setCheckbox(!checkbox);
   };
 
   // const changeFollowClick = () => {
@@ -271,25 +274,30 @@ const NavigationPanel = (props) => {
 
   const changeDirectMessagesClick = () => {
     panel.directMessages.visible = !panel.directMessages.visible;
+    setCheckbox(!checkbox);
   };
 
   const changeFavouritesClick = () => {
     panel.favourites.visible = !panel.favourites.visible;
+    setCheckbox(!checkbox);
   };
 
   const changeBookmarksClick = () => {
     panel.bookmarks.visible = !panel.bookmarks.visible;
+    setCheckbox(!checkbox);
   };
 
   const changeListsClick = () => {
     panel.lists.visible = !panel.lists.visible;
+    setCheckbox(!checkbox);
   };
 
   const changeProfileDirectoryClick = () => {
     panel.profileDirectory.visible = !panel.profileDirectory.visible;
+    setCheckbox(!checkbox);
   };
 
-  useEffect(() => {}, [changePanel]);
+  useEffect(() => {}, [changePanel, checkbox]);
 
   return (
     <div className="navigation-panel">
@@ -425,6 +433,15 @@ const NavigationPanel = (props) => {
         )}
       </div>
 
+      <h1
+        className="column-link column-link--transparent"
+        title={changeNavPanel}
+        onClick={handleClick}
+      >
+        <Icon className="column-link__icon" id="pencil" fixedWidth />
+        {changeNavPanel}
+      </h1>
+
       <ListPanel />
 
       <hr />
@@ -446,15 +463,6 @@ const NavigationPanel = (props) => {
           defaultMessage="Follows and followers"
         />
       </a>
-
-      <h1
-        className="column-link column-link--transparent"
-        title={changeNavPanel}
-        onClick={handleClick}
-      >
-        <Icon className="column-link__icon" id="pencil" fixedWidth />
-        {changeNavPanel}
-      </h1>
 
       {showTrends && <div className="flex-spacer" />}
       {showTrends && <TrendsContainer />}
