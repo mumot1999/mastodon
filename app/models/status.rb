@@ -24,6 +24,7 @@
 #  poll_id                :bigint(8)
 #  stream                 :string
 #  deleted_at             :datetime
+#  local_only             :boolean
 #
 
 class Status < ApplicationRecord
@@ -45,7 +46,7 @@ class Status < ApplicationRecord
 
   update_index('statuses#status', :proper)
 
-  enum visibility: [:public, :unlisted, :private, :direct, :limited, :local], _suffix: :visibility
+  enum visibility: [:public, :unlisted, :private, :direct, :limited, :local_only], _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
@@ -90,7 +91,8 @@ class Status < ApplicationRecord
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :with_public_visibility, -> { where(visibility: :public) }
-  scope :with_local_visibility, -> {where(visibility: :local) }
+  scope :without_local_only, -> { where(local_only: [false, nil]) }
+  scope :with_federated_only, -> { where(local_only: [false, nil]) }
   scope :tagged_with, ->(tag_ids) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag_ids }) }
   scope :in_chosen_languages, ->(account) { where(language: nil).or where(language: account.chosen_languages) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced_at: nil }) }
@@ -161,6 +163,10 @@ class Status < ApplicationRecord
 
   def local?
     attributes['local'] || uri.nil?
+  end
+
+  def local_only?
+    local_only
   end
 
   def in_reply_to_local_account?
@@ -267,6 +273,8 @@ class Status < ApplicationRecord
   before_validation :set_visibility
   before_validation :set_conversation
   before_validation :set_local
+  before_create :set_locality
+
 
   after_create :set_poll_id
 
@@ -319,7 +327,7 @@ class Status < ApplicationRecord
       visibility = [:public, :unlisted]
 
       if account.nil?
-        where(visibility: visibility)
+        where(visibility: visibility).without_local_only
       elsif target_account.blocking?(account) || (account.domain.present? && target_account.domain_blocking?(account.domain)) # get rid of blocked peeps
         none
       elsif account.id == target_account.id # author can see own stuff
@@ -412,6 +420,11 @@ class Status < ApplicationRecord
   def set_local
     self.local = account.local?
   end
+
+  def set_locality
+    self.local_only = reblog.local_only if reblog?
+  end
+
 
   def update_statistics
     return unless distributable?

@@ -12,6 +12,8 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def show?
+    return false if local_only? && (current_account.nil? || !current_account.local?)
+
     return false if author.suspended?
 
     if requires_mention?
@@ -21,6 +23,10 @@ class StatusPolicy < ApplicationPolicy
     else
       current_account.nil? || (!author_blocking? && !author_blocking_domain?)
     end
+  end
+
+  def local_only?
+    record.local_only?
   end
 
   def reblog?

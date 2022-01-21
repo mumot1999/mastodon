@@ -470,7 +470,7 @@ class Status extends ImmutablePureComponent {
       'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
       'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
       'direct': { icon: 'envelope', text: intl.formatMessage(messages.direct_short) },
-      'local': { icon: 'users', text: intl.formatMessage(messages.local_short) },
+      'local_only': { icon: 'users', text: intl.formatMessage(messages.local_short) },
     };
 
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];

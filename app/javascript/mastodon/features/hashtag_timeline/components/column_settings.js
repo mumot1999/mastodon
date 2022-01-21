@@ -114,7 +114,7 @@ class ColumnSettings extends React.PureComponent {
         )}
 
         <div className='column-settings__row'>
-          <SettingToggle settings={settings} settingPath={['local']} onChange={onChange} label={<FormattedMessage id='community.column_settings.local_only' defaultMessage='Local only' />} />
+          <SettingToggle settings={settings} settingPath={['local_only']} onChange={onChange} label={<FormattedMessage id='community.column_settings.local_only' defaultMessage='Local only' />} />
         </div>
       </div>
     );

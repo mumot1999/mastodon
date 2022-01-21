@@ -40,6 +40,7 @@ class UserSettingsDecorator
     user.settings['use_pending_items']   = use_pending_items_preference if change?('setting_use_pending_items')
     user.settings['trends']              = trends_preference if change?('setting_trends')
     user.settings['crop_images']         = crop_images_preference if change?('setting_crop_images')
+    user.settings['default_federation']  = default_federation_preference if change?('setting_default_federation')
   end
 
   def merged_notification_emails
@@ -52,6 +53,10 @@ class UserSettingsDecorator
 
   def default_privacy_preference
     settings['setting_default_privacy']
+  end
+
+  def default_federation_preference
+    boolean_cast_setting 'setting_default_federation'
   end
 
   def default_sensitive_preference

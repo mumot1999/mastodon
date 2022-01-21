@@ -29,6 +29,7 @@ defaults: &defaults
   disable_swiping: false
   show_application: true
   system_font_ui: false
+  force_local_only: true
   noindex: false
   theme: 'default'
   aggregate_reblogs: true

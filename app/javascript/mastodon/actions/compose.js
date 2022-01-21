@@ -50,6 +50,7 @@ export const COMPOSE_SPOILERNESS_CHANGE = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
+export const COMPOSE_FEDERATION_CHANGE  = 'COMPOSE_FEDERATION_CHANGE';
 export const COMPOSE_COMPOSING_CHANGE = 'COMPOSE_COMPOSING_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
@@ -140,6 +141,7 @@ export function submitCompose(routerHistory) {
     const status = getState().getIn(['compose', 'text'], '');
     const media = getState().getIn(['compose', 'media_attachments']);
 
+
     if ((!status || !status.length) && media.size === 0) {
       return;
     }
@@ -154,6 +156,7 @@ export function submitCompose(routerHistory) {
       spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
       visibility: getState().getIn(['compose', 'privacy']),
       poll: getState().getIn(['compose', 'poll'], null),
+      local_only: !getState().getIn(['compose', 'federation']),
       stream: stream_id,
     }, {
       headers: {
@@ -177,7 +180,7 @@ export function submitCompose(routerHistory) {
         }
       };
 
-      if (response.data.visibility === 'local') {
+      if (response.data.visibility === 'local_only') {
         insertIfOnline('home');
         insertIfOnline('community');
         insertIfOnline(`account:${response.data.account.id}`);
@@ -215,6 +218,13 @@ export function submitComposeFail(error) {
   return {
     type: COMPOSE_SUBMIT_FAIL,
     error: error,
+  };
+};
+
+export function changeComposeFederation(value) {
+  return {
+    type: COMPOSE_FEDERATION_CHANGE,
+    value,
   };
 };
 

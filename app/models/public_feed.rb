@@ -19,15 +19,19 @@ class PublicFeed
   # @param [Integer] min_id
   # @return [Array<Status>]
   def get(limit, max_id = nil, since_id = nil, min_id = nil)
-    scope = public_scope
+    scope = local_only_scope
 
     scope.merge!(without_replies_scope) unless with_replies?
     scope.merge!(without_reblogs_scope) unless with_reblogs?
     scope.merge!(local_only_scope) if local_only?
-    #scope.merge!(local_local_only_scope) if local_only?
     scope.merge!(remote_only_scope) if remote_only?
-    scope.merge!(account_filters_scope) if account?
+    if account?
+      scope.merge!(account_filters_scope)
+    else
+      scope.merge!(instance_only_statuses_scope)
+    end
     scope.merge!(media_only_scope) if media_only?
+
 
     scope.cache_ids.to_a_paginated_by_id(limit, max_id: max_id, since_id: since_id, min_id: min_id)
   end
@@ -56,6 +60,10 @@ class PublicFeed
     account.present?
   end
 
+  def federated_only?
+    @options[:local] == nil
+  end
+
   def media_only?
     options[:only_media]
   end
@@ -66,10 +74,6 @@ class PublicFeed
 
   def local_only_scope
     Status.local
-  end
-
-  def local_local_only_scope
-    Status.with_local_visibility
   end
 
   def remote_only_scope
@@ -86,6 +90,10 @@ class PublicFeed
 
   def media_only_scope
     Status.joins(:media_attachments).group(:id)
+  end
+
+  def instance_only_statuses_scope
+    Status.where(local_only: [false, nil])
   end
 
   def account_filters_scope
