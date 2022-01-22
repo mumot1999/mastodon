@@ -49,6 +49,7 @@
 #  sensitized_at                 :datetime
 #  show_blocked_users            :boolean
 #  block_synchro_list            :string
+#  navigation_panel              :string
 #
 
 class Account < ApplicationRecord

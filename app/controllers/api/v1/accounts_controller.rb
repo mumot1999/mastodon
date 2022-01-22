@@ -79,7 +79,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_params
-    params.permit(:username, :email, :password, :agreement, :locale, :reason, :show_blocked_users, :block_synchro_list)
+    params.permit(:username, :email, :password, :agreement, :locale, :reason, :show_blocked_users, :block_synchro_list, :navigation_panel)
   end
 
   def check_enabled_registrations

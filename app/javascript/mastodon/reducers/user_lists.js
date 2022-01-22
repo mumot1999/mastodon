@@ -22,6 +22,7 @@ import {
   FOLLOW_REQUESTS_EXPAND_FAIL,
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
   FOLLOW_REQUEST_REJECT_SUCCESS,
+  NAVIGATION_PANEL_FETCH_SUCCESS,
 } from '../actions/accounts';
 import {
   REBLOGS_FETCH_SUCCESS,
@@ -74,6 +75,7 @@ const initialState = ImmutableMap({
   blocks: initialListState,
   synchros: initialListState,
   mutes: initialListState,
+  navigation_panel: ""
 });
 
 const normalizeList = (state, path, accounts, next) => {
@@ -177,6 +179,8 @@ export default function userLists(state = initialState, action) {
     case DIRECTORY_FETCH_FAIL:
     case DIRECTORY_EXPAND_FAIL:
       return state.setIn(['directory', 'isLoading'], false);
+    case NAVIGATION_PANEL_FETCH_SUCCESS:
+      return state.setIn(['navigation_panel'], action.navigation_panel.navigation_panel);
     default:
       return state;
   }

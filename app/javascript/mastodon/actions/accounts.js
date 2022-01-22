@@ -45,6 +45,10 @@ export const SYNCHRONIZE_BLOCKS_REQUEST = 'SYNCHRONIZE_BLOCKS_REQUEST';
 export const SYNCHRONIZE_BLOCKS_SUCCESS = 'SYNCHRONIZE_BLOCKS_SUCCESS';
 export const SYNCHRONIZE_BLOCKS_FAIL    = 'SYNCHRONIZE_BLOCKS_FAIL';
 
+export const NAVIGATION_PANEL_REQUEST = 'NAVIGATION_PANEL_REQUEST';
+export const NAVIGATION_PANEL_SUCCESS = 'NAVIGATION_PANEL_SUCCESS';
+export const NAVIGATION_PANEL_FAIL = 'NAVIGATION_PANEL_FAIL';
+
 export const FOLLOWERS_FETCH_REQUEST = 'FOLLOWERS_FETCH_REQUEST';
 export const FOLLOWERS_FETCH_SUCCESS = 'FOLLOWERS_FETCH_SUCCESS';
 export const FOLLOWERS_FETCH_FAIL = 'FOLLOWERS_FETCH_FAIL';
@@ -85,6 +89,9 @@ export const FOLLOW_REQUEST_REJECT_FAIL = 'FOLLOW_REQUEST_REJECT_FAIL';
 
 export const ACCOUNT_LIST_FETCH_SUCCESS = 'ACCOUNT_LIST_FETCH_SUCCESS';
 
+export const NAVIGATION_PANEL_FETCH_REQUEST = 'NAVIGATION_PANEL_FETCH_REQUEST';
+export const NAVIGATION_PANEL_FETCH_SUCCESS = 'NAVIGATION_PANEL_FETCH_SUCCESS';
+export const NAVIGATION_PANEL_FETCH_FAIL = 'NAVIGATION_PANEL_FETCH_FAIL';
 
 
 export function fetchAccount(id) {
@@ -124,6 +131,34 @@ export function fetchAccountListSuccess(results) {
     results,
   };
 }
+
+export function fetchNavigationPanel(id) {
+  return (dispatch, getState) => {
+
+    dispatch(fetchNavigationPanelRequest(id));
+
+    api(getState)
+      .get(`/api/v1/accounts/${id}`)
+      .then(({ data }) => dispatch(fetchNavigationPanelSuccess(data)))
+      .catch((error) => dispatch(fetchNavigationPanelFail(id, error)));
+  };
+}
+
+export const fetchNavigationPanelRequest = (id) => ({
+  type: NAVIGATION_PANEL_FETCH_REQUEST,
+  id
+});
+
+export const fetchNavigationPanelSuccess = (navigation_panel) => ({
+  type:  NAVIGATION_PANEL_FETCH_SUCCESS,
+  navigation_panel,
+});
+
+export const fetchNavigationPanelFail = (id, error) => ({
+  type: NAVIGATION_PANEL_FETCH_FAIL,
+  id,
+  error,
+});
 
 export const lookupAccount = (acct) => (dispatch, getState) => {
   dispatch(lookupAccountRequest(acct));
@@ -854,6 +889,39 @@ export function synchronizeBlocksSuccess(relationship) {
 export function synchronizeBlocksFail(error) {
   return {
     type: SYNCHRONIZE_BLOCKS_FAIL,
+    error,
+  };
+};
+
+export function navigationPanel(id, navigation_panel) {
+  return (dispatch, getState) => {
+    dispatch(navigationPanelRequest(id));
+
+    api(getState).put(`/api/v1/accounts/${id}`, { navigation_panel }).then(response => {
+      dispatch(navigationPanelSuccess(response.data));
+    }).catch(error => {
+      dispatch(navigationPanelFail(error));
+    });
+  };
+};
+
+export function navigationPanelRequest(id) {
+  return {
+    type: NAVIGATION_PANEL_REQUEST,
+    id,
+  };
+};
+
+export function navigationPanelSuccess(relationship) {
+  return {
+    type: NAVIGATION_PANEL_SUCCESS,
+    relationship,
+  };
+};
+
+export function navigationPanelFail(error) {
+  return {
+    type: NAVIGATION_PANEL_FAIL,
     error,
   };
 };
