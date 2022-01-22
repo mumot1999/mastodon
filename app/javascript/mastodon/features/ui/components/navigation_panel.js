@@ -15,12 +15,19 @@ import {
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import me from "mastodon/initial_state";
-import toJS from "immutable";
 
 const messages = defineMessages({
   changeNavPanel: {
     id: "navigation_bar.changeNavPanel",
     defaultMessage: "Change navigation panel",
+  },
+  add: {
+    id: "navigation_bar.changeNavPanel.add",
+    defaultMessage: "Add",
+  },
+  remove: {
+    id: "navigation_bar.changeNavPanel.remove",
+    defaultMessage: "Remove",
   },
 });
 
@@ -249,6 +256,8 @@ const NavigationPanel = (props) => {
   const dispatch = useDispatch();
 
   const changeNavPanel = intl.formatMessage(messages.changeNavPanel);
+  const add = intl.formatMessage(messages.add);
+  const remove = intl.formatMessage(messages.remove);
 
   const [changePanel, setChangePanel] = useState(false);
   const [checkbox, setCheckbox] = useState(false);
@@ -359,26 +368,26 @@ const NavigationPanel = (props) => {
         ) : (
           <ul>
             <li>
-              {changePanelHtmls.home}
               <label>
                 <input
                   type="checkbox"
                   defaultChecked={panel.home.visible === true}
                   onChange={changeHomeClick}
                 />
-                {!panel.home.visible ? "Dodaj" : "Usuń"}
+                {/* {!panel.home.visible ? add : remove} */}
               </label>
+              {changePanelHtmls.home}
             </li>
             <li>
-              {changePanelHtmls.notifications}
               <label>
                 <input
                   type="checkbox"
                   defaultChecked={panel.notifications.visible === true}
                   onChange={changeNotificationsClick}
                 />
-                {!panel.notifications.visible ? "Dodaj" : "Usuń"}
+                {/* {!panel.notifications.visible ? add : remove} */}
               </label>
+              {changePanelHtmls.notifications}
             </li>
             {/* <li>
               {changePanelHtmls.follow}
@@ -388,98 +397,100 @@ const NavigationPanel = (props) => {
                   defaultChecked={panel.follow.visible === true}
                   onChange={changeFollowClick}
                 />
-                {!panel.follow.visible ? "Dodaj" : "Usuń"}
+                {!panel.follow.visible ? add : remove}
               </label>
             </li> */}
             <li>
-              {changePanelHtmls.local}
               <label>
                 <input
                   type="checkbox"
                   defaultChecked={panel.local.visible === true}
                   onChange={changeLocalClick}
                 />
-                {!panel.local.visible ? "Dodaj" : "Usuń"}
+                {/* {!panel.local.visible ? add : remove} */}
               </label>
+              {changePanelHtmls.local}
             </li>
             <li>
-              {changePanelHtmls.federated}
               <label>
                 <input
                   type="checkbox"
                   defaultChecked={panel.federated.visible === true}
                   onChange={changeFederatedClick}
                 />
-                {!panel.federated.visible ? "Dodaj" : "Usuń"}
+                {/* {!panel.federated.visible ? add : remove} */}
               </label>
+              {changePanelHtmls.federated}
             </li>
             <li>
-              {changePanelHtmls.directMessages}
               <label>
                 <input
                   type="checkbox"
                   defaultChecked={panel.directMessages.visible === true}
                   onChange={changeDirectMessagesClick}
                 />
-                {!panel.directMessages.visible ? "Dodaj" : "Usuń"}
+                {/* {!panel.directMessages.visible ? add : remove} */}
               </label>
+              {changePanelHtmls.directMessages}
             </li>
             <li>
-              {changePanelHtmls.favourites}
               <label>
                 <input
                   type="checkbox"
                   defaultChecked={panel.favourites.visible === true}
                   onChange={changeFavouritesClick}
                 />
-                {!panel.favourites.visible ? "Dodaj" : "Usuń"}
+                {/* {!panel.favourites.visible ? add : remove} */}
               </label>
+              {changePanelHtmls.favourites}
             </li>
             <li>
-              {changePanelHtmls.bookmarks}
               <label>
                 <input
                   type="checkbox"
                   defaultChecked={panel.bookmarks.visible === true}
                   onChange={changeBookmarksClick}
                 />
-                {!panel.bookmarks.visible ? "Dodaj" : "Usuń"}
+                {/* {!panel.bookmarks.visible ? add : remove} */}
               </label>
+              {changePanelHtmls.bookmarks}
             </li>
             <li>
-              {changePanelHtmls.lists}
               <label>
                 <input
                   type="checkbox"
                   defaultChecked={panel.lists.visible === true}
                   onChange={changeListsClick}
                 />
-                {!panel.lists.visible ? "Dodaj" : "Usuń"}
+                {/* {!panel.lists.visible ? add : remove} */}
               </label>
+              {changePanelHtmls.lists}
             </li>
             <li>
-              {profile_directory && changePanelHtmls.profileDirectory}
               <label>
                 <input
                   type="checkbox"
                   defaultChecked={panel.profileDirectory.visible === true}
                   onChange={changeProfileDirectoryClick}
                 />
-                {!panel.profileDirectory.visible ? "Dodaj" : "Usuń"}
+                {/* {!panel.profileDirectory.visible ? add : remove} */}
               </label>
+              {profile_directory && changePanelHtmls.profileDirectory}
             </li>
           </ul>
         )}
       </div>
 
-      <h1
-        className="column-link column-link--transparent"
-        title={changeNavPanel}
-        onClick={handleClick}
-      >
-        <Icon className="column-link__icon" id="pencil" fixedWidth />
-        {changeNavPanel}
-      </h1>
+      <div className="nav-diffrent">
+        <h1
+          className="column-link column-link--transparent nav_diffrent"
+          title={changeNavPanel}
+          onClick={handleClick}
+        >
+          <Icon className="column-link__icon" id="pencil" fixedWidth />
+          {changeNavPanel}
+        </h1>
+      </div>
 
       <ListPanel />
 
