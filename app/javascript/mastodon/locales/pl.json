@@ -288,6 +288,8 @@
   "navigation_bar.blocks": "Zablokowani użytkownicy",
   "navigation_bar.bookmarks": "Zakładki",
   "navigation_bar.changeNavPanel": "Zmień panel nawigacji",
+  "navigation_bar.changeNavPanel.add": "Dodaj",
+  "navigation_bar.changeNavPanel.remove": "Usuń",
   "navigation_bar.community_timeline": "Lokalna oś czasu",
   "navigation_bar.compose": "Utwórz nowy wpis",
   "navigation_bar.direct": "Wiadomości bezpośrednie",

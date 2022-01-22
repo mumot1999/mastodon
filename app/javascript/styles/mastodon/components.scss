@@ -2630,6 +2630,12 @@ a.account__display-name {
   .flex-spacer {
     background: transparent;
   }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
 }
 
 .drawer__pager {
@@ -2950,6 +2956,10 @@ a.account__display-name {
 .react-toggle--checked .react-toggle-thumb {
   left: 27px;
   border-color: $ui-highlight-color;
+}
+
+.nav-diffrent {
+  background: lighten($ui-base-color, 1%);
 }
 
 .column-link {
