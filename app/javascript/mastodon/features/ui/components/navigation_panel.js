@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { FormattedMessage, injectIntl, defineMessages } from "react-intl";
 import Icon from "mastodon/components/icon";
@@ -7,7 +7,13 @@ import NotificationsCounterIcon from "./notifications_counter_icon";
 import FollowRequestsNavLink from "./follow_requests_nav_link";
 import ListPanel from "./list_panel";
 import TrendsContainer from "mastodon/features/getting_started/containers/trends_container";
+import {
+  fetchNavigationPanel,
+  navigationPanel,
+} from "../../../actions/accounts";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { useDispatch, useSelector } from "react-redux";
+import me from "mastodon/initial_state";
 
 const messages = defineMessages({
   changeNavPanel: {
@@ -116,9 +122,9 @@ const panelHtmls = {
   ),
 };
 
-const panel = {
+const panelDefault = {
   home: {
-    visible: false,
+    visible: true,
     position: 0,
   },
   notifications: {
@@ -238,10 +244,37 @@ const changePanelHtmls = {
 const NavigationPanel = (props) => {
   const { intl } = props;
 
+  const dispatch = useDispatch();
+
   const changeNavPanel = intl.formatMessage(messages.changeNavPanel);
 
   const [changePanel, setChangePanel] = useState(false);
   const [checkbox, setCheckbox] = useState(false);
+
+  const [panel] = useSelector((state) => [
+    state.getIn(["user_lists", "navigation_panel"]) !== ""
+      ? JSON.parse(state.getIn(["user_lists", "navigation_panel"]))
+      : panelDefault,
+  ]);
+
+  const firstUpdate = useRef(true);
+
+  useEffect(() => {
+    dispatch(fetchNavigationPanel(me.compose.me));
+  }, []);
+
+  useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    if (changePanel === false) {
+      console.log(panel);
+      dispatch(navigationPanel(me.compose.me, JSON.stringify(panel)));
+      dispatch(fetchNavigationPanel(me.compose.me));
+      console.log("ZAPISZ DO BAZY");
+    }
+  }, [changePanel, checkbox]);
 
   const handleClick = () => {
     setChangePanel(!changePanel);
@@ -250,11 +283,15 @@ const NavigationPanel = (props) => {
 
   const changeHomeClick = () => {
     panel.home.visible = !panel.home.visible;
+    console.log(panel.home.visible);
+    console.log(panel);
     setCheckbox(!checkbox);
   };
 
   const changeNotificationsClick = () => {
     panel.notifications.visible = !panel.notifications.visible;
+    console.log(panel.notifications.visible);
+    console.log(panel);
     setCheckbox(!checkbox);
   };
 
@@ -296,8 +333,6 @@ const NavigationPanel = (props) => {
     panel.profileDirectory.visible = !panel.profileDirectory.visible;
     setCheckbox(!checkbox);
   };
-
-  useEffect(() => {}, [changePanel, checkbox]);
 
   return (
     <div className="navigation-panel">
