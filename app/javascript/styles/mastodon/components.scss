@@ -518,6 +518,16 @@
     }
   }
 
+  .autosuggest-custom-item {
+    .display-name__html {
+      color: black
+    }
+
+    .display-name__account {
+      color: #818fa2;
+    }
+  }
+
   .autosuggest-textarea__suggestions__item {
     padding: 10px;
     cursor: pointer;
