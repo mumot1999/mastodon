@@ -4,6 +4,11 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import AutosuggestAccountContainer from '../../compose/containers/autosuggest_account_container';
 import AutosuggestHashtag from '../../../components//autosuggest_hashtag';
 import classNames from 'classnames';
+import Permalink from '../../../components/permalink';
+import Avatar from '../../../components/avatar';
+import DisplayName from '../../../components/display_name';
+import { changeSearch } from '../../../actions/search';
+import { fetchComposeSuggestions } from '../../../actions/compose';
 
 const makeMapStateToProps = () => {
   const mapStateToProps = (state) => {
@@ -14,11 +19,21 @@ const makeMapStateToProps = () => {
         state.getIn(['compose', 'initiator']) === 'search'
           ? state.getIn(['compose', 'suggestions'])
           : [],
+      accounts: state.get('accounts'),
     };
   };
 
   return mapStateToProps;
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  clear() {
+    dispatch(changeSearch(''));
+    setTimeout(() => {
+      dispatch(fetchComposeSuggestions('', 'search'));
+    }, 100);
+  },
+});
 
 class SuggestionsContainer extends ImmutablePureComponent {
 
@@ -35,7 +50,23 @@ class SuggestionsContainer extends ImmutablePureComponent {
       inner = <AutosuggestHashtag tag={suggestion} />;
       key = suggestion.name;
     } else if (suggestion.type === 'account') {
-      inner = <AutosuggestAccountContainer id={suggestion.id} />;
+      const account = this.props.accounts.get(suggestion.id);
+      inner = (
+        <Permalink
+          key={suggestion.id}
+          className='account__display-name'
+          title={account.get('acct')}
+          href={account.get('url')}
+          to={`/@${account.get('acct')}`}
+        >
+          <div className='account__avatar-wrapper'>
+            <Avatar account={account} size={36} />
+          </div>
+          {/* {mute_expires_at} */}
+          <DisplayName account={account} />
+        </Permalink>
+      );
+      // inner = <AutosuggestAccountContainer id={suggestion.id} />;
       key = suggestion.id;
     }
 
@@ -45,11 +76,15 @@ class SuggestionsContainer extends ImmutablePureComponent {
         tabIndex='0'
         key={key}
         data-index={i}
-        className={classNames('autosuggest-textarea__suggestions__item', {
-          selected: i === selectedSuggestion,
-        })}
+        className={classNames(
+          'autosuggest-textarea__suggestions__item',
+          'autosuggest-custom-item',
+          {
+            selected: i === selectedSuggestion,
+          },
+        )}
         style={{ padding: 10, cursor: 'pointer', borderRadius: 4 }}
-        onMouseDown={this.onSuggestionClick}
+        onMouseDown={this.props.clear}
       >
         {inner}
       </div>
@@ -98,4 +133,4 @@ class SuggestionsContainer extends ImmutablePureComponent {
 
 }
 
-export default connect(makeMapStateToProps)(SuggestionsContainer);
+export default connect(makeMapStateToProps, mapDispatchToProps)(SuggestionsContainer);
