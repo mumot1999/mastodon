@@ -366,7 +366,7 @@ const NavigationPanel = (props) => {
               panelHtmls.profileDirectory}
           </div>
         ) : (
-          <ul>
+          <ul className="nav-check-diffrent">
             <li>
               <label>
                 <input
