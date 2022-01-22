@@ -8,12 +8,14 @@ import FollowRequestsNavLink from "./follow_requests_nav_link";
 import ListPanel from "./list_panel";
 import TrendsContainer from "mastodon/features/getting_started/containers/trends_container";
 import {
+  changeNavigationPanel,
   fetchNavigationPanel,
   navigationPanel,
 } from "../../../actions/accounts";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import me from "mastodon/initial_state";
+import toJS from "immutable";
 
 const messages = defineMessages({
   changeNavPanel: {
@@ -252,8 +254,8 @@ const NavigationPanel = (props) => {
   const [checkbox, setCheckbox] = useState(false);
 
   const [panel] = useSelector((state) => [
-    state.getIn(["user_lists", "navigation_panel"]) !== ""
-      ? JSON.parse(state.getIn(["user_lists", "navigation_panel"]))
+    state.getIn(["user_lists", "navigation_panel"]).size !== 0
+      ? state.getIn(["user_lists", "navigation_panel"]).toJS()
       : panelDefault,
   ]);
 
@@ -269,10 +271,7 @@ const NavigationPanel = (props) => {
       return;
     }
     if (changePanel === false) {
-      console.log(panel);
       dispatch(navigationPanel(me.compose.me, JSON.stringify(panel)));
-      dispatch(fetchNavigationPanel(me.compose.me));
-      console.log("ZAPISZ DO BAZY");
     }
   }, [changePanel, checkbox]);
 
@@ -283,25 +282,25 @@ const NavigationPanel = (props) => {
 
   const changeHomeClick = () => {
     panel.home.visible = !panel.home.visible;
-    console.log(panel.home.visible);
-    console.log(panel);
+    dispatch(changeNavigationPanel(panel));
     setCheckbox(!checkbox);
   };
 
   const changeNotificationsClick = () => {
     panel.notifications.visible = !panel.notifications.visible;
-    console.log(panel.notifications.visible);
-    console.log(panel);
+    dispatch(changeNavigationPanel(panel));
     setCheckbox(!checkbox);
   };
 
   const changeLocalClick = () => {
     panel.local.visible = !panel.local.visible;
+    dispatch(changeNavigationPanel(panel));
     setCheckbox(!checkbox);
   };
 
   const changeFederatedClick = () => {
     panel.federated.visible = !panel.federated.visible;
+    dispatch(changeNavigationPanel(panel));
     setCheckbox(!checkbox);
   };
 
@@ -311,26 +310,31 @@ const NavigationPanel = (props) => {
 
   const changeDirectMessagesClick = () => {
     panel.directMessages.visible = !panel.directMessages.visible;
+    dispatch(changeNavigationPanel(panel));
     setCheckbox(!checkbox);
   };
 
   const changeFavouritesClick = () => {
     panel.favourites.visible = !panel.favourites.visible;
+    dispatch(changeNavigationPanel(panel));
     setCheckbox(!checkbox);
   };
 
   const changeBookmarksClick = () => {
     panel.bookmarks.visible = !panel.bookmarks.visible;
+    dispatch(changeNavigationPanel(panel));
     setCheckbox(!checkbox);
   };
 
   const changeListsClick = () => {
     panel.lists.visible = !panel.lists.visible;
+    dispatch(changeNavigationPanel(panel));
     setCheckbox(!checkbox);
   };
 
   const changeProfileDirectoryClick = () => {
     panel.profileDirectory.visible = !panel.profileDirectory.visible;
+    dispatch(changeNavigationPanel(panel));
     setCheckbox(!checkbox);
   };
 

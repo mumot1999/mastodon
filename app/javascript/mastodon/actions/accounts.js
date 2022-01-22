@@ -92,6 +92,7 @@ export const ACCOUNT_LIST_FETCH_SUCCESS = 'ACCOUNT_LIST_FETCH_SUCCESS';
 export const NAVIGATION_PANEL_FETCH_REQUEST = 'NAVIGATION_PANEL_FETCH_REQUEST';
 export const NAVIGATION_PANEL_FETCH_SUCCESS = 'NAVIGATION_PANEL_FETCH_SUCCESS';
 export const NAVIGATION_PANEL_FETCH_FAIL = 'NAVIGATION_PANEL_FETCH_FAIL';
+export const NAVIGATION_PANEL_CHANGE = 'NAVIGATION_PANEL_CHANGE';
 
 
 export function fetchAccount(id) {
@@ -158,6 +159,11 @@ export const fetchNavigationPanelFail = (id, error) => ({
   type: NAVIGATION_PANEL_FETCH_FAIL,
   id,
   error,
+});
+
+export const changeNavigationPanel = (navigation_panel) => ({
+  type: NAVIGATION_PANEL_CHANGE,
+  navigation_panel,
 });
 
 export const lookupAccount = (acct) => (dispatch, getState) => {
