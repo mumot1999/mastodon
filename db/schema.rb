@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_23_020926) do
+ActiveRecord::Schema.define(version: 2022_01_14_164044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -510,7 +510,6 @@ ActiveRecord::Schema.define(version: 2021_12_23_020926) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "replies_policy", default: 0, null: false
-    t.text "hashtags_users", default: "", null: false
     t.index ["account_id"], name: "index_lists_on_account_id"
   end
 
@@ -728,6 +727,17 @@ ActiveRecord::Schema.define(version: 2021_12_23_020926) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "state", default: 0, null: false
+  end
+
+  create_table "remote_accounts", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "token"
+    t.string "origin"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "remote_account_id"
+    t.string "remote_account_login"
+    t.index ["account_id"], name: "index_remote_accounts_on_account_id"
   end
 
   create_table "report_notes", force: :cascade do |t|
@@ -1067,6 +1077,7 @@ ActiveRecord::Schema.define(version: 2021_12_23_020926) do
   add_foreign_key "poll_votes", "polls", on_delete: :cascade
   add_foreign_key "polls", "accounts", on_delete: :cascade
   add_foreign_key "polls", "statuses", on_delete: :cascade
+  add_foreign_key "remote_accounts", "accounts"
   add_foreign_key "report_notes", "accounts", on_delete: :cascade
   add_foreign_key "report_notes", "reports", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_bca45b75fd", on_delete: :nullify

@@ -42,6 +42,7 @@ import {
   INIT_MEDIA_EDIT_MODAL,
   COMPOSE_CHANGE_MEDIA_DESCRIPTION,
   COMPOSE_CHANGE_MEDIA_FOCUS,
+  COMPOSE_SET_REMOTE_ACCOUNTS
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -79,6 +80,7 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
+  remoteAccounts: ImmutableList(),
   media_modal: ImmutableMap({
     id: null,
     description: '',
@@ -116,6 +118,7 @@ function clearAll(state) {
     map.set('privacy', state.get('default_privacy'));
     map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
+    map.update('remoteAccounts', list => list.clear());
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
     map.set('stream', false);
@@ -261,6 +264,12 @@ const updateSuggestionTags = (state, token) => {
 
 export default function compose(state = initialState, action) {
   switch(action.type) {
+    case COMPOSE_SET_REMOTE_ACCOUNTS:{
+      if(action.value === false){
+        return state.set("remoteAccounts", state.get("remoteAccounts").filter(x => x !== action.id))
+      }
+      return state.set("remoteAccounts", state.get("remoteAccounts").push(action.id))
+    }
   case STORE_HYDRATE:
     return hydrate(state, action.state.get('compose'));
   case COMPOSE_MOUNT:

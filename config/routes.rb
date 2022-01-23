@@ -148,6 +148,7 @@ Rails.application.routes.draw do
 
     resources :identity_proofs, only: [:index, :new, :create, :destroy]
 
+    resources :remote_accounts
     resources :applications, except: [:edit] do
       member do
         post :regenerate
@@ -359,6 +360,8 @@ Rails.application.routes.draw do
       resources :suggestions, only: [:index, :destroy]
       resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
       resources :preferences, only: [:index]
+
+      resources :remote_accounts, only: [:index]
 
       resources :announcements, only: [:index] do
         scope module: :announcements do
