@@ -5,6 +5,8 @@ import {
   submitSearch,
   showSearch,
 } from '../../../actions/search';
+
+import { fetchComposeSuggestions } from '../../../actions/compose';
 import Search from '../components/search';
 
 const mapStateToProps = state => ({
@@ -16,6 +18,7 @@ const mapDispatchToProps = dispatch => ({
 
   onChange (value) {
     dispatch(changeSearch(value));
+    dispatch(fetchComposeSuggestions(value, 'search'));
   },
 
   onClear () {
