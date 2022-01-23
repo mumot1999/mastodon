@@ -339,7 +339,7 @@
 
 .ellipsis {
   &::after {
-    content: '…';
+    content: "…";
   }
 }
 
@@ -357,7 +357,7 @@
       color: $highlight-text-color;
     }
 
-    input[type='checkbox'] {
+    input[type="checkbox"] {
       display: none;
     }
 
@@ -1792,7 +1792,7 @@ a.account__display-name {
   .image-loader__preview-canvas {
     max-width: $media-modal-media-max-width;
     max-height: $media-modal-media-max-height;
-    background: url('../images/void.png') repeat;
+    background: url("../images/void.png") repeat;
     object-fit: contain;
   }
 
@@ -2640,6 +2640,11 @@ a.account__display-name {
   .flex-spacer {
     background: transparent;
   }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .drawer__pager {
@@ -2960,6 +2965,22 @@ a.account__display-name {
 .react-toggle--checked .react-toggle-thumb {
   left: 27px;
   border-color: $ui-highlight-color;
+}
+
+.nav-diffrent {
+  background: lighten($ui-base-color, 1%);
+  h1 {
+    cursor: pointer;
+  }
+}
+
+.nav-check-diffrent {
+  li {
+    cursor: default;
+  }
+  input {
+    cursor: pointer;
+  }
 }
 
 .column-link {
@@ -3488,7 +3509,7 @@ a.status-card.compact:hover {
 
     &::before {
       display: block;
-      content: '';
+      content: "";
       position: absolute;
       bottom: -13px;
       left: 0;
@@ -5874,7 +5895,7 @@ a.status-card.compact:hover {
     }
 
     &::before {
-      content: '';
+      content: "";
       width: 50px;
       background: rgba($white, 0.35);
       border-radius: 4px;
@@ -5944,7 +5965,7 @@ a.status-card.compact:hover {
     position: relative;
 
     &::before {
-      content: '';
+      content: "";
       width: 100%;
       background: rgba($white, 0.35);
       border-radius: 4px;
@@ -6204,7 +6225,7 @@ a.status-card.compact:hover {
       &::before,
       &::after {
         display: block;
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -6270,8 +6291,8 @@ a.status-card.compact:hover {
   text-overflow: ellipsis;
   cursor: pointer;
 
-  input[type='radio'],
-  input[type='checkbox'] {
+  input[type="radio"],
+  input[type="checkbox"] {
     display: none;
   }
 
@@ -6681,7 +6702,7 @@ noscript {
     width: 100px;
     height: 100px;
     transform: translate(-50%, -50%);
-    background: url('../images/reticle.png') no-repeat 0 0;
+    background: url("../images/reticle.png") no-repeat 0 0;
     border-radius: 50%;
     box-shadow: 0 0 0 9999em rgba($base-shadow-color, 0.35);
   }
@@ -7364,7 +7385,7 @@ noscript {
 
   &.unread {
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;

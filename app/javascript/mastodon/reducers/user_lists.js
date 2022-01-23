@@ -22,6 +22,8 @@ import {
   FOLLOW_REQUESTS_EXPAND_FAIL,
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
   FOLLOW_REQUEST_REJECT_SUCCESS,
+  NAVIGATION_PANEL_FETCH_SUCCESS,
+  NAVIGATION_PANEL_CHANGE,
 } from '../actions/accounts';
 import {
   REBLOGS_FETCH_SUCCESS,
@@ -57,7 +59,7 @@ import {
   DIRECTORY_EXPAND_SUCCESS,
   DIRECTORY_EXPAND_FAIL,
 } from 'mastodon/actions/directory';
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialListState = ImmutableMap({
   next: null,
@@ -74,6 +76,7 @@ const initialState = ImmutableMap({
   blocks: initialListState,
   synchros: initialListState,
   mutes: initialListState,
+  navigation_panel: ImmutableMap(),
 });
 
 const normalizeList = (state, path, accounts, next) => {
@@ -177,6 +180,16 @@ export default function userLists(state = initialState, action) {
     case DIRECTORY_FETCH_FAIL:
     case DIRECTORY_EXPAND_FAIL:
       return state.setIn(['directory', 'isLoading'], false);
+    case NAVIGATION_PANEL_FETCH_SUCCESS:
+      console.log("REDUCER");
+      console.log(fromJS(JSON.parse(action.navigation_panel.navigation_panel)));
+      return state.withMutations(map => {
+        map.set('navigation_panel', fromJS(JSON.parse(action.navigation_panel.navigation_panel)));
+      });
+    case NAVIGATION_PANEL_CHANGE:
+      return state.withMutations(map => {
+        map.set('navigation_panel', fromJS(action.navigation_panel));
+      });
     default:
       return state;
   }

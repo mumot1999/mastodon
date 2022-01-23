@@ -1831,6 +1831,18 @@
         "id": "navigation_bar.security"
       },
       {
+        "defaultMessage": "Change navigation panel",
+        "id": "navigation_bar.changeNavPanel"
+      },
+      {
+        "defaultMessage": "Add",
+        "id": "navigation_bar.changeNavPanel.add"
+      },
+      {
+        "defaultMessage": "Remove",
+        "id": "navigation_bar.changeNavPanel.remove"
+      },
+      {
         "defaultMessage": "Getting started",
         "id": "getting_started.heading"
       },
