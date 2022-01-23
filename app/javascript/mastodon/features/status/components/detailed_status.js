@@ -116,6 +116,7 @@ class DetailedStatus extends ImmutablePureComponent {
     let reblogLink = '';
     let reblogIcon = 'retweet';
     let favouriteLink = '';
+    let localOnly = '';
 
     if (this.props.measureHeight) {
       outerStyle.height = `${this.state.height}px`;

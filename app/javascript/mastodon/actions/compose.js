@@ -180,6 +180,7 @@ export function submitCompose(routerHistory) {
         }
       };
 
+
       if (response.data.visibility === 'local_only') {
         insertIfOnline('home');
         insertIfOnline('community');

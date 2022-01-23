@@ -189,6 +189,7 @@ class ActionBar extends React.PureComponent {
 
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
     const mutingConversation = status.get('muted');
+    const federated = !status.get('local_only');
     const account            = status.get('account');
     const writtenByMe        = status.getIn(['account', 'id']) === me;
 
@@ -248,7 +249,7 @@ class ActionBar extends React.PureComponent {
       }
     }
 
-    const shareButton = ('share' in navigator) && publicStatus && (
+    const shareButton = ('share' in navigator) && publicStatus && federated && (
       <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShare} /></div>
     );
 

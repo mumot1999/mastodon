@@ -339,6 +339,7 @@ export default function compose(state = initialState, action) {
       map.set('privacy', state.get('default_privacy'));
       map.set('poll', null);
       map.set('idempotencyKey', uuid());
+      map.set('federation', state.get('default_federation'));
     });
   case COMPOSE_SUBMIT_REQUEST:
     return state.set('is_submitting', true);

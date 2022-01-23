@@ -87,6 +87,24 @@ class PostStatusService < BaseService
     end
   end
 
+  def local_only_option(local_only, in_reply_to, federation_setting, text)
+    # This is intended for third party clients. The admin can set a custom :local_only:
+    # emoji that users can append to force a post to be local only.
+    if text.include? ":local_only:"
+      return true
+    end
+    if local_only.nil?
+      if in_reply_to && in_reply_to.local_only
+        return true
+      end
+      if in_reply_to && !in_reply_to.local_only
+        return false
+      end
+      return !federation_setting
+    end
+    local_only
+  end
+
   def postprocess_status!
     LinkCrawlWorker.perform_async(@status.id) unless @status.spoiler_text?
     DistributionWorker.perform_async(@status.id)
@@ -152,22 +170,6 @@ class PostStatusService < BaseService
     ActivityTracker.increment('activity:interactions')
     return if @account.following?(@status.in_reply_to_account_id)
     PotentialFriendshipTracker.record(@account.id, @status.in_reply_to_account_id, :reply)
-  end
-
-  def local_only_option(local_only, in_reply_to, federation_setting, text)
-    if text.include? ":local_only:"
-      return true
-    end
-    if local_only.nil?
-      if in_reply_to && in_reply_to.local_only
-        return true
-      end
-      if in_reply_to && !in_reply_to.local_only
-        return false
-      end
-      return !federation_setting
-    end
-    local_only
   end
 
   def status_attributes

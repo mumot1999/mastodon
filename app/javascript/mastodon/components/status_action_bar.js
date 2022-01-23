@@ -228,6 +228,7 @@ class StatusActionBar extends ImmutablePureComponent {
     const mutingConversation = status.get('muted');
     const account            = status.get('account');
     const writtenByMe        = status.getIn(['account', 'id']) === me;
+    const federated          = !status.get('local_only');
 
     let menu = [];
 
@@ -317,7 +318,7 @@ class StatusActionBar extends ImmutablePureComponent {
       reblogTitle = intl.formatMessage(messages.cannot_reblog);
     }
 
-    const shareButton = ('share' in navigator) && publicStatus && (
+    const shareButton = ('share' in navigator) && publicStatus && federated && (
       <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShareClick} />
     );
 
