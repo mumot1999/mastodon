@@ -38,11 +38,8 @@ import announcements from './announcements';
 import markers from './markers';
 import picture_in_picture from './picture_in_picture';
 import accounts_map from './accounts_map';
-<<<<<<< HEAD
 import searchUsers from './search_users';
-=======
 import remote_accounts from './remote_accounts'
->>>>>>> feat: show remote_accounts in compose form
 
 const reducers = {
   announcements,
