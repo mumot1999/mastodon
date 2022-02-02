@@ -237,7 +237,7 @@ export function useMediaStreamToVideoRef({
 export const useMediaStreamToVideoRefAndPlay = functionResultWrapper(
   useMediaStreamToVideoRef
 )((ref) => {
-  ref.current?.play();
+  ref.current?.play().catch(() => {});
   return ref;
 });
 // export const stopStreaming = () => {
