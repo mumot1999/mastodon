@@ -125,7 +125,7 @@
     "postcss-loader": "^3.0.0",
     "postcss-object-fit-images": "^1.1.2",
     "promise.prototype.finally": "^3.1.2",
-    "prop-types": "^15.5.10",
+    "prop-types": "^15.8.1",
     "protoo-client": "^4.0.6",
     "punycode": "^2.1.0",
     "random-string": "^0.2.0",
