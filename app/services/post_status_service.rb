@@ -2,6 +2,7 @@
 
 class PostStatusService < BaseService
   include Redisable
+  include LanguagesHelper
 
   MIN_SCHEDULE_OFFSET = 5.minutes.freeze
 
@@ -74,6 +75,9 @@ class PostStatusService < BaseService
     status_for_validation = @account.statuses.build(status_attributes)
 
     if status_for_validation.valid?
+      # Marking the status as destroyed is necessary to prevent the status from being
+      # persisted when the associated media attachments get updated when creating the
+      # scheduled status.
       status_for_validation.destroy
 
       # The following transaction block is needed to wrap the UPDATEs to
@@ -88,7 +92,8 @@ class PostStatusService < BaseService
   end
 
   def postprocess_status!
-    LinkCrawlWorker.perform_async(@status.id) unless @status.spoiler_text?
+    Trends.tags.register(@status)
+    LinkCrawlWorker.perform_async(@status.id)
     DistributionWorker.perform_async(@status.id)
     ActivityPub::DistributionWorker.perform_async(@status.id)
     PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
@@ -103,10 +108,6 @@ class PostStatusService < BaseService
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:audio_or_video?)
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_ready') if @media.any?(&:not_processed?)
-  end
-
-  def language_from_option(str)
-    ISO_639.find(str)&.alpha2
   end
 
   def process_mentions_service
@@ -161,7 +162,7 @@ class PostStatusService < BaseService
       sensitive: @sensitive,
       spoiler_text: @options[:spoiler_text] || '',
       visibility: @visibility,
-      language: language_from_option(@options[:language]) || @account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(@text, @account),
+      language: valid_locale_or_nil(@options[:language].presence || @account.user&.preferred_posting_language || I18n.default_locale),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],
     }.compact
