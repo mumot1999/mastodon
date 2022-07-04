@@ -99,7 +99,7 @@
     "fp-ts": "^2.11.5",
     "glob": "^7.2.0",
     "history": "^4.10.1",
-    "http-link-header": "^1.0.3",
+    "http-link-header": "^1.0.5",
     "immutable": "^3.8.2",
     "imports-loader": "^1.2.0",
     "intersection-observer": "^0.12.0",
